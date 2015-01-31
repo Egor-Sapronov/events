@@ -3,9 +3,8 @@ var passport = require('passport'),
     ClientPasswordStrategy = require('passport-oauth2-client-password').Strategy,
     BearerStrategy = require('passport-http-bearer').Strategy,
     basicStartegy = require('./strategy').basicStategy,
-    clientPasswordStartegy = require('./strategy').clientPasswordStrategy,
     bearerStartegy = require('./strategy').bearerStategy;
 
 passport.use(new BasicStrategy(basicStartegy));
-passport.use(new ClientPasswordStrategy(clientPasswordStartegy));
+passport.use(new ClientPasswordStrategy(basicStartegy));
 passport.use(new BearerStrategy(bearerStartegy));
