@@ -4,7 +4,7 @@ var Sequelize = require('sequelize'),
     sequelize = require('../data/database'),
     crypto = require('crypto'),
 
-    User = sequelize.define('user', {
+    User = sequelize.define('User', {
             username: {
                 type: Sequelize.STRING,
                 unique: true,
@@ -38,6 +38,7 @@ var Sequelize = require('sequelize'),
             },
             freezeTableName: true
         });
+
 
 function encryptPassword(password, salt) {
     return crypto.createHmac('sha1', salt).update(password).digest('hex');

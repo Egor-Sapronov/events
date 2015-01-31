@@ -3,7 +3,7 @@
 var Sequelize = require('sequelize'),
     sequelize = require('../data/database'),
 
-    Client = sequelize.define('client', {
+    Client = sequelize.define('Client', {
         name: {
             type: Sequelize.STRING,
             unique: true,
@@ -13,6 +13,9 @@ var Sequelize = require('sequelize'),
             type: Sequelize.STRING,
             allowNull: false
         }
+    }, {
+        freezeTableName: true
     });
+
 
 module.exports = Client;
