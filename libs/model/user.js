@@ -12,7 +12,6 @@ var Sequelize = require('sequelize'),
             },
             password: {
                 type: Sequelize.STRING,
-                unique: true,
                 get: function () {
                     return this._plainPassword;
                 },
@@ -23,10 +22,12 @@ var Sequelize = require('sequelize'),
                 }
             },
             hashedPassword: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             salt: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             }
         },
         {
@@ -37,4 +38,11 @@ function encryptPassword(password, salt) {
     return crypto.createHmac('sha1', salt).update(password).digest('hex');
 }
 
-module.exports = User;
+function checkPassword(password, hashedPassword, salt) {
+    return encryptPassword(password, salt) === hashedPassword;
+}
+
+module.exports = {
+    User: User,
+    checkPassword: checkPassword
+};
