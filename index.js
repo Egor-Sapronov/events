@@ -1,5 +1,10 @@
-var app = require('./app');
+var app = require('./app'),
+    sequelize = require('./libs/data/database');
 
-var server = app.listen(process.env.PORT || 3000, function () {
+sequelize
+    .sync({force: true})
+    .then(function () {
+        app.listen(process.env.PORT || 3000, function () {
+        });
 
-});
+    });
