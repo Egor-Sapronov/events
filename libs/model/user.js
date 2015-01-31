@@ -31,6 +31,11 @@ var Sequelize = require('sequelize'),
             }
         },
         {
+            instanceMethods: {
+                checkPassword: function (password) {
+                    return encryptPassword(password, this.getDataValue('salt')) === this.getDataValue('hashedPassword');
+                }
+            },
             freezeTableName: true
         });
 
@@ -38,11 +43,4 @@ function encryptPassword(password, salt) {
     return crypto.createHmac('sha1', salt).update(password).digest('hex');
 }
 
-function checkPassword(password, hashedPassword, salt) {
-    return encryptPassword(password, salt) === hashedPassword;
-}
-
-module.exports = {
-    User: User,
-    checkPassword: checkPassword
-};
+module.exports = User;
