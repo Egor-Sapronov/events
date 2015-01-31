@@ -52,6 +52,7 @@
     "vinyl-transform": "~1.0.0",
     "gulp-jshint": "~1.9.0",
     "gulp-if": "~1.2.5",
-    "gulp-cssmin": "~0.1.6"
+    "gulp-cssmin": "~0.1.6",
+    "chai": "~1.10.0"
   }
 }
