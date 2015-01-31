@@ -9,7 +9,7 @@ var Sequelize = require('sequelize'),
             unique: true,
             allowNull: false
         },
-        clientSecret: {
+        secret: {
             type: Sequelize.STRING,
             allowNull: false
         }
