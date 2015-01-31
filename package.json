@@ -17,10 +17,8 @@
     "url": "https://github.com/Egor-Sapronov/events/issues"
   },
   "homepage": "https://github.com/Egor-Sapronov/events",
-  "browser": {
-  },
-  "browserify-shim": {
-  },
+  "browser": {},
+  "browserify-shim": {},
   "browserify": {
     "transform": [
       "browserify-shim"
@@ -35,7 +33,10 @@
     "debug": "~2.0.0",
     "jade": "~1.6.0",
     "winston": "~0.8.1",
-    "nconf": "~0.6.9"
+    "nconf": "~0.6.9",
+    "sequelize": "~2.0.0-rc8",
+    "pg-hstore": "~2.3.1",
+    "pg": "~4.2.0"
   },
   "devDependencies": {
     "jasmine": "~2.0.1",
@@ -51,6 +52,7 @@
     "vinyl-transform": "~1.0.0",
     "gulp-jshint": "~1.9.0",
     "gulp-if": "~1.2.5",
-    "gulp-cssmin": "~0.1.6"
+    "gulp-cssmin": "~0.1.6",
+    "chai": "~1.10.0"
   }
 }
