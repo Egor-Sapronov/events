@@ -3,6 +3,7 @@ var expect = require('chai').expect,
     User = require('../libs/model/user'),
     AccessToken = require('../libs/model/accessToken'),
     sequelize = require('../libs/data/database'),
+    exchangeStrategy = require('../libs/auth/strategy').exchangeStrategy,
     basicStrategy = require('../libs/auth/strategy').basicStategy,
     bearerStrategy = require('../libs/auth/strategy').bearerStategy;
 
@@ -117,6 +118,59 @@ describe('Auth strategy', function () {
                         expect(user).to.equal(false);
                         done();
                     });
+                });
+        });
+    });
+
+    describe('#exchangeStrategy', function () {
+        it('Should exchange token for username and password', function (done) {
+            var user, client;
+            sequelize.sync({force: true})
+                .then(function () {
+                    return User.create({
+                        username: 'egor',
+                        password: '123456'
+                    });
+                })
+                .then(function (userEntity) {
+                    user = userEntity;
+                    return Client.create({
+                        name: 'web',
+                        secret: '123456'
+                    });
+                })
+                .then(function (clientEntity) {
+                    client = clientEntity;
+
+                    exchangeStrategy(client, 'egor', '123456', {}, function (err, token) {
+                        expect(err).to.equal(null);
+                        expect(token).to.be.a('string');
+                        done();
+                    })
+                });
+        });
+        it('Should return false if password is incorrect or user is not exist', function (done) {
+            var user;
+            sequelize.sync({force: true})
+                .then(function () {
+                    return User.create({
+                        username: 'egor',
+                        password: '123456'
+                    });
+                })
+                .then(function (userEntity) {
+                    user = userEntity;
+                    return Client.create({
+                        name: 'web',
+                        secret: '123456'
+                    });
+                })
+                .then(function (clientEntity) {
+                    exchangeStrategy(clientEntity, 'bad user', 'bad password', {}, function (err, token) {
+                        expect(err).to.equal(null);
+                        expect(token).to.equal(false);
+                        done();
+                    })
                 });
         });
     });

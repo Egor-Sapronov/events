@@ -1,7 +1,7 @@
 'use strict';
 
-
-var UserModel = require('../model/user'),
+var crypto = require('crypto'),
+    UserModel = require('../model/user'),
     ClientModel = require('../model/client'),
     AccessTokenModel = require('../model/accessToken');
 
@@ -45,11 +45,6 @@ function bearerStategy(accessToken, done) {
                     var info = {scope: '*'};
 
                     done(null, user, info);
-                })
-                .catch(function (err) {
-                    if (err) {
-                        return done(err);
-                    }
                 });
         })
         .catch(function (err) {
@@ -59,5 +54,49 @@ function bearerStategy(accessToken, done) {
         });
 }
 
+function exchangeStrategy(client, username, password, scope, done) {
+    var user;
+
+    UserModel
+        .find({where: {username: username}})
+        .then(function (userEntity) {
+            if (!userEntity) {
+                return done(null, false);
+            }
+            if (!userEntity.checkPassword(password)) {
+                return done(null, false);
+            }
+
+            user = userEntity;
+
+            return AccessTokenModel
+                .destroy({
+                    where: {
+                        UserId: userEntity.id,
+                        ClientId: client.id
+                    }
+                })
+                .then(function () {
+                    var tokenValue = crypto.randomBytes(32).toString('base64');
+
+                    return AccessTokenModel.create({
+                        token: tokenValue,
+                        ClientId: client.id,
+                        UserId: user.id
+                    });
+                })
+                .then(function (token) {
+                    done(null, token.token);
+                });
+        })
+        .catch(function (err) {
+            if (err) {
+                return done(err);
+            }
+        });
+
+}
+
+module.exports.exchangeStrategy = exchangeStrategy;
 module.exports.basicStategy = basicStategy;
 module.exports.bearerStategy = bearerStategy;

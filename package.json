@@ -33,7 +33,8 @@
     "passport": "~0.2.1",
     "passport-http": "~0.2.2",
     "passport-oauth2-client-password": "~0.1.2",
-    "passport-http-bearer": "~1.0.1"
+    "passport-http-bearer": "~1.0.1",
+    "oauth2orize": "~1.0.1"
   },
   "devDependencies": {
     "chai": "~1.10.0"
