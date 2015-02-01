@@ -2,23 +2,22 @@
 
 var crypto = require('crypto'),
     UserModel = require('../model/user'),
-    ClientModel = require('../model/client'),
     AccessTokenModel = require('../model/accessToken');
 
-function basicStategy(clientName, clientSecret, done) {
-    ClientModel
-        .find({where: {name: clientName}})
-        .then(function (client) {
+function basicStrategy(username, password, done) {
+    UserModel
+        .find({where: {username: username}})
+        .then(function (user) {
 
-            if (!client) {
+            if (!user) {
                 return done(null, false);
             }
 
-            if (client.secret != clientSecret) {
+            if (!user.checkPassword(password)) {
                 return done(null, false);
             }
 
-            return done(null, client);
+            return done(null, user);
         })
         .catch(function (err) {
             if (err) {
@@ -27,7 +26,7 @@ function basicStategy(clientName, clientSecret, done) {
         });
 }
 
-function bearerStategy(accessToken, done) {
+function bearerStrategy(accessToken, done) {
     AccessTokenModel
         .find({where: {token: accessToken}})
         .then(function (token) {
@@ -45,48 +44,11 @@ function bearerStategy(accessToken, done) {
                     var info = {scope: '*'};
 
                     done(null, user, info);
-                });
-        })
-        .catch(function (err) {
-            if (err) {
-                return done(err);
-            }
-        });
-}
-
-function exchangeStrategy(client, username, password, scope, done) {
-    var user;
-
-    UserModel
-        .find({where: {username: username}})
-        .then(function (userEntity) {
-            if (!userEntity) {
-                return done(null, false);
-            }
-            if (!userEntity.checkPassword(password)) {
-                return done(null, false);
-            }
-
-            user = userEntity;
-
-            return AccessTokenModel
-                .destroy({
-                    where: {
-                        UserId: userEntity.id,
-                        ClientId: client.id
+                })
+                .catch(function (err) {
+                    if (err) {
+                        return done(err);
                     }
-                })
-                .then(function () {
-                    var tokenValue = crypto.randomBytes(32).toString('base64');
-
-                    return AccessTokenModel.create({
-                        token: tokenValue,
-                        ClientId: client.id,
-                        UserId: user.id
-                    });
-                })
-                .then(function (token) {
-                    done(null, token.token);
                 });
         })
         .catch(function (err) {
@@ -94,9 +56,51 @@ function exchangeStrategy(client, username, password, scope, done) {
                 return done(err);
             }
         });
-
 }
 
-module.exports.exchangeStrategy = exchangeStrategy;
-module.exports.basicStategy = basicStategy;
-module.exports.bearerStategy = bearerStategy;
+//function exchangeStrategy(client, username, password, scope, done) {
+//    var user;
+//
+//    UserModel
+//        .find({where: {username: username}})
+//        .then(function (userEntity) {
+//            if (!userEntity) {
+//                return done(null, false);
+//            }
+//            if (!userEntity.checkPassword(password)) {
+//                return done(null, false);
+//            }
+//
+//            console.log(user);
+//            user = userEntity;
+//
+//            return AccessTokenModel
+//                .destroy({
+//                    where: {
+//                        UserId: userEntity.id,
+//                        ClientId: client.id
+//                    }
+//                })
+//                .then(function () {
+//                    var tokenValue = crypto.randomBytes(32).toString('base64');
+//
+//                    return AccessTokenModel.create({
+//                        token: tokenValue,
+//                        ClientId: client.id,
+//                        UserId: user.id
+//                    });
+//                })
+//                .then(function (token) {
+//                    done(null, token.token);
+//                });
+//        })
+//        .catch(function (err) {
+//            if (err) {
+//                return done(err);
+//            }
+//        });
+//
+//}
+
+module.exports.basicStrategy = basicStrategy;
+module.exports.bearerStrategy = bearerStrategy;

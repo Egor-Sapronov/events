@@ -1,7 +1,6 @@
 'use strict';
 
 var Sequelize = require('sequelize'),
-    Client = require('./client'),
     User = require('./user'),
     sequelize = require('../data/database'),
 
@@ -15,7 +14,6 @@ var Sequelize = require('sequelize'),
         freezeTableName: true
     });
 
-AccessToken.belongsTo(Client);
 AccessToken.belongsTo(User);
 
 module.exports = AccessToken;
