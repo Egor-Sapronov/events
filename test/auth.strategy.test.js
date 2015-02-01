@@ -1,5 +1,6 @@
 var expect = require('chai').expect,
     User = require('../libs/model/user'),
+    sequelize = require('../libs/data/database'),
     AccessToken = require('../libs/model/accessToken'),
     basicStrategy = require('../libs/auth/strategy').basicStrategy,
     bearerStrategy = require('../libs/auth/strategy').bearerStrategy;
@@ -7,45 +8,45 @@ var expect = require('chai').expect,
 describe('Auth strategy', function () {
 
     describe('#basicStrategy', function () {
-        it('Should return user for username and password', function(done){
-            User.sync({force: true})
+        it('Should return user for username and password', function (done) {
+            sequelize.sync({force: true})
                 .then(function () {
                     return User.create({
                         username: 'egor',
                         password: '123456'
                     });
                 }).then(function () {
-                    basicStrategy('egor', '123456', function (err,user) {
+                    basicStrategy('egor', '123456', function (err, user) {
                         expect(user.username).to.equal('egor');
                         done();
                     });
                 });
         });
 
-        it('Should return false if password is incorrect', function(done){
-            User.sync({force: true})
+        it('Should return false if password is incorrect', function (done) {
+            sequelize.sync({force: true})
                 .then(function () {
                     return User.create({
                         username: 'egor',
                         password: '123456'
                     });
                 }).then(function () {
-                    basicStrategy('egor', 'bad password', function (err,user) {
+                    basicStrategy('egor', 'bad password', function (err, user) {
                         expect(user).to.equal(false);
                         done();
                     });
                 });
         });
 
-        it('Should return false if user is not exist', function(done){
-            User.sync({force: true})
+        it('Should return false if user is not exist', function (done) {
+            sequelize.sync({force: true})
                 .then(function () {
                     return User.create({
                         username: 'egor',
                         password: '123456'
                     });
                 }).then(function () {
-                    basicStrategy('Bad user', 'bad password', function (err,user) {
+                    basicStrategy('Bad user', 'bad password', function (err, user) {
                         expect(user).to.equal(false);
                         done();
                     });
@@ -53,6 +54,58 @@ describe('Auth strategy', function () {
         });
     });
     describe('#bearerStrategy', function () {
+        it('Should return user for token', function(done){
+            var user;
+            sequelize.sync({force: true})
+                .then(function () {
+                    return User.create({
+                        username: 'egor',
+                        password: '123456'
+                    });
+                })
+                .then(function (userEntity) {
+                    user = userEntity;
+                    return AccessToken.create({
+                        token: 'abc'
+                    });
 
+                })
+                .then(function (token) {
+                    return token.setUser(user);
+                })
+                .then(function(){
+                    bearerStrategy('abc',function(err,userResult){
+                        expect(userResult.username).to.equal('egor');
+                        done();
+                    });
+                });
+        });
+
+        it('Should return false if token is unknown', function(done){
+            var user;
+            sequelize.sync({force: true})
+                .then(function () {
+                    return User.create({
+                        username: 'egor',
+                        password: '123456'
+                    });
+                })
+                .then(function (userEntity) {
+                    user = userEntity;
+                    return AccessToken.create({
+                        token: 'abc'
+                    });
+
+                })
+                .then(function (token) {
+                    return token.setUser(user);
+                })
+                .then(function(){
+                    bearerStrategy('bad token',function(err,userResult){
+                        expect(userResult).to.equal(false);
+                        done();
+                    });
+                });
+        });
     });
 });
