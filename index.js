@@ -1,7 +1,6 @@
 var app = require('./app'),
-    User = require('./libs/model/user'),
-    AccessToken = require('./libs/model/accessToken'),
-    sequelize = require('./libs/data/database');
+    User = require('./libs/data/database').User,
+    sequelize = require('./libs/data/database').sequelize;
 
 sequelize
     .sync({force: true})

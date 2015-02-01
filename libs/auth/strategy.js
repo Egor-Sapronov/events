@@ -1,7 +1,7 @@
 'use strict';
 
-var UserModel = require('../model/user'),
-    AccessTokenModel = require('../model/accessToken');
+var UserModel = require('../data/database').User,
+    AccessTokenModel = require('../data/database').AccessToken;
 
 /**
  * Exchange user for username and password
