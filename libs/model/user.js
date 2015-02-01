@@ -1,17 +1,26 @@
 'use strict';
 
-var Sequelize = require('sequelize'),
-    sequelize = require('../data/database'),
-    crypto = require('crypto'),
+var crypto = require('crypto');
 
-    User = sequelize.define('user', {
+function encryptPassword(password, salt) {
+    return crypto.createHmac('sha1', salt).update(password).digest('hex');
+}
+
+/**
+ *
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|Model} User model definition
+ */
+module.exports = function (sequelize, DataTypes) {
+    return sequelize.define('User', {
             username: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 unique: true,
                 allowNull: false
             },
             password: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 get: function () {
                     return this._plainPassword;
                 },
@@ -22,11 +31,11 @@ var Sequelize = require('sequelize'),
                 }
             },
             hashedPassword: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             },
             salt: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             }
         },
@@ -36,11 +45,7 @@ var Sequelize = require('sequelize'),
                     return encryptPassword(password, this.getDataValue('salt')) === this.getDataValue('hashedPassword');
                 }
             },
-            freezeTableName: true
+            freezeTableName: true,
+            paranoid: true
         });
-
-function encryptPassword(password, salt) {
-    return crypto.createHmac('sha1', salt).update(password).digest('hex');
-}
-
-module.exports = User;
+};

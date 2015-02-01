@@ -1,20 +1,19 @@
 'use strict';
 
-var Sequelize = require('sequelize'),
-    User = require('./user'),
-    Client = require('./client'),
-    sequelize = require('../data/database'),
-
-    AccessToken = sequelize.define('client', {
+/**
+ *
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|Model} Access token model definition
+ */
+module.exports = function (sequelize, DataTypes) {
+    return sequelize.define('AccessToken', {
         token: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             unique: true,
             allowNull: false
         }
+    }, {
+        freezeTableName: true
     });
-
-AccessToken.belongsTo(User);
-AccessToken.belongsTo(Client);
-
-module.exports = AccessToken;
-
+};
