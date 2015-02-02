@@ -72,7 +72,6 @@ describe('Auth strategy', function () {
                     return AccessToken.create({
                         token: 'abc'
                     });
-
                 })
                 .then(function (token) {
                     return token.setUser(user);
