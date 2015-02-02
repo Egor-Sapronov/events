@@ -13,7 +13,8 @@ describe('Auth strategy', function () {
                 .then(function () {
                     return User.create({
                         username: 'egor',
-                        password: '123456'
+                        password: '123456',
+                        email:'sapronov.egor@gmail.com'
                     });
                 }).then(function () {
                     basicStrategy('egor', '123456', function (err, user) {
@@ -28,7 +29,8 @@ describe('Auth strategy', function () {
                 .then(function () {
                     return User.create({
                         username: 'egor',
-                        password: '123456'
+                        password: '123456',
+                        email:'sapronov.egor@gmail.com'
                     });
                 }).then(function () {
                     basicStrategy('egor', 'bad password', function (err, user) {
@@ -43,7 +45,8 @@ describe('Auth strategy', function () {
                 .then(function () {
                     return User.create({
                         username: 'egor',
-                        password: '123456'
+                        password: '123456',
+                        email:'sapronov.egor@gmail.com'
                     });
                 }).then(function () {
                     basicStrategy('Bad user', 'bad password', function (err, user) {
@@ -60,7 +63,8 @@ describe('Auth strategy', function () {
                 .then(function () {
                     return User.create({
                         username: 'egor',
-                        password: '123456'
+                        password: '123456',
+                        email:'sapronov.egor@gmail.com'
                     });
                 })
                 .then(function (userEntity) {
@@ -87,7 +91,8 @@ describe('Auth strategy', function () {
                 .then(function () {
                     return User.create({
                         username: 'egor',
-                        password: '123456'
+                        password: '123456',
+                        email:'sapronov.egor@gmail.com'
                     });
                 })
                 .then(function (userEntity) {

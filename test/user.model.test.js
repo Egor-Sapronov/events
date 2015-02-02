@@ -10,7 +10,8 @@ describe('User model', function () {
                 .then(function () {
                     return User.create({
                         username: 'egor',
-                        password: '123456'
+                        password: '123456',
+                        email:'sapronov.egor@gmail.com'
                     });
                 }).then(function (user) {
                     expect(user.checkPassword('123456')).to.be.true;
