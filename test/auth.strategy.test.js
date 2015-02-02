@@ -17,7 +17,7 @@ describe('Auth strategy', function () {
                         email:'sapronov.egor@gmail.com'
                     });
                 }).then(function () {
-                    basicStrategy('egor', '123456', function (err, user) {
+                    basicStrategy('sapronov.egor@gmail.com', '123456', function (err, user) {
                         expect(user.username).to.equal('egor');
                         done();
                     });
@@ -33,7 +33,7 @@ describe('Auth strategy', function () {
                         email:'sapronov.egor@gmail.com'
                     });
                 }).then(function () {
-                    basicStrategy('egor', 'bad password', function (err, user) {
+                    basicStrategy('sapronov.egor@gmail.com', 'bad password', function (err, user) {
                         expect(user).to.equal(false);
                         done();
                     });
@@ -49,7 +49,7 @@ describe('Auth strategy', function () {
                         email:'sapronov.egor@gmail.com'
                     });
                 }).then(function () {
-                    basicStrategy('Bad user', 'bad password', function (err, user) {
+                    basicStrategy('Bad@user.com', 'bad password', function (err, user) {
                         expect(user).to.equal(false);
                         done();
                     });

@@ -4,14 +4,14 @@ var UserModel = require('../data/database').User,
     AccessTokenModel = require('../data/database').AccessToken;
 
 /**
- * Exchange user for username and password
- * @param {string} username
+ * Exchange user for email and password
+ * @param {string} email
  * @param {string} password
  * @param {function} <err,user>
  */
-function basicStrategy(username, password, done) {
+function basicStrategy(email, password, done) {
     UserModel
-        .find({where: {username: username}})
+        .find({where: {email: email}})
         .then(function (user) {
 
             if (!user) {
