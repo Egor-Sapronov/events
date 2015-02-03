@@ -2,10 +2,10 @@ var expect = require('chai').expect,
     User = require('../libs/data/database').User,
     sequelize = require('../libs/data/database').sequelize,
     AccessToken = require('../libs/data/database').AccessToken,
-    tokenService = require('../libs/auth/auth').tokenService;
+    createToken = require('../libs/auth/authServive').createToken;
 
-describe('Token service', function () {
-    describe('#tokenService', function () {
+describe('Auth service', function () {
+    describe('#createToken', function () {
         it('Should generate remove all tokens for the user and generate one new', function (done) {
             var user;
             sequelize.sync({force: true})
@@ -26,7 +26,7 @@ describe('Token service', function () {
                     return token.setUser(user);
                 })
                 .then(function () {
-                    tokenService(user, function (err, tokenResult) {
+                    createToken(user, function (err, tokenResult) {
                         expect(tokenResult.token).to.be.a('string');
                         expect(tokenResult.UserId).to.equal(user.id);
 
