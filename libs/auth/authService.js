@@ -52,9 +52,24 @@ function register(options, callback) {
         });
 }
 
+// TODO: error handling
+/**
+ * delete all access tokens for the user
+ * @param user
+ * @param callback <>
+ */
+function logOff(user, callback) {
+    db.AccessToken
+        .destroy({where: {UserId: user.id}})
+        .then(function () {
+            callback();
+        });
+}
+
 service = {
     createToken: createToken,
-    register: register
+    register: register,
+    logOff: logOff
 };
 
 module.exports = service;
