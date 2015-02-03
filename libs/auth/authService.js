@@ -30,8 +30,31 @@ function createToken(user, callback) {
         });
 }
 
+/**
+ * creates new user and generate access token for him
+ * @param options user data {username, email, password}
+ * @param callback <err, user, token>
+ */
+function register(options, callback) {
+    db.User
+        .create(options)
+        .then(function (user) {
+            createToken(user, function (err, token) {
+                if (err) {
+                    callback(err, false, false);
+                }
+
+                callback(null, user, token);
+            });
+        })
+        .catch(function (err) {
+            callback(err, false, false);
+        });
+}
+
 service = {
-    createToken: createToken
+    createToken: createToken,
+    register: register
 };
 
 module.exports = service;

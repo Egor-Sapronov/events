@@ -2,11 +2,12 @@ var expect = require('chai').expect,
     User = require('../libs/data/database').User,
     sequelize = require('../libs/data/database').sequelize,
     AccessToken = require('../libs/data/database').AccessToken,
-    createToken = require('../libs/auth/authServive').createToken;
+    createToken = require('../libs/auth/authService').createToken,
+    register = require('../libs/auth/authService').register;
 
 describe('Auth service', function () {
     describe('#createToken', function () {
-        it('Should generate remove all tokens for the user and generate one new', function (done) {
+        it('Should remove all tokens for the user and generate one new', function (done) {
             var user;
             sequelize.sync({force: true})
                 .then(function () {
@@ -36,6 +37,25 @@ describe('Auth service', function () {
                                 expect(count).to.equal(1);
                                 done();
                             });
+                    });
+                });
+        });
+    });
+
+    describe('#register', function () {
+        it('Should return new user and access token', function (done) {
+            sequelize.sync({force: true})
+                .then(function () {
+                    register({
+                        username: 'egor',
+                        password: '123456',
+                        email: 'sapronov.egor@gmail.com'
+                    }, function (err, user, token) {
+                        expect(err).to.equal(null);
+                        expect(user.id).to.equal(token.UserId);
+                        expect(user.username).to.equal('egor');
+
+                        done();
                     });
                 });
         });
