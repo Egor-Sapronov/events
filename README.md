@@ -15,6 +15,30 @@ Features
 - raise karma on social actions like: comments, likes, shares
 - ...
 
+Project structure
+===
+- libs
+    - auth — auth logic
+    - data — db main module
+    - model — sequelize models
+- test — unit tests
+- app.js — nodejs server
+- index.js — project entry point
+- package.json — project dependencies
+- Procfile — heroku settings
+
+build
+==
+    npm i
+
+start
+==
+    npm start
+
+test
+==
+    npm test
+
 Changelog
 ===
 v0.0.1
