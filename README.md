@@ -42,6 +42,7 @@ test
 TODO
 ===
 - use io.js as engine
+- rewrite existing code with native Promises
 - complete auth service
     - reset password
     - forgot password
