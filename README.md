@@ -39,9 +39,11 @@ test
 ==
     npm test
 
-Changelog
+TODO
 ===
-v0.0.1
-==
-- Heroku setup
-- basic and bearer http access control 
+- use io.js as engine
+- complete auth service
+    - reset password
+    - forgot password
+- basic markup
+- client auth
