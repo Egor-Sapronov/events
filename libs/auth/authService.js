@@ -1,54 +1,35 @@
 'use strict';
 
 var crypto = require('crypto'),
-    db = require('../data/database'),
-    service;
+    db = require('../data/database');
 
 /**
  * generate access token for user
  * @param user
- * @param callback <err,token>
+ * @return promise <AccessToken>
  */
-function createToken(user, callback) {
-    db.AccessToken
+function createToken(user) {
+    return db.AccessToken
         .destroy({where: {UserId: user.id}})
         .then(function () {
             return db.AccessToken
                 .create({
                     token: crypto.randomBytes(32).toString('base64'),
                     UserId: user.id
-                })
-                .then(function (token) {
-                    callback(null, token);
-                })
-                .catch(function (err) {
-                    callback(err, false);
                 });
-        })
-        .catch(function (err) {
-            callback(err, false);
         });
 }
 
 /**
  * creates new user and generate access token for him
  * @param options user data {username, email, password}
- * @param callback <err, user, token>
+ * @return promise <AccessToken>
  */
-function register(options, callback) {
-    db.User
+function register(options) {
+    return db.User
         .create(options)
         .then(function (user) {
-            createToken(user, function (err, token) {
-                if (err) {
-                    callback(err, false, false);
-                }
-
-                callback(null, user, token);
-            });
-        })
-        .catch(function (err) {
-            callback(err, false, false);
+            return createToken(user);
         });
 }
 
@@ -56,20 +37,15 @@ function register(options, callback) {
 /**
  * delete all access tokens for the user
  * @param user
- * @param callback <>
+ * @return promise
  */
-function logOff(user, callback) {
-    db.AccessToken
-        .destroy({where: {UserId: user.id}})
-        .then(function () {
-            callback();
-        });
+function logOff(user) {
+    return db.AccessToken
+        .destroy({where: {UserId: user.id}});
 }
 
-service = {
+module.exports = {
     createToken: createToken,
     register: register,
     logOff: logOff
 };
-
-module.exports = service;
