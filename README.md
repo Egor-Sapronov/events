@@ -41,8 +41,8 @@ test
 
 TODO
 ===
-- use io.js as engine
-- rewrite existing code with native Promises
+- use io.js as engine(when all modules will be have support)
+- rewrite existing code with promise, instead of callbacks
 - complete auth service
     - reset password
     - forgot password
