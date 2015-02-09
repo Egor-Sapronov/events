@@ -1,9 +1,9 @@
 var expect = require('chai').expect,
-    User = require('../libs/data/database').User,
-    sequelize = require('../libs/data/database').sequelize,
-    AccessToken = require('../libs/data/database').AccessToken,
-    basicStrategy = require('../libs/auth/strategy').basicStrategy,
-    bearerStrategy = require('../libs/auth/strategy').bearerStrategy;
+    User = require('../../libs/data/database').User,
+    sequelize = require('../../libs/data/database').sequelize,
+    AccessToken = require('../../libs/data/database').AccessToken,
+    basicStrategy = require('../../libs/auth/strategy').basicStrategy,
+    bearerStrategy = require('../../libs/auth/strategy').bearerStrategy;
 
 describe('Auth strategy', function () {
 

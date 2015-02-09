@@ -1,6 +1,6 @@
 var expect = require('chai').expect,
-    db = require('../libs/data/database'),
-    userService = require('../libs/auth/authService');
+    db = require('../../libs/data/database'),
+    userService = require('../../libs/auth/authService');
 
 describe('Auth service', function () {
     describe('#createToken', function () {

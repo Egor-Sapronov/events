@@ -1,6 +1,6 @@
 var request = require('supertest'),
-    app = require('../app'),
-    db = require('../libs/data/database');
+    app = require('../../app'),
+    db = require('../../libs/data/database');
 
 describe('Auth endpoints', function () {
     describe('#/auth/login', function () {

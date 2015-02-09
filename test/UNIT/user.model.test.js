@@ -1,6 +1,6 @@
 var expect = require('chai').expect,
-    User = require('../libs/data/database').User,
-    sequelize = require('../libs/data/database').sequelize;
+    User = require('../../libs/data/database').User,
+    sequelize = require('../../libs/data/database').sequelize;
 
 
 describe('User model', function () {
