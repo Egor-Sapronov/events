@@ -37,13 +37,6 @@ start
 
 test
 ==
+Using [chai](http://chaijs.com) for unit testing and [supertest](https://github.com/visionmedia/supertest) for e2e testing http endpoints, testing framework is [mocha](http://mochajs.org)
     npm test
 
-TODO
-===
-- use io.js as engine(when all modules will be have support)
-- complete auth service
-    - reset password
-    - forgot password
-- basic markup
-- client auth
