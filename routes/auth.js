@@ -13,13 +13,10 @@ router.get('/login',
     function (req, res) {
         authService.createToken(req.user)
             .then(function (token) {
-                res.send({
+                res.status(200).send({
                     token: token.token,
                     username: req.user.username
                 });
-            })
-            .catch(function () {
-                res.send(400);
             });
     });
 
@@ -28,10 +25,7 @@ router.get('/logoff',
     function (req, res) {
         authService.logOff(req.user)
             .then(function () {
-                res.send(200);
-            })
-            .catch(function () {
-                res.send(400);
+                res.status(200).end();
             });
     });
 
