@@ -30,7 +30,7 @@
     "passport-http-bearer": "~1.0.1",
     "pg": "~4.2.0",
     "pg-hstore": "~2.3.1",
-    "sequelize": "file:../../../../var/folders/7j/d84lbgfj5zj7yc76gvf_h7gw0000gn/T/npm-618-e272d117/git-cache-b6ad06517f24/1322621234fdc7f673d4637ad8405da7f68d2569"
+    "sequelize": "git://github.com/sequelize/sequelize.git"
   },
   "devDependencies": {
     "chai": "~1.10.0"
