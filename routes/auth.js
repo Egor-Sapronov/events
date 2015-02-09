@@ -8,7 +8,7 @@ var passport = require('passport'),
             strict: true
         });
 
-router.get('/token',
+router.get('/login',
     passport.authenticate('basic', {session: false}),
     function (req, res) {
         authService.createToken(req.user)
@@ -17,6 +17,21 @@ router.get('/token',
                     token: token.token,
                     username: req.user.username
                 });
+            })
+            .catch(function () {
+                res.send(400);
+            });
+    });
+
+router.get('/logoff',
+    passport.authenticate('bearer', {session: false}),
+    function (req, res) {
+        authService.logOff(req.user)
+            .then(function () {
+                res.send(200);
+            })
+            .catch(function () {
+                res.send(400);
             });
     });
 
