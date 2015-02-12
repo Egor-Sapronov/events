@@ -1,7 +1,6 @@
 Events
 ===
-[![Build Status](https://travis-ci.org/Egor-Sapronov/events.svg?branch=develop)](https://travis-ci.org/Egor-Sapronov/events)
-
+[![Build Status](https://travis-ci.org/Egor-Sapronov/events.svg?branch=develop)](https://travis-ci.org/Egor-Sapronov/events) [![Code Climate](https://codeclimate.com/github/Egor-Sapronov/events/badges/gpa.svg)](https://codeclimate.com/github/Egor-Sapronov/events) [![Test Coverage](https://codeclimate.com/github/Egor-Sapronov/events/badges/coverage.svg)](https://codeclimate.com/github/Egor-Sapronov/events)
 This repository for my diploma project in computer science.
 
 Goal of the project is help people find information about public events all over the world. This would be a web application build on modern technologies. [Node.js](http://nodejs.org) + [postrges](http://www.postgresql.org)([Sequelize ORM](http://sequelizejs.com)) on server. [Materializecss](http://materializecss.com) + [React](http://facebook.github.io/react/) on client side.
