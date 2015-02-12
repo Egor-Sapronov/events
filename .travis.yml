@@ -8,12 +8,18 @@ addons:
 
 env:
   - DATABASE_URL=postgres://postgres@127.0.0.1:5432/sequelize_test
-  - CODECLIMATE_REPO_TOKEN=31cc6f073f2f3a0dd4f938cf3d2723c305555dc86badc4cc1711b707df01fe40 node_modules/codeclimate-test-reporter/bin/codeclimate.js < coverage/lcov.info
 
 before_script:
   - "psql -c 'create database sequelize_test;' -U postgres"
+
+after_script:
+  - cat coverage/lcov.info | codeclimate
 
 branches:
   only:
     - master
     - develop
+
+addons:
+  code_climate:
+    repo_token: 31cc6f073f2f3a0dd4f938cf3d2723c305555dc86badc4cc1711b707df01fe40
