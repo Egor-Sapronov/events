@@ -10,7 +10,7 @@ addons:
   postgresql: "9.3"
 
 env:
-  - DB=mysql DIALECT=postgres DATABASE_URL=pg://postgres@127.0.0.1:5432/sequelize_test
+  - DB=mysql DIALECT=postgres DATABASE_URL=postgres://postgres@127.0.0.1:5432/sequelize_test
 
 before_script:
   - "psql -c 'create database sequelize_test;' -U postgres"
