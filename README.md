@@ -1,5 +1,6 @@
 Events
 ===
+[![Build Status](https://travis-ci.org/Egor-Sapronov/events.svg?branch=develop)](https://travis-ci.org/Egor-Sapronov/events)
 
 This repository for my diploma project in computer science.
 
