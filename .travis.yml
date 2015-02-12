@@ -1,0 +1,21 @@
+language: "node_js"
+node_js:
+  - 0.4
+  - 0.6
+  - 0.8
+  - 0.11
+  - 0.12
+
+addons:
+  postgresql: "9.3"
+
+env:
+  - DB=mysql DIALECT=postgres DATABASE_URL=pg://postgres@127.0.0.1:5432/sequelize_test
+
+before_script:
+  - "psql -c 'create database sequelize_test;' -U postgres"
+
+branches:
+  only:
+    - master
+    - develop
