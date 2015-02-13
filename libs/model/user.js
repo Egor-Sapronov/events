@@ -38,9 +38,6 @@ module.exports = function (sequelize, DataTypes) {
                     notEmpty: true,
                     is: /[a-z0-9A-Z-]{6,30}/
                 },
-                get: function () {
-                    return this._plainPassword;
-                },
                 set: function (password) {
                     this._plainPassword = password;
                     this.setDataValue('salt', crypto.randomBytes(32).toString('base64'));
