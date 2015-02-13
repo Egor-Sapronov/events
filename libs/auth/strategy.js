@@ -52,11 +52,6 @@ function bearerStrategy(accessToken, done) {
                     }
 
                     done(null, user);
-                })
-                .catch(function (err) {
-                    if (err) {
-                        return done(err);
-                    }
                 });
         })
         .catch(function (err) {

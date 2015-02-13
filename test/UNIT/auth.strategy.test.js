@@ -24,7 +24,7 @@ describe('Auth strategy', function () {
                 });
         });
 
-        it('Should return error if user is not exist', function (done) {
+        it('Should return error err user is not exist', function (done) {
             sequelize.sync({force: true})
                 .then(function () {
                     return User.create({
@@ -122,8 +122,37 @@ describe('Auth strategy', function () {
                     return token.setUser(user);
                 })
                 .then(function () {
-                    bearerStrategy('bad token', function (err, userResult) {
+                    bearerStrategy('badtoken', function (err, userResult) {
                         expect(userResult).to.equal(false);
+                        done();
+                    });
+                });
+        });
+
+        it('Should return err if token is not a string', function (done) {
+            var user;
+            sequelize.sync({force: true})
+                .then(function () {
+                    return User.create({
+                        username: 'egor',
+                        password: '123456',
+                        email: 'sapronov.egor@gmail.com'
+                    });
+                })
+                .then(function (userEntity) {
+                    user = userEntity;
+                    return AccessToken.create({
+                        token: 'abc'
+                    });
+
+                })
+                .then(function (token) {
+                    return token.setUser(user);
+                })
+                .then(function () {
+                    bearerStrategy({}, function (err, userResult) {
+                        expect(userResult).to.equal(undefined);
+                        expect(err).to.be.ok;
                         done();
                     });
                 });
