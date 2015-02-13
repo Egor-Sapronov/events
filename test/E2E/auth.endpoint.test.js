@@ -1,8 +1,7 @@
 var request = require('supertest'),
     app = require('../../app'),
-    auth = require('../../libs/auth/auth'),
+    passport = require('../../libs/auth/auth').passport,
     authService = require('../../libs/auth/authService'),
-    passport = require('passport'),
     db = require('../../libs/data/database');
 
 describe('Auth strategy handlers', function () {

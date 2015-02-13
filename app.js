@@ -1,8 +1,7 @@
 'use strict';
 
 var express = require('express'),
-    auth = require('./libs/auth/auth'),
-    passport = require('passport'),
+    passport = require('./libs/auth/auth').passport,
     authRouter = require('./routes/auth'),
     app = express();
 

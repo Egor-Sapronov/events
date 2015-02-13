@@ -1,3 +1,5 @@
+'use strict';
+
 var app = require('./app'),
     logger = require('morgan'),
     db = require('./libs/data/database');

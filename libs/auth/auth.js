@@ -11,3 +11,5 @@ passport.use(new BasicStrategy({
     passwordField: 'password'
 }, basicStrategy));
 passport.use(new BearerStrategy(bearerStrategy));
+
+module.exports.passport = passport;
