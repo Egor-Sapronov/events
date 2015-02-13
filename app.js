@@ -7,10 +7,6 @@ var express = require('express'),
 
 app.use(passport.initialize());
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-});
-
 app.use('/auth', authRouter);
 
 module.exports = app;
