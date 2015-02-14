@@ -19,7 +19,7 @@ var Sequelize = require('sequelize'),
 
 db.AccessToken.belongsTo(db.User);
 
-db.User.belongsToMany(db.Role);
-db.Role.belongsToMany(db.User);
+db.User.belongsToMany(db.Role, {through: 'UserInRoles'});
+db.Role.belongsToMany(db.User, {through: 'UserInRoles'});
 
 module.exports = db;
