@@ -39,5 +39,6 @@ start
 test
 ==
 Using [chai](http://chaijs.com) for unit testing and [supertest](https://github.com/visionmedia/supertest) for e2e testing http endpoints, testing framework is [mocha](http://mochajs.org)
+
     npm test
 
