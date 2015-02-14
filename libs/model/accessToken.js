@@ -1,11 +1,5 @@
 'use strict';
 
-/**
- *
- * @param sequelize
- * @param DataTypes
- * @returns {*|Model} Access token model definition
- */
 module.exports = function (sequelize, DataTypes) {
     return sequelize.define('AccessToken', {
         token: {

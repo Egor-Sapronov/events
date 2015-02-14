@@ -6,12 +6,6 @@ function encryptPassword(password, salt) {
     return crypto.createHmac('sha1', salt).update(password).digest('hex');
 }
 
-/**
- *
- * @param sequelize
- * @param DataTypes
- * @returns {*|Model} User model definition
- */
 module.exports = function (sequelize, DataTypes) {
     return sequelize.define('User', {
             username: {
