@@ -29,7 +29,7 @@
     "passport-http-bearer": "~1.0.1",
     "pg": "~4.2.0",
     "pg-hstore": "~2.3.1",
-    "sequelize": "git://github.com/sequelize/sequelize.git"
+    "sequelize": "^2.0.2"
   },
   "devDependencies": {
     "chai": "~1.10.0",
