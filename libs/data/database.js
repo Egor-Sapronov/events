@@ -9,17 +9,31 @@ var Sequelize = require('sequelize'),
     User = require('../model/user'),
     AccessToken = require('../model/accessToken'),
     Role = require('../model/role'),
+    Event = require('../model/event'),
     db = {
         sequelize: sequelize,
         Sequelize: Sequelize,
         User: sequelize.import('User', User),
         AccessToken: sequelize.import('AccessToken', AccessToken),
-        Role: sequelize.import('Role', Role)
+        Role: sequelize.import('Role', Role),
+        Event: sequelize.import('Event', Event)
     };
 
 db.AccessToken.belongsTo(db.User);
 
-db.User.belongsToMany(db.Role, {through: 'UserInRoles'});
-db.Role.belongsToMany(db.User, {through: 'UserInRoles'});
+/**
+ * Owner is user who create the event
+ */
+db.Event.belongsTo(db.User, {as: 'Owner'});
+
+
+/**
+ * Subscribers are user who subscribe to the event, but not create it
+ */
+db.User.belongsToMany(db.Event, {through: 'Subscribers'});
+db.Event.belongsToMany(db.User, {through: 'Subscribers'});
+
+db.User.belongsToMany(db.Role, {through: 'UserRoles'});
+db.Role.belongsToMany(db.User, {through: 'UserRoles'});
 
 module.exports = db;
