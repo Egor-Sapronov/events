@@ -11,5 +11,8 @@ module.exports = function (sequelize, DataTypes) {
                 isAlphanumeric: true
             }
         }
+    }, {
+        freezeTableName: true,
+        paranoid: true
     });
 };
