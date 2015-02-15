@@ -7,8 +7,7 @@ module.exports = function (sequelize, DataTypes) {
             unique: true,
             allowNull: false,
             validate: {
-                notEmpty: true,
-                is: /[a-z0-9A-Z-]{4,30}/
+                notEmpty: true
             }
         },
         description: {
