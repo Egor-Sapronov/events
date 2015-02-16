@@ -26,7 +26,6 @@ Project structure
 - app.js — nodejs server
 - index.js — project entry point
 - package.json — project dependencies
-- Procfile — heroku settings
 
 build
 ==

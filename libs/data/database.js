@@ -24,8 +24,7 @@ db.AccessToken.belongsTo(db.User);
 /**
  * Owner is user who create the event
  */
-db.Event.belongsTo(db.User,{as:'Owner'});
-
+db.Event.belongsTo(db.User, {as: 'Owner'});
 
 /**
  * Subscribers are user who subscribe to the event, but not create it
