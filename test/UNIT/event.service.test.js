@@ -30,5 +30,25 @@ describe('Event service', function () {
                     done();
                 });
         });
+
+        it('Should throw error if event validation fail', function (done) {
+            db.sequelize.sync({force: true})
+                .then(function () {
+                    return db.User.create({
+                        username: 'egor',
+                        password: '123456',
+                        email: 'sapronov.egor@gmail.com'
+                    });
+                })
+                .then(function (user) {
+                    return eventService.createEvent(user, {
+                        title: 'test'
+                    });
+                })
+                .catch(function (err) {
+                    expect(err).to.be.ok;
+                    done();
+                });
+        });
     });
 });
