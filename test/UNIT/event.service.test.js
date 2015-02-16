@@ -21,9 +21,9 @@ describe('Event service', function () {
                 })
                 .then(function (event) {
                     expect(event).to.be.ok;
-                    expect(event.UserId).to.be.ok;
+                    expect(event.OwnerId).to.be.ok;
 
-                    return event.getUser();
+                    return event.getOwner();
                 })
                 .then(function (user) {
                     expect(user).to.be.ok;
