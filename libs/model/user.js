@@ -1,58 +1,33 @@
 'use strict';
 
-var crypto = require('crypto');
-
-function encryptPassword(password, salt) {
-    return crypto.createHmac('sha1', salt).update(password).digest('hex');
-}
-
 module.exports = function (sequelize, DataTypes) {
     return sequelize.define('User', {
-            username: {
+            providerId: {
                 type: DataTypes.STRING,
-                unique: true,
-                allowNull: false,
-                validate: {
-                    notEmpty: true,
-                    is: /[a-z0-9A-Z-]{4,30}/
-                }
+                unique: true
+            },
+            provider: {
+                type: DataTypes.STRING
+            },
+            profileLink: {
+                type: DataTypes.STRING,
+                unique: true
+            },
+            displayName: {
+                type: DataTypes.STRING,
+                unique: true
+            },
+            name: {
+                type: DataTypes.STRING
             },
             email: {
-                type: DataTypes.STRING,
-                unique: true,
-                allowNull: false,
-                validate: {
-                    notEmpty: true,
-                    isEmail: true
-                }
+                type: DataTypes.STRING
             },
-            password: {
-                type: DataTypes.STRING,
-                validate: {
-                    notEmpty: true,
-                    is: /[a-z0-9A-Z-]{6,30}/
-                },
-                set: function (password) {
-                    this._plainPassword = password;
-                    this.setDataValue('salt', crypto.randomBytes(32).toString('base64'));
-                    this.hashedPassword = encryptPassword(password, this.getDataValue('salt'));
-                }
-            },
-            hashedPassword: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
-            salt: {
-                type: DataTypes.STRING,
-                allowNull: false
+            gender: {
+                type: DataTypes.STRING
             }
         },
         {
-            instanceMethods: {
-                checkPassword: function (password) {
-                    return encryptPassword(password, this.getDataValue('salt')) === this.getDataValue('hashedPassword');
-                }
-            },
             freezeTableName: true,
             paranoid: true
         });
