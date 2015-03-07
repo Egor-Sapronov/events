@@ -14,8 +14,7 @@ module.exports = function (sequelize, DataTypes) {
                 unique: true
             },
             displayName: {
-                type: DataTypes.STRING,
-                unique: true
+                type: DataTypes.STRING
             },
             name: {
                 type: DataTypes.STRING

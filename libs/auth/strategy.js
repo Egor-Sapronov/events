@@ -1,14 +1,15 @@
 'use strict';
 
 var db = require('../data/database');
+var authService = require('./authService');
 
 /**
  * Exchange user for access token
  * @param {string} accessToken
- * @param {function} <err,user>
+ * @param {function}
  */
 function bearerStrategy(accessToken, done) {
-    db.User
+    db.AccessToken
         .find({where: {token: accessToken}})
         .then(function (token) {
             if (!token) {
@@ -44,7 +45,7 @@ function faceBookStrategy(accessToken, refreshToken, profile, done) {
         })
         .spread(function (user, created) {
             authService
-                .createToken(user, accessToken)
+                .saveToken(user, accessToken)
                 .then(function () {
                     return done(null, user);
                 });
