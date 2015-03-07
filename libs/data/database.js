@@ -5,7 +5,7 @@
  */
 
 var Sequelize = require('sequelize'),
-    sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/test', {logging: false}),
+    sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/test', {logging: true}),
     User = require('../model/user'),
     AccessToken = require('../model/accessToken'),
     Role = require('../model/role'),

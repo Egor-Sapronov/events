@@ -10,7 +10,8 @@ describe('Auth service', function () {
 
     describe('#saveToken', function () {
         it('Should save token for the user', function (done) {
-            db.sequelize.sync({force: true})
+            db.sequelize
+                .sync({force: true})
                 .then(function () {
                     return db.User
                         .create({
