@@ -20,7 +20,7 @@ function bearerStrategy(accessToken, done) {
         });
 }
 
-function faceBookStrategy(accessToken, refreshToken, profile, done) {
+function facebookStrategy(accessToken, refreshToken, profile, done) {
     db.User
         .findOrCreate({
             where: {providerId: profile.id},
@@ -46,5 +46,5 @@ function faceBookStrategy(accessToken, refreshToken, profile, done) {
 
 module.exports = {
     bearerStrategy: bearerStrategy,
-    faceBookStrategy: faceBookStrategy
+    facebookStrategy: facebookStrategy
 };

@@ -25,7 +25,7 @@ describe('Auth strategy, facebook and bearer', function () {
                     var accessToken = 'token';
                     var refreshToken = 'refreshtoken';
 
-                    strategy.faceBookStrategy(accessToken, refreshToken, profile, function (err, user) {
+                    strategy.facebookStrategy(accessToken, refreshToken, profile, function (err, user) {
                         expect(user).to.be.ok;
                         expect(user.providerId).to.equal(profile.id);
                         done();
