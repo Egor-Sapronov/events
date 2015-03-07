@@ -21,27 +21,37 @@ function bearerStrategy(accessToken, done) {
 }
 
 function facebookStrategy(accessToken, refreshToken, profile, done) {
+    // TODO: use findOrCreate when bug with postrgesql will be fixed
     db.User
-        .findOrCreate({
-            where: {providerId: profile.id},
-            defaults: {
-                providerId: profile.id,
-                provider: profile.provider,
-                profileLink: profile.profileUrl,
-                displayName: profile.displayName,
-                name: profile._json.name,
-                email: profile._json.email,
-                gender: profile.gender
+        .find({where: {providerId: profile.id}})
+        .then(function (user) {
+            if (!user) {
+                db.User
+                    .create({
+                        providerId: profile.id,
+                        provider: profile.provider,
+                        profileLink: profile.profileUrl,
+                        displayName: profile.displayName,
+                        name: profile._json.name,
+                        email: profile._json.email,
+                        gender: profile.gender
+                    })
+                    .then(function (user) {
+                        authService
+                            .saveToken(user, accessToken)
+                            .then(function () {
+                                return done(null, user);
+                            });
+                    });
+            } else {
+                authService
+                    .saveToken(user, accessToken)
+                    .then(function () {
+                        return done(null, user);
+                    });
             }
         })
-        .spread(function (user, created) {
-            authService
-                .saveToken(user, accessToken)
-                .then(function () {
-                    return done(null, user);
-                });
 
-        });
 }
 
 module.exports = {
