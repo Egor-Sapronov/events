@@ -12,20 +12,11 @@ function bearerStrategy(accessToken, done) {
     db.AccessToken
         .find({where: {token: accessToken}})
         .then(function (token) {
-            if (!token) {
-                return done(null, false);
-            }
-
             db.User
                 .find({where: {id: token.UserId}})
                 .then(function (user) {
                     done(null, user);
                 });
-        })
-        .catch(function (err) {
-            if (err) {
-                return done(err);
-            }
         });
 }
 
