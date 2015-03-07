@@ -7,6 +7,4 @@ var express = require('express'),
 
 app.use(passport.initialize());
 
-app.use('/auth', authRouter);
-
 module.exports = app;

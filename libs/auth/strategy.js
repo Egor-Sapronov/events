@@ -1,35 +1,6 @@
 'use strict';
 
-var UserModel = require('../data/database').User,
-    AccessTokenModel = require('../data/database').AccessToken;
-
-/**
- * Exchange user for email and password
- * @param {string} email
- * @param {string} password
- * @param {function} <err,user>
- */
-function basicStrategy(email, password, done) {
-    UserModel
-        .find({where: {email: email}})
-        .then(function (user) {
-
-            if (!user) {
-                return done(null, false);
-            }
-
-            if (!user.checkPassword(password)) {
-                return done(null, false);
-            }
-
-            return done(null, user);
-        })
-        .catch(function (err) {
-            if (err) {
-                return done(err);
-            }
-        });
-}
+var db = require('../data/database');
 
 /**
  * Exchange user for access token
@@ -37,14 +8,14 @@ function basicStrategy(email, password, done) {
  * @param {function} <err,user>
  */
 function bearerStrategy(accessToken, done) {
-    AccessTokenModel
+    db.User
         .find({where: {token: accessToken}})
         .then(function (token) {
             if (!token) {
                 return done(null, false);
             }
 
-            UserModel
+            db.User
                 .find({where: {id: token.UserId}})
                 .then(function (user) {
                     done(null, user);
@@ -57,5 +28,31 @@ function bearerStrategy(accessToken, done) {
         });
 }
 
-module.exports.basicStrategy = basicStrategy;
-module.exports.bearerStrategy = bearerStrategy;
+function faceBookStrategy(accessToken, refreshToken, profile, done) {
+    db.User
+        .findOrCreate({
+            where: {providerId: profile.id},
+            defaults: {
+                providerId: profile.id,
+                provider: profile.provider,
+                profileLink: profile.profileUrl,
+                displayName: profile.displayName,
+                name: profile._json.name,
+                email: profile._json.email,
+                gender: profile.gender
+            }
+        })
+        .spread(function (user, created) {
+            authService
+                .createToken(user, accessToken)
+                .then(function () {
+                    return done(null, user);
+                });
+
+        });
+}
+
+module.exports = {
+    bearerStrategy: bearerStrategy,
+    faceBookStrategy: faceBookStrategy
+};
