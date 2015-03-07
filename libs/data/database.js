@@ -4,20 +4,21 @@
  * Main db module
  */
 
-var Sequelize = require('sequelize'),
-    sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/test', {logging: false}),
-    User = require('../model/user'),
-    AccessToken = require('../model/accessToken'),
-    Role = require('../model/role'),
-    Event = require('../model/event'),
-    db = {
-        sequelize: sequelize,
-        Sequelize: Sequelize,
-        User: sequelize.import('User', User),
-        AccessToken: sequelize.import('AccessToken', AccessToken),
-        Role: sequelize.import('Role', Role),
-        Event: sequelize.import('Event', Event)
-    };
+var Sequelize = require('sequelize');
+var config = require('../config');
+var sequelize = new Sequelize(config.get('db:url'), {logging: false});
+var User = require('../model/user');
+var AccessToken = require('../model/accessToken');
+var Role = require('../model/role');
+var Event = require('../model/event');
+var db = {
+    sequelize: sequelize,
+    Sequelize: Sequelize,
+    User: sequelize.import('User', User),
+    AccessToken: sequelize.import('AccessToken', AccessToken),
+    Role: sequelize.import('Role', Role),
+    Event: sequelize.import('Event', Event)
+};
 
 db.AccessToken.belongsTo(db.User);
 

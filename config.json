@@ -1,0 +1,11 @@
+{
+  "port": 3000,
+  "db": {
+    "url": "postgres://localhost:5432/test"
+  },
+  "facebook": {
+    "clientID": "",
+    "clientSecret": "",
+    "callbackURL": ""
+  }
+}

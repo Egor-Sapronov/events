@@ -1,7 +1,7 @@
 {
   "name": "events",
   "version": "0.0.0",
-  "description": "Web site about city events",
+  "description": "Social network for events",
   "main": "index.js",
   "engines": {
     "node": "0.12.*"
@@ -24,6 +24,7 @@
     "debug": "~2.0.0",
     "express": "~4.9.0",
     "morgan": "^1.5.1",
+    "nconf": "^0.7.1",
     "passport": "~0.2.1",
     "passport-facebook": "^2.0.0",
     "passport-http": "~0.2.2",
