@@ -1,15 +1,16 @@
 'use strict';
 
 var passport = require('passport'),
-    BasicStrategy = require('passport-http').BasicStrategy,
     BearerStrategy = require('passport-http-bearer').Strategy,
-    basicStrategy = require('./strategy').basicStrategy,
-    bearerStrategy = require('./strategy').bearerStrategy;
+    strategy = require('./strategy'),
+    FacebookStrategy = require('passport-facebook');
 
-passport.use(new BasicStrategy({
-    usernameField: 'email',
-    passwordField: 'password'
-}, basicStrategy));
-passport.use(new BearerStrategy(bearerStrategy));
+
+passport.use(new BearerStrategy(strategy.bearerStrategy));
+passport.use(new FacebookStrategy({
+    clientID: 'CLIENT_ID',
+    clientSecret: 'CLIENT_SECRET',
+    callbackURL: "CALLBACK_URL"
+}, strategy.facebookStrategy));
 
 module.exports.passport = passport;

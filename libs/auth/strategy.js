@@ -1,61 +1,50 @@
 'use strict';
 
-var UserModel = require('../data/database').User,
-    AccessTokenModel = require('../data/database').AccessToken;
-
-/**
- * Exchange user for email and password
- * @param {string} email
- * @param {string} password
- * @param {function} <err,user>
- */
-function basicStrategy(email, password, done) {
-    UserModel
-        .find({where: {email: email}})
-        .then(function (user) {
-
-            if (!user) {
-                return done(null, false);
-            }
-
-            if (!user.checkPassword(password)) {
-                return done(null, false);
-            }
-
-            return done(null, user);
-        })
-        .catch(function (err) {
-            if (err) {
-                return done(err);
-            }
-        });
-}
+var db = require('../data/database');
+var authService = require('./authService');
 
 /**
  * Exchange user for access token
  * @param {string} accessToken
- * @param {function} <err,user>
+ * @param {function}
  */
 function bearerStrategy(accessToken, done) {
-    AccessTokenModel
+    db.AccessToken
         .find({where: {token: accessToken}})
         .then(function (token) {
-            if (!token) {
-                return done(null, false);
-            }
-
-            UserModel
+            db.User
                 .find({where: {id: token.UserId}})
                 .then(function (user) {
                     done(null, user);
                 });
-        })
-        .catch(function (err) {
-            if (err) {
-                return done(err);
-            }
         });
 }
 
-module.exports.basicStrategy = basicStrategy;
-module.exports.bearerStrategy = bearerStrategy;
+function facebookStrategy(accessToken, refreshToken, profile, done) {
+    db.User
+        .findOrCreate({
+            where: {providerId: profile.id},
+            defaults: {
+                providerId: profile.id,
+                provider: profile.provider,
+                profileLink: profile.profileUrl,
+                displayName: profile.displayName,
+                name: profile._json.name,
+                email: profile._json.email,
+                gender: profile.gender
+            }
+        })
+        .spread(function (user, created) {
+            authService
+                .saveToken(user, accessToken)
+                .then(function () {
+                    return done(null, user);
+                });
+
+        });
+}
+
+module.exports = {
+    bearerStrategy: bearerStrategy,
+    facebookStrategy: facebookStrategy
+};
