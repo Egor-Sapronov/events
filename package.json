@@ -4,7 +4,8 @@
   "description": "Social network for events",
   "main": "index.js",
   "engines": {
-    "node": "0.12.*"
+    "iojs": "^1.5.0",
+    "npm": "^2.7.0"
   },
   "scripts": {
     "start": "node index.js",
