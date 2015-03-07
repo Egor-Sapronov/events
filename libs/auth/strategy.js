@@ -50,7 +50,7 @@ function facebookStrategy(accessToken, refreshToken, profile, done) {
                         return done(null, user);
                     });
             }
-        })
+        });
 
 }
 

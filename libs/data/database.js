@@ -7,17 +7,13 @@
 var Sequelize = require('sequelize');
 var config = require('../config');
 var sequelize = new Sequelize(config.get('db:url'), {logging: false});
-var User = require('../model/user');
-var AccessToken = require('../model/accessToken');
-var Role = require('../model/role');
-var Event = require('../model/event');
 var db = {
     sequelize: sequelize,
     Sequelize: Sequelize,
-    User: sequelize.import('User', User),
-    AccessToken: sequelize.import('AccessToken', AccessToken),
-    Role: sequelize.import('Role', Role),
-    Event: sequelize.import('Event', Event)
+    User: sequelize.import('User', require('../model/user')),
+    AccessToken: sequelize.import('AccessToken', require('../model/accessToken')),
+    Role: sequelize.import('Role', require('../model/role')),
+    Event: sequelize.import('Event', require('../model/event'))
 };
 
 db.AccessToken.belongsTo(db.User);
