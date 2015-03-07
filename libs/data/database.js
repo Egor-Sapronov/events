@@ -4,10 +4,10 @@
  * Main db module
  */
 
-var Sequelize = require('sequelize');
-var config = require('../config');
-var sequelize = new Sequelize(config.get('db:url'), {logging: false});
-var db = {
+let Sequelize = require('sequelize');
+let config = require('../config');
+let sequelize = new Sequelize(config.get('db:url'), {logging: false});
+let db = {
     sequelize: sequelize,
     Sequelize: Sequelize,
     User: sequelize.import('User', require('../model/user')),

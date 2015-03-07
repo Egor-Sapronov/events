@@ -150,6 +150,7 @@
   "yui": false,
   // Yahoo User Interface
 
+  "esnext": true,
   // Custom Globals
   "predef": [
   ]

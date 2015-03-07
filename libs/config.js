@@ -1,4 +1,6 @@
-var nconf = require('nconf');
+'use strict';
+
+let nconf = require('nconf');
 nconf.argv()
     .env()
     .file({file: 'config.json'});

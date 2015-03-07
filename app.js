@@ -1,8 +1,8 @@
 'use strict';
 
-var express = require('express');
-var passport = require('./libs/auth/auth').passport;
-var app = express();
+let express = require('express');
+let passport = require('./libs/auth/auth').passport;
+let app = express();
 
 app.use(passport.initialize());
 

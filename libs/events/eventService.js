@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('../data/database');
+let db = require('../data/database');
 
 /**
  * Create event for the user, who become event owner
