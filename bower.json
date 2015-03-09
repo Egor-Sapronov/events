@@ -1,0 +1,22 @@
+{
+  "name": "events",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Egor-Sapronov/events",
+  "authors": [
+    "Egor <sapronov.egor@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.12.2",
+    "materialize": "~0.95.3"
+  }
+}

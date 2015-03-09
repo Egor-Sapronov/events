@@ -35,3 +35,8 @@ rundb.sh
 # istanbul coverage
 
 ./coverage
+
+# front-end build
+
+web/dist
+bower_components

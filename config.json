@@ -4,8 +4,8 @@
     "url": "postgres://localhost:5432/test"
   },
   "facebook": {
-    "clientID": "",
-    "clientSecret": "",
-    "callbackURL": ""
+    "clientID": "clientID",
+    "clientSecret": "clientSecret",
+    "callbackURL": "callbackURL"
   }
 }
