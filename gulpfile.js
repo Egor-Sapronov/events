@@ -9,6 +9,7 @@ let gulpif = require('gulp-if');
 let jshint = require('gulp-jshint');
 let gulpIgnore = require('gulp-ignore');
 let transform = require('vinyl-transform');
+let browserify = require('browserify');
 let del = require('del');
 let argv = require('yargs').argv;
 let app = require('./app');
