@@ -10,6 +10,7 @@ app.use(logger('dev'));
 db.sequelize
     .sync({force: true})
     .then(function () {
-        app.listen(config.get('app:port'), function () {
+        app.listen(config.get('port'), function () {
+
         });
     });
