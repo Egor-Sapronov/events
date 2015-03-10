@@ -5,7 +5,7 @@
  */
 
 let Sequelize = require('sequelize');
-let config = require('../config');
+let config = require('../config.es6');
 let sequelize = new Sequelize(config.get('db:url'), {logging: false});
 let db = {
     sequelize: sequelize,

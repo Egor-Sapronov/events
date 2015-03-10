@@ -2,9 +2,9 @@
 
 let passport = require('passport');
 let BearerStrategy = require('passport-http-bearer').Strategy;
-let strategy = require('./strategy');
+let strategy = require('./strategy.es6');
 let FacebookStrategy = require('passport-facebook');
-let config = require('../config');
+let config = require('../config.es6');
 
 passport.use(new BearerStrategy(strategy.bearerStrategy));
 passport.use(new FacebookStrategy({

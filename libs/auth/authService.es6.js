@@ -1,6 +1,6 @@
 'use strict';
 
-let db = require('../data/database');
+let db = require('../data/database.es6');
 
 /**
  * Save facebook access token

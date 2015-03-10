@@ -1,7 +1,7 @@
 'use strict';
 
-let db = require('../data/database');
-let authService = require('./authService');
+let db = require('../data/database.es6');
+let authService = require('./authService.es6');
 
 /**
  * Exchange user for access token

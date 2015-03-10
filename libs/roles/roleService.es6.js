@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('../data/database');
+let db = require('../data/database.es6');
 
 /**
  * Return true if user in role else return false

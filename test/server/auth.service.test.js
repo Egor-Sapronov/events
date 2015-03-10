@@ -1,8 +1,8 @@
 var expect = require('chai').expect;
 
 describe('Auth service', function () {
-    var service = require('../../libs/auth/authService');
-    var db = require('../../libs/data/database');
+    var service = require('../../libs/auth/authService.es6');
+    var db = require('../../libs/data/database.es6');
 
     it('Should exist', function () {
         expect(service).to.be.ok;

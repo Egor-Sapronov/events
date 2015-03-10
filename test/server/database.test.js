@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 
 describe('Database module', function () {
-    var db = require('../../libs/data/database');
+    var db = require('../../libs/data/database.es6');
     it('Should exist', function () {
         expect(db).to.be.ok;
     });
