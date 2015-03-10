@@ -12,7 +12,6 @@ let transform = require('vinyl-transform');
 let browserify = require('browserify');
 let del = require('del');
 let argv = require('yargs').argv;
-let app = require('./app');
 let paths = {
     src: './web/src/',
     dist: './web/dist/',
@@ -25,14 +24,6 @@ if (argv.production || argv.prod) {
 } else {
     production = false;
 }
-
-gulp.task('serve', function () {
-    app.set('port', process.env.PORT || 3000);
-
-    let server = app.listen(app.get('port'), function () {
-        console.log('Express server listening on port ' + server.address().port);
-    });
-});
 
 gulp.task('fonts', function () {
     return gulp.src(paths.src + 'fonts/**')
@@ -71,12 +62,12 @@ gulp.task('html', function () {
 });
 
 gulp.task('jade', function () {
-    return gulp.src(paths.src + '/**/*.jade')
+    return gulp.src(paths.src + '/templates/*.jade')
         .pipe(plumber())
         .pipe(jade({
             pretty: !production
         }))
-        .pipe(gulp.dest(paths.dist));
+        .pipe(gulp.dest(paths.dist + '/assets/templates'));
 });
 
 gulp.task('templates', ['jade', 'html']);
@@ -118,8 +109,4 @@ gulp.task('watch', function () {
     gulp.watch(paths.src + 'fonts/**', ['fonts']);
 });
 
-// Start local server
-gulp.task('start', ['watch', 'serve']);
-
-// Develop build
 gulp.task('build', ['lib', 'scripts', 'images', 'fonts', 'stylesheets', 'templates']);
