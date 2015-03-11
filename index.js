@@ -7,7 +7,7 @@ let db = require('./libs/data/database.es6');
 db.sequelize
     .sync({force: true})
     .then(function () {
-        app.listen(config.get('port'), function () {
+        app.listen(process.env.PORT || config.get('port'), function () {
             console.log('Express server listening on port ' + config.get('port'));
         });
     });
