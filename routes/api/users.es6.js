@@ -11,7 +11,12 @@ router.get('/me', passport.authenticate('bearer', {sessions: false}), function (
 router.get('/:id', function (req, res) {
     userService.getUser(req.params.id)
         .then(function (user) {
-            res.send(user);
+            if (user) {
+                res.send(user);
+            } else {
+                res.status(404).end();
+            }
+
         });
 });
 
