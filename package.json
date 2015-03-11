@@ -22,25 +22,6 @@
     "url": "https://github.com/Egor-Sapronov/events/issues"
   },
   "homepage": "https://github.com/Egor-Sapronov/events",
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browser": {
-    "jquery": "./bower_components/jquery/dist/jquery.js",
-    "react": "./bower_components/react/react.js",
-    "materialize": "./bower_components/materialize/dist/js/materialize.js"
-  },
-  "browserify-shim": {
-    "react": "react",
-    "jquery": "$",
-    "materialize": {
-      "depends": [
-        "jquery"
-      ]
-    }
-  },
   "dependencies": {
     "bower": "^1.3.12",
     "browserify": "^9.0.3",

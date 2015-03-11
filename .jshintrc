@@ -153,6 +153,9 @@
   "esnext": true,
   // Custom Globals
   "predef": [
+    "$",
+    "React",
+    "EventEmitter2"
   ]
   // additional predefined global variables
 }
