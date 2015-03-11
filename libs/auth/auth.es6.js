@@ -10,7 +10,7 @@ passport.use(new BearerStrategy(strategy.bearerStrategy));
 passport.use(new FacebookStrategy({
     clientID: config.get('facebook:clientID'),
     clientSecret: config.get('facebook:clientSecret'),
-    callbackURL: config.get('facebook:callbackURL')
+    callbackURL: '/auth/facebook/callback'
 }, strategy.facebookStrategy));
 
 module.exports.passport = passport;

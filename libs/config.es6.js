@@ -21,9 +21,5 @@ if (process.env.CLIENT_ID) {
 if (process.env.CLIENT_SECRET) {
     nconf.set('facebook:clientSecret', process.env.CLIENT_SECRET);
 }
-/* istanbul ignore if  */
-if (process.env.CALLBACK_URL) {
-    nconf.set('facebook:callbackURL', process.env.CALLBACK_URL);
-}
 
 module.exports = nconf;
