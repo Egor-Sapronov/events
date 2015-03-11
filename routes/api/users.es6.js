@@ -12,7 +12,13 @@ router.get('/:id', function (req, res) {
     userService.getUser(req.params.id)
         .then(function (user) {
             if (user) {
-                res.send(user);
+                res.send({
+                    displayName: user.displayName,
+                    name: user.name,
+                    id: user.id,
+                    providerId: user.providerId,
+                    gender: user.gender
+                });
             } else {
                 res.status(404).end();
             }
