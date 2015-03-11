@@ -2,6 +2,7 @@
 
 let passport = require('passport');
 let router = require('express').Router();
+let authService = require('../libs/auth/authService.es6');
 
 // Redirect the user to Facebook for authentication.  When complete,
 // Facebook will redirect the user back to the application at
@@ -20,7 +21,10 @@ router.get('/facebook/callback',
         session: false
     }),
     function (req, res) {
-        res.redirect('/#token');
+        authService.getToken(req.user)
+            .then(function (token) {
+                res.redirect('/#' + token.token);
+            });
     });
 
 
