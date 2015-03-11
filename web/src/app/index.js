@@ -3,6 +3,7 @@ var dataContext = require('./utils/dataContext');
 
 dataContext.on('load::userinfo', function () {
     console.log(dataContext.user);
+    toast('Successful sign up!', 4000);
 });
 
 $(document).ready(function () {

@@ -155,7 +155,8 @@
   "predef": [
     "$",
     "React",
-    "EventEmitter2"
+    "EventEmitter2",
+    "toast"
   ]
   // additional predefined global variables
 }
