@@ -4,7 +4,7 @@ let router = require('express').Router();
 let passport = require('../../libs/auth/auth.es6').passport;
 let userService = require('../../libs/userService.es6');
 
-router.get('/me', passport.authenticate('bearer', {sessions: false}), function (req, res) {
+router.get('/me', passport.authenticate('bearer', {session: false}), function (req, res) {
     res.send({
         displayName: req.user.displayName,
         name: req.user.name,
