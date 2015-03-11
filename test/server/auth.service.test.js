@@ -28,4 +28,30 @@ describe('Auth service', function () {
                 });
         });
     });
+
+    describe('#getToken', function () {
+        it('Should return token', function (done) {
+            var user;
+            db.sequelize
+                .sync({force: true})
+                .then(function () {
+                    return db.User
+                        .create({
+                            providerId: '1',
+                            profileLink: 'https://link.com'
+                        });
+                })
+                .then(function (entity) {
+                    user = entity;
+                    return service.saveToken(user, 'token');
+                })
+                .then(function (token) {
+                    return service.getToken(user);
+                })
+                .then(function (token) {
+                    expect(token).to.be.ok;
+                    done();
+                });
+        });
+    });
 });

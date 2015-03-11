@@ -21,6 +21,17 @@ function saveToken(user, token) {
         });
 }
 
+/**
+ * Return token for the user
+ *
+ * @param   {object}  user
+ * @returns {object}  promise
+ */
+function getToken(user) {
+    return db.AccessToken.find({where: {UserId: user.id}});
+}
+
 module.exports = {
-    saveToken: saveToken
+    saveToken: saveToken,
+    getToken: getToken
 };
