@@ -39,7 +39,7 @@ UserContext.prototype.loadUserInfo = function () {
             return response.json();
         })
         .then(function (json) {
-            _this.profileImage = json;
+            _this.profileImage = json.data;
             _this.emit('load::user', null);
         });
 };
