@@ -21,10 +21,13 @@ var ProfileBar = React.createClass({
             </ul>
             <ul id="slide-out" className="right side-nav">
                 <li>
-                    <a href=""></a>
+                    <a href="#">Your profile</a>
                 </li>
                 <li>
-                    <a href=""></a>
+                    <a href="#">Settings</a>
+                </li>
+                <li>
+                    <a href="#">Sign out</a>
                 </li>
             </ul>
         </div>);
