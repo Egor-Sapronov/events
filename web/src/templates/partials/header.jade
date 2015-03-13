@@ -1,14 +1,19 @@
 nav.default-primary-color
     .nav-wrapper.container
         a.brand-logo(href='/') Events
-        ul.right#profile-container(style='height:100%;')
-            li
-                a(href='/auth/facebook') sign up
-        //ul.right(style='height:100%;')
-        //    li.valign-wrapper(style='height:100%;')
-        //        a(href='#', onclick='showStaggeredList("#staggered-list")')
-        //            img.z-depth-1.responsive-img.circle.valign(src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p50x50/10431713_818528254872766_4787171365214585616_n.jpg?oh=1fcc9cd61a2f439a42f4aa449c3a9d80&oe=5580A32E&__gda__=1438094981_605e21740d193231a25efbea4f3a8ea3')
-
+        .nav-container(style='height:100%;')
+            ul.right#profile-container(style='height:100%;')
+                li
+                    a(href='/auth/facebook') sign up
+            ul.right(style='height:100%;')
+                li.valign-wrapper(style='height:100%;')
+                    a.side-activator(data-activates="slide-out", href='#')
+                        img.z-depth-1.responsive-img.circle.valign(src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p50x50/10431713_818528254872766_4787171365214585616_n.jpg?oh=1fcc9cd61a2f439a42f4aa449c3a9d80&oe=5580A32E&__gda__=1438094981_605e21740d193231a25efbea4f3a8ea3')
+            ul.right.side-nav#slide-out
+                li
+                    a(href='')
+                li
+                    a(href='')
 .container
     .staggered-wrapper#staggered-list
         ul
@@ -22,13 +27,3 @@ nav.default-primary-color
                 a.btn-floating.btn-large.accent-color(href='#', onclick='hideStaggeredList("#staggered-list")')
                     i.mdi-navigation-close.large
 
-script.
-    function hideStaggeredList(selector) {
-        var time = 0;
-        $(selector).find('li').each(function () {
-            $(this).velocity(
-                    {opacity: "0", translateX: "100px"},
-                    {duration: 800, delay: time, easing: [60, 10]});
-            time += 120;
-        });
-    }

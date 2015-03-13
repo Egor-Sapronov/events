@@ -11,7 +11,10 @@ $(document).ready(function () {
             profileBar.init();
         }
     }
-
-
+    //
+    //$(".side-activator").sideNav({
+    //    edge: 'right',
+    //    closeOnClick: true
+    //});
 });
 
