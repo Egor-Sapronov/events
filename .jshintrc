@@ -156,7 +156,8 @@
     "$",
     "React",
     "EventEmitter2",
-    "toast"
+    "toast",
+    "fetch"
   ]
   // additional predefined global variables
 }

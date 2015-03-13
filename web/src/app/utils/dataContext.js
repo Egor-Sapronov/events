@@ -18,25 +18,20 @@ UserContext.prototype.user = {};
  */
 UserContext.prototype.loadUserInfo = function () {
     var _this = this;
-    var xhr = new XMLHttpRequest();
     var token = _this.getToken();
-
-    if (!token) {
-        _this.emit('error::token', null);
-    } else {
-        xhr.open('GET', '/api/users/me');
-
-        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-
-        xhr.onload = function () {
-            if (this.status === 200) {
-                _this.user = JSON.parse(this.responseText);
-                _this.emit('load::userinfo', null);
-            }
-        };
-
-        xhr.send();
-    }
+    fetch('/api/users/me', {
+        method: 'GET',
+        headers: {
+            "Authorization": "bearer " + token
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (json) {
+            _this.user = json;
+            _this.emit('load::userinfo', null);
+        });
 };
 
 UserContext.prototype.saveToken = function (token) {
