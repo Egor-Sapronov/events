@@ -12,6 +12,7 @@ function UserContext() {
 UserContext.prototype = new EventEmitter2();
 
 UserContext.prototype.user = {};
+UserContext.prototype.profileImage = {};
 
 /**
  *  Load user info for current user
@@ -31,6 +32,16 @@ UserContext.prototype.loadUserInfo = function () {
         .then(function (json) {
             _this.user = json;
             _this.emit('load::userinfo', null);
+        })
+        .then(function () {
+            return fetch('https://graph.facebook.com/v2.2/' + _this.user.providerId + '/picture?redirect=0&type=small');
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (json) {
+            _this.profileImage = json;
+            console.log(_this.profileImage);
         });
 };
 
