@@ -21,6 +21,11 @@
   "bugs": {
     "url": "https://github.com/Egor-Sapronov/events/issues"
   },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
   "homepage": "https://github.com/Egor-Sapronov/events",
   "dependencies": {
     "bower": "^1.3.12",
@@ -47,6 +52,7 @@
     "passport-http-bearer": "~1.0.1",
     "pg": "~4.2.0",
     "pg-hstore": "~2.3.1",
+    "reactify": "^1.1.0",
     "sequelize": "^2.0.3",
     "vinyl-transform": "^1.0.0",
     "yargs": "^3.4.5"

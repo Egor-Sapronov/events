@@ -31,7 +31,6 @@ UserContext.prototype.loadUserInfo = function () {
         })
         .then(function (json) {
             _this.user = json;
-            _this.emit('load::userinfo', null);
         })
         .then(function () {
             return fetch('https://graph.facebook.com/v2.2/' + _this.user.providerId + '/picture?redirect=0&type=small');
@@ -41,7 +40,7 @@ UserContext.prototype.loadUserInfo = function () {
         })
         .then(function (json) {
             _this.profileImage = json;
-            console.log(_this.profileImage);
+            _this.emit('load::user', null);
         });
 };
 
