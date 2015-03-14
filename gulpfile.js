@@ -8,6 +8,7 @@ let cssmin = require('gulp-cssmin');
 let gulpif = require('gulp-if');
 let jshint = require('gulp-jshint');
 let gulpIgnore = require('gulp-ignore');
+let autoprefixer = require('gulp-autoprefixer');
 let transform = require('vinyl-transform');
 let browserify = require('browserify');
 let del = require('del');
@@ -42,6 +43,10 @@ gulp.task('clean', function () {
 gulp.task('css', function () {
     return gulp.src(paths.src + 'stylesheets/**/*.css')
         .pipe(plumber())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(gulpif(production, cssmin()))
         .pipe(gulp.dest(paths.dist + 'assets/stylesheets'));
 });
@@ -50,6 +55,10 @@ gulp.task('stylus', function () {
     return gulp.src(paths.src + 'stylesheets/**/*.styl')
         .pipe(plumber())
         .pipe(stylus())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(gulpif(production, cssmin()))
         .pipe(gulp.dest(paths.dist + 'assets/stylesheets'));
 });
