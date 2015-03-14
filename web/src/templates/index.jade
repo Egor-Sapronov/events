@@ -8,6 +8,61 @@ block header
 
 block main
     .container
+        .row
+            .col.s12.l4
+                .card
+                    .card-image
+                        img.activator(src='http://materializecss.com/images/office.jpg')
+                    .card-content
+                        span.activator.card-title.grey-text.text-darken-4
+                            | Event title
+                            i.mdi-navigation-more-vert.right
+                    .card-action
+                        a.btn-floating.default-primary-color(href='#')
+                            i.mdi-action-done
+                        a.btn-floating.default-primary-color(href='#')
+                            i.mdi-action-favorite-outline
+                        a.btn-floating.default-primary-color(href='#')
+                            i.mdi-social-share
+                    .card-reveal
+                        span.card-title.grey-text.text-darken-4
+                            | Event title
+                            i.mdi-navigation-close.right
 
+                        p Footers are a great way to organize a lot of site navigation and information at the end of a page. This is where the user will look once hes finished scrolling through the current page or is looking for additional.
+                        div(style='position:absolute; bottom:15px;')
+
+                            //.row.valign-wrapper
+                            //    .col.s2
+                            //        img.responsive-img.circle(src='http://materializecss.com/images/yuna.jpg')
+                            //    .col.s12
+                            //        span.black-text event provider
+
+                            a.btn-floating.default-primary-color(href='#')
+                                i.mdi-action-done
+                            a.btn-floating.default-primary-color(href='#')
+                                i.mdi-action-favorite-outline
+                            a.btn-floating.default-primary-color(href='#')
+                                i.mdi-social-share
+
+                .card
+                    .card-image
+                        img.activator(src='http://materializecss.com/images/sample-1.jpg')
+                    .card-content
+                        span.activator.card-title.grey-text.text-darken-4
+                            | Event title
+                            i.mdi-navigation-more-vert.right
+                    .card-action
+                        a.btn-floating.default-primary-color(href='#')
+                            i.mdi-action-done
+                        a.btn-floating.default-primary-color(href='#')
+                            i.mdi-action-favorite-outline
+                        a.btn-floating.default-primary-color(href='#')
+                            i.mdi-social-share
+                    .card-reveal
+                        span.card-title.grey-text.text-darken-4
+                            | Event title
+                            i.mdi-navigation-close.right
+                        p.flow-text Some text
 block scripts
     script(src='/static/assets/scripts/index.js')
