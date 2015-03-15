@@ -26,11 +26,6 @@ describe('Database module', function () {
                 expect(db.AccessToken).to.be.ok;
             });
         });
-        describe('#Role', function () {
-            it('Should exist', function () {
-                expect(db.Role).to.be.ok;
-            });
-        });
         describe('#Event', function () {
             it('Should exist', function () {
                 expect(db.Event).to.be.ok;

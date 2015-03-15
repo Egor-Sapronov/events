@@ -12,7 +12,6 @@ let db = {
     Sequelize: Sequelize,
     User: sequelize.import('User', require('../model/user')),
     AccessToken: sequelize.import('AccessToken', require('../model/accessToken')),
-    Role: sequelize.import('Role', require('../model/role')),
     Event: sequelize.import('Event', require('../model/event'))
 };
 
@@ -28,8 +27,5 @@ db.Event.belongsTo(db.User, {as: 'Owner'});
  */
 db.User.belongsToMany(db.Event, {through: 'Subscribers'});
 db.Event.belongsToMany(db.User, {through: 'Subscribers'});
-
-db.User.belongsToMany(db.Role, {through: 'UserRoles'});
-db.Role.belongsToMany(db.User, {through: 'UserRoles'});
 
 module.exports = db;
