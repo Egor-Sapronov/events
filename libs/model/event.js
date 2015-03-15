@@ -17,6 +17,24 @@ module.exports = function (sequelize, DataTypes) {
             validate: {
                 notEmpty: true
             }
+        },
+        date: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        place: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
         }
     }, {
         freezeTableName: true,
