@@ -1,0 +1,52 @@
+extends ./partials/layout
+block title
+    title events
+block header
+    include ./partials/header
+block main
+    .container
+        .section.row
+            form.col.l6.s12
+                .row
+                    .input-field.col.s12
+                        input#title(type='text')
+                        label(for='title') Title
+                .row
+                    .input-field.col.s12
+                        textarea.materialize-textarea#description
+                        label(for='description') Description
+                .row
+                    .input-field.col.s12
+                        input#image(type='text')
+                        label(for='image') Image url
+                .row
+                    .input-field.col.s12
+                        label(for='eventDate') Event date
+                        br
+                        input.datepicker#eventDate(type='date')
+                .row
+                    .input-field.col.s12
+                        input#place(type='text')
+                        label(for='place') Place
+                .row
+                    .input-field.col.s12
+                        a.right.btn-floating.btn-large.accent-color.waves-effect(href='#')
+                            i.mdi-action-done
+            .col.l6.s12
+                .card
+                    .card-image.waves-effect.waves-block.waves-light
+                        img.darken(src='http://materializecss.com/images/office.jpg')
+                        span.card-title Event title
+                    .card-content
+                        .event-reveal-card-header
+                            a.btn-floating.waves-effect.waves-block.waves-light(href='#')
+                                img.circle.responsive-img(src='http://materializecss.com/images/yuna.jpg')
+                            p
+                                small.secondary-text-color Russia, Novosibirsk - Jan 9, 2014
+                        p Footers are a great way to organize a lot of site navigation and information at the end of a page.  This is where the user will look once hes finished scrolling through the current page or is looking for additional.
+
+
+
+block scripts
+    script(src='/static/assets/scripts/index.js')
+    script(src='/static/assets/scripts/create.js')

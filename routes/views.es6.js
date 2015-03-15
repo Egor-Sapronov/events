@@ -2,11 +2,15 @@
 
 let router = require('express').Router();
 
-router.use('/:id', function (req, res) {
+router.get('/create', function (req, res) {
+    res.render('create');
+});
+
+router.get('/:id', function (req, res) {
     res.send(req.params.id);
 });
 
-router.use('/', function (req, res) {
+router.get('/', function (req, res) {
     res.render('index');
 });
 
