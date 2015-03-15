@@ -2,7 +2,7 @@
   background #689F38
 
 .default-primary-color
-  background #8BC34A
+  background-color #8BC34A !important
 
 .default-primary-text-color
   color #8BC34A
@@ -17,10 +17,10 @@
   background-color #03A9F4 !important
 
 .primary-text-color
-  color #212121
+  color #212121 !important
 
 .secondary-text-color
-  color #727272
+  color #727272 !important
 
 .divider-color
   border-color #B6B6B6
@@ -34,16 +34,19 @@
 .waves-effect.waves-accent .waves-ripple
   background #03A9F4
 
-.card-reveal-layout
+.event-reveal-card
   display flex
   flex-direction column
   align-items stretch
 
-.card-reveal-item
+.event-reveal-card-header
   display flex
   flex 1
-  align-items stretch
-  flex-direction column
+  justify-content space-between
+  align-items center
+
+.event-reveal-card-header img
+  max-height 36px
 
 .card-reveal-footer
   display flex
@@ -53,12 +56,16 @@
 
 .flex-row
   display flex
+  flex: 1
   flex-direction row
   align-items center
-  justify-content flex-start
 
-/*.flex-column*/
-  /*display flex*/
+.divider
+  margin-left -20px
+  margin-right -20px
+
+.darken
+  filter grayscale(50%)
 
 nav ul a
   font-weight 600
