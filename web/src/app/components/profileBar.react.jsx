@@ -24,6 +24,9 @@ var ProfileBar = React.createClass({
                     <a href="#">Your profile</a>
                 </li>
                 <li>
+                    <a href="/create">Create event</a>
+                </li>
+                <li>
                     <a href="#">Settings</a>
                 </li>
                 <li>
