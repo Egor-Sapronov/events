@@ -1,9 +1,6 @@
 'use strict';
 
 var PreviewCard = React.createClass({
-    updateProps() {
-
-    },
     render: function () {
         return <div className="card">
             <div className="card-image waves-effect waves-block waves-light">

@@ -25,8 +25,6 @@ userContext.on('load::user', function () {
         ));
 });
 
-userContext.loadUserInfo();
-
 titleDomNode.oninput = function () {
     mountedPreview.setProps({
         title: titleDomNode.value
@@ -53,9 +51,13 @@ placeDomNode.oninput = function () {
     });
 };
 
-$('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 15
+$(document).ready(function () {
+    userContext.loadUserInfo();
+
+    $('.datepicker').pickadate({
+        selectMonths: true,
+        selectYears: 15
+    });
 });
 
 
