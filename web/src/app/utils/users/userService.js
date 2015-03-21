@@ -1,14 +1,16 @@
 'use strict';
 
 module.exports = (function () {
-    var _service;
+    var _service = new UserService();
 
     function UserService() {
 
     }
 
     UserService.prototype = new EventEmitter2();
-    UserService.prototype.checkAuth = function (token) {
+    UserService.prototype.checkAuth = checkAuth;
+
+    function checkAuth(token) {
         /*jshint validthis:true */
 
         var _this = this;
@@ -36,12 +38,14 @@ module.exports = (function () {
                 user.image = json.data;
                 _this.emit('auth::success', user);
             });
-    };
+    }
 
-    _service = new UserService();
+    function on(event, cb) {
+        _service.on(event, cb);
+    }
 
     return {
-        on: _service.on,
+        on: on,
         checkAuth: _service.checkAuth
     };
 })();
