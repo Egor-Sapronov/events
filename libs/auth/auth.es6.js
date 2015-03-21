@@ -22,7 +22,6 @@ passport.deserializeUser(function (id, done) {
             console.log(user);
             done(null, user);
         });
-
 });
 
 passport.use(new BearerStrategy(strategy.bearerStrategy));

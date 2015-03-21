@@ -97,5 +97,16 @@ describe('Auth strategy, facebook and bearer', function () {
                     });
                 });
         });
+
+        it('Should not return user if token is not exist', function (done) {
+            var db = require('../../libs/data/database.es6');
+            db.sequelize.sync({force: true})
+                .then(function () {
+                    strategy.bearerStrategy('badtoken', function (err, user) {
+                        expect(user).to.be.not.ok;
+                        done();
+                    });
+                });
+        });
     });
 });

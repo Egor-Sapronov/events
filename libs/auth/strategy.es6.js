@@ -12,6 +12,9 @@ function bearerStrategy(accessToken, done) {
     db.AccessToken
         .find({where: {token: accessToken}})
         .then(function (token) {
+            if (token === null) {
+                return done(null, false);
+            }
             db.User
                 .find({where: {id: token.UserId}})
                 .then(function (user) {
