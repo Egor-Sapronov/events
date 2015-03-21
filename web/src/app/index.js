@@ -1,6 +1,6 @@
 'use strict';
 
-require('./main');
+require('./utils/coreMediator');
 var userContext = require('./utils/dataContext').userContext;
 
 $(document).ready(function () {

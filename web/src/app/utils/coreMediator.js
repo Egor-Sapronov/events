@@ -1,7 +1,7 @@
 'use strict';
 
-var userContext = require('./utils/dataContext').userContext;
-var profileBar = require('./components/profileBar.react.jsx');
+var userContext = require('./dataContext').userContext;
+var profileBar = require('./../components/profileBar.react.jsx');
 
 userContext.on('load::user', function () {
     React.render(
