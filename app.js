@@ -7,14 +7,21 @@ let config = require('./libs/config.es6');
 let logger = require('morgan');
 let router = require('./routes/main.es6');
 let session = require('express-session');
+let cookieParser = require('cookie-parser');
+let methodOverride = require('method-override');
+let bodyParser = require('body-parser');
 
 app.use(logger('dev'));
 app.use('/static', express.static('./web/dist'));
 app.set('view engine', 'jade');
 app.set('views', './web/src/templates');
-app.use(session({secret: config.get('session:secret')}));
+app.use(cookieParser());
+app.use(bodyParser());
+app.use(methodOverride());
+app.use(session({secret: config.get('session:secret'), cookie: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use('/', router);
 
 
