@@ -8,9 +8,7 @@ module.exports = (function () {
     }
 
     UserService.prototype = new EventEmitter2();
-    UserService.prototype.checkAuth = checkAuth;
-
-    function checkAuth(token) {
+    UserService.prototype.checkAuth = function (token) {
         /*jshint validthis:true */
 
         var _this = this;
@@ -38,7 +36,7 @@ module.exports = (function () {
                 user.image = json.data;
                 _this.emit('auth::success', user);
             });
-    }
+    };
 
     _service = new UserService();
 
