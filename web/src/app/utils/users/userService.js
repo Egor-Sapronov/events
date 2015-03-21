@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (function () {
-    var _service = new UserService();
+    var _service;
 
     function UserService() {
 
@@ -39,6 +39,8 @@ module.exports = (function () {
                 _this.emit('auth::success', user);
             });
     }
+
+    _service = new UserService();
 
     return {
         on: _service.on,

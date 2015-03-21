@@ -2,7 +2,7 @@
 
 module.exports = (function () {
     var user = {};
-    var _context = new UserContext();
+    var _context;
 
     function UserContext() {
 
@@ -24,6 +24,8 @@ module.exports = (function () {
     function getUser() {
         return user;
     }
+
+    _context = new UserContext();
 
     return {
         on: _context.on,
