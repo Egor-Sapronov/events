@@ -10,16 +10,6 @@ module.exports = (function () {
         }
     });
 
-    //function UserContext() {
-    //
-    //}
-    //
-    //UserContext.prototype = new EventEmitter2();
-    //UserContext.prototype.setUser = setUser;
-    //UserContext.prototype.getUser = getUser;
-    //
-    //_context = new UserContext();
-
     function setUser(entity) {
         /*jshint validthis:true */
 

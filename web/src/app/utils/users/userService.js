@@ -1,16 +1,9 @@
 'use strict';
 
 module.exports = (function () {
-    var _service;
+    var _service = Object.create(EventEmitter2.prototype);
 
-    function UserService() {
-
-    }
-
-    UserService.prototype = new EventEmitter2();
-    UserService.prototype.checkAuth = checkAuth;
-
-    _service = new UserService();
+    _service.checkAuth = checkAuth;
 
     function checkAuth(token) {
         /*jshint validthis:true */
