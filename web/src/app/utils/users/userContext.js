@@ -32,7 +32,7 @@ module.exports = (function () {
     }
 
     return {
-        on: _context.on,
+        on: on,
         setUser: _context.setUser,
         getUser: _context.getUser
     };

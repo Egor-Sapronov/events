@@ -47,7 +47,7 @@ module.exports = (function () {
     }
 
     return {
-        on: _service.on,
+        on: on,
         checkAuth: _service.checkAuth
     };
 })();
