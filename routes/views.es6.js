@@ -17,6 +17,7 @@ router.get('/', function (req, res) {
 module.exports = router;
 
 function ensureAuthenticated(req, res, next) {
+    console.log(req);
     if (req.isAuthenticated()) {
         return next();
     }
