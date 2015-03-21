@@ -8,7 +8,7 @@ let authService = require('../libs/auth/authService.es6');
 // Facebook will redirect the user back to the application at
 //     /auth/facebook/callback
 router.get('/facebook', passport.authenticate('facebook', {
-    session: false,
+    session: true,
     scope: ['email', 'public_profile', 'user_about_me', 'user_photos']
 }));
 
@@ -18,7 +18,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 // authentication has failed.
 router.get('/facebook/callback',
     passport.authenticate('facebook', {
-        session: false
+        session: true
     }),
     function (req, res) {
         authService.getToken(req.user)

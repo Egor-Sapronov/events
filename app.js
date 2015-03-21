@@ -18,7 +18,7 @@ app.set('views', './web/src/templates');
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(methodOverride());
-app.use(session({secret: 'test_secret', cookie: true}));
+app.use(session({secret: config.get('session:secret'), cookie: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
