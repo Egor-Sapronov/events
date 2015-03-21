@@ -7,22 +7,32 @@ let FacebookStrategy = require('passport-facebook');
 let config = require('../config.es6');
 let db = require('../data/database.es6');
 
+//passport.serializeUser(function (user, done) {
+//    console.log(user);
+//    done(null, user.id);
+//});
+//passport.deserializeUser(function (id, done) {
+//    console.log(id);
+//    db.User.find({
+//        where: {
+//            id: id
+//        }
+//    })
+//        .then(function (user) {
+//            console.log(user);
+//            done(null, user);
+//        });
+//
+//});
+
 passport.serializeUser(function (user, done) {
     console.log(user);
-    done(null, user.id);
+    done(null, user);
 });
-passport.deserializeUser(function (id, done) {
-    console.log(id);
-    db.User.find({
-        where: {
-            id: id
-        }
-    })
-        .then(function (user) {
-            console.log(user);
-            done(null, user);
-        });
 
+passport.deserializeUser(function (obj, done) {
+    console.log(user);
+    done(null, obj);
 });
 
 passport.use(new BearerStrategy(strategy.bearerStrategy));

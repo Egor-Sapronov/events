@@ -27,4 +27,6 @@ if (process.env.SESSION_SECRET) {
     nconf.set('session:secret', process.env.SESSION_SECRET);
 }
 
+console.log(nconf.get('session:secret'));
+
 module.exports = nconf;
