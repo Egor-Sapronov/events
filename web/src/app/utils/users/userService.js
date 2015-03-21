@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (function () {
-    var _service = new UserService();
+    var _service;
 
     function UserService() {
 
@@ -9,6 +9,8 @@ module.exports = (function () {
 
     UserService.prototype = new EventEmitter2();
     UserService.prototype.checkAuth = checkAuth;
+
+    _service = new UserService();
 
     function checkAuth(token) {
         /*jshint validthis:true */

@@ -2,7 +2,7 @@
 
 module.exports = (function () {
     var user = {};
-    var _context = new UserContext();
+    var _context;
 
     function UserContext() {
 
@@ -11,6 +11,8 @@ module.exports = (function () {
     UserContext.prototype = new EventEmitter2();
     UserContext.prototype.setUser = setUser;
     UserContext.prototype.getUser = getUser;
+
+    _context = new UserContext();
 
     function setUser(entity) {
         /*jshint validthis:true */
