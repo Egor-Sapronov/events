@@ -16,7 +16,7 @@ module.exports = (function () {
         /*jshint validthis:true */
 
         var _this = this;
-        var user;
+        var user = {};
 
         fetch('/api/users/me', {
             method: 'GET',
