@@ -7,7 +7,6 @@ var imageDomNode = document.getElementById('image');
 var dateDomNode = document.getElementById('eventDate');
 var placeDomNode = document.getElementById('place');
 var userContext = require('./utils/dataContext').userContext;
-var profileBar = require('./components/profileBar.react.jsx');
 var mountedPreview = React.render(React.createElement(previewCard, {
     image: 'http://materializecss.com/images/office.jpg',
     title: 'Event title',
@@ -15,15 +14,6 @@ var mountedPreview = React.render(React.createElement(previewCard, {
     date: 'Jan 9, 2014',
     description: 'Footers are a great way to organize a lot of site navigation and information at the end of a page.  This is where the user will look once hes finished scrolling through the current page or is looking for additional.'
 }), document.getElementById('preview-container'));
-
-userContext.on('load::user', function () {
-    React.render(React.createElement(
-            profileBar,
-            {imageSrc: userContext.profileImage.url}
-        ),
-        document.getElementById('profile-container'
-        ));
-});
 
 titleDomNode.oninput = function () {
     mountedPreview.setProps({
