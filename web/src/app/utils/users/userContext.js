@@ -26,7 +26,7 @@ module.exports = (function () {
     }
 
     function on(event, cb) {
-        _service.on(event, cb);
+        _context.on(event, cb);
     }
 
     return {
