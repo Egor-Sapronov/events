@@ -8,7 +8,7 @@ var imageDomNode = document.getElementById('image');
 var dateDomNode = document.getElementById('eventDate');
 var placeDomNode = document.getElementById('place');
 var submitButton = document.getElementById('submit-button');
-var userContext = require('./utils/dataContext').userContext;
+var userService = require('./utils/users/userService');
 var mountedPreview = React.render(React.createElement(previewCard, {
     image: 'http://materializecss.com/images/office.jpg',
     title: 'Event title',
@@ -48,7 +48,7 @@ submitButton.onClick = function () {
 };
 
 $(document).ready(function () {
-    userContext.loadUserInfo();
+    userService.checkAuth(localStorage.getItem('token'));
 
     $('.datepicker').pickadate({
         selectMonths: true,

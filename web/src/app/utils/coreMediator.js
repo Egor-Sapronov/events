@@ -17,5 +17,3 @@ userContext.on('user::update', function () {
             {imageSrc: user.image.url}),
         document.getElementById('profile-container'));
 });
-
-userService.checkAuth(localStorage.getItem('token'));

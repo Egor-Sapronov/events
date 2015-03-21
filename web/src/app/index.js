@@ -1,14 +1,13 @@
 'use strict';
 
 require('./utils/coreMediator');
-var userContext = require('./utils/dataContext').userContext;
+var userService = require('./utils/users/userService');
 
 $(document).ready(function () {
     if (location.hash.split('#')[1]) {
-        userContext.saveToken(location.hash.split('#')[1]);
+        localStorage.setItem('token', location.hash.split('#')[1]);
         location.hash = '';
     }
-
-    userContext.loadUserInfo();
+    userService.checkAuth(localStorage.getItem('token'));
 });
 
