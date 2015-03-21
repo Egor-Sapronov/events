@@ -2,17 +2,23 @@
 
 module.exports = (function () {
     var user = {};
-    var _context;
+    var _context = Object.create(EventEmitter2.prototype, {
+        user: {
+            configurable: false,
+            get: getUser,
+            set: setUser
+        }
+    });
 
-    function UserContext() {
-
-    }
-
-    UserContext.prototype = new EventEmitter2();
-    UserContext.prototype.setUser = setUser;
-    UserContext.prototype.getUser = getUser;
-
-    _context = new UserContext();
+    //function UserContext() {
+    //
+    //}
+    //
+    //UserContext.prototype = new EventEmitter2();
+    //UserContext.prototype.setUser = setUser;
+    //UserContext.prototype.getUser = getUser;
+    //
+    //_context = new UserContext();
 
     function setUser(entity) {
         /*jshint validthis:true */
