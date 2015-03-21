@@ -1,14 +1,19 @@
 'use strict';
 
+/**
+ * Encapsulate interaction between modules
+ *
+ */
+
 var userService = require('./users/userService');
 var userContext = require('./users/userContext');
 var profileBar = require('./../components/profileBar.react.jsx');
 
-userService.on('auth::success', function (user) {
+userService.on('load::user', function (user) {
     userContext.user = user;
 });
 
-userContext.on('user::update', function () {
+userContext.on('update::user', function () {
     var user = userContext.user;
 
     React.render(

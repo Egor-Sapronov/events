@@ -8,6 +8,6 @@ $(document).ready(function () {
         localStorage.setItem('token', location.hash.split('#')[1]);
         location.hash = '';
     }
-    userService.checkAuth(localStorage.getItem('token'));
+    userService.getUser(localStorage.getItem('token'));
 });
 

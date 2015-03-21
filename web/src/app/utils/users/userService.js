@@ -1,12 +1,24 @@
 'use strict';
 var fetchUtils = require('../fetchUtils');
 
+/**
+ * Encapsulate data retrieval for user
+ *
+ * @event auth::success when user info and profile image load successful
+ * @event auth::error on request error
+ */
+
 module.exports = (function () {
     var _service = Object.create(EventEmitter2.prototype);
 
-    _service.checkAuth = checkAuth;
+    _service.getUser = getUser;
 
-    function checkAuth(token) {
+    /**
+     * fetch user info and facebook profile image
+     *
+     * @param {string} token
+     */
+    function getUser(token) {
         /*jshint validthis:true */
 
         var _this = this;
@@ -24,16 +36,18 @@ module.exports = (function () {
                 user.info = json;
             })
             .then(function () {
-                return fetch('https://graph.facebook.com/v2.2/' + user.info.providerId + '/picture?redirect=0&type=small');
+                return fetch('https://graph.facebook.com/v2.2/' +
+                user.info.providerId +
+                '/picture?redirect=0&type=small');
             })
             .then(fetchUtils.status)
             .then(fetchUtils.json)
             .then(function (json) {
                 user.image = json.data;
-                _this.emit('auth::success', user);
+                _this.emit('load::user', user);
             })
             .catch(function (err) {
-                _this.emit('auth::error', err);
+                _this.emit('error', err);
             });
     }
 

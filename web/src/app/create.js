@@ -48,7 +48,7 @@ submitButton.onClick = function () {
 };
 
 $(document).ready(function () {
-    userService.checkAuth(localStorage.getItem('token'));
+    userService.getUser(localStorage.getItem('token'));
 
     $('.datepicker').pickadate({
         selectMonths: true,
