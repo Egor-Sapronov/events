@@ -17,7 +17,6 @@ passport.deserializeUser(function (id, done) {
         }
     })
         .then(function (user) {
-            console.log(user);
             done(null, user);
         });
 });
