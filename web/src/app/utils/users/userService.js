@@ -18,7 +18,9 @@ module.exports = (function () {
             }
         })
             .then(function (response) {
-                return response.json();
+                if (response.status === 200) {
+                    return response.json();
+                }
             })
             .then(function (json) {
                 user.info = json;
@@ -27,7 +29,9 @@ module.exports = (function () {
                 return fetch('https://graph.facebook.com/v2.2/' + user.info.providerId + '/picture?redirect=0&type=small');
             })
             .then(function (response) {
-                return response.json();
+                if (response.status === 200) {
+                    return response.json();
+                }
             })
             .then(function (json) {
                 user.image = json.data;
