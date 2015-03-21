@@ -1,4 +1,5 @@
 'use strict';
+var fetchUtils = require('../fetchUtils');
 
 module.exports = (function () {
     var _service = Object.create(EventEmitter2.prototype);
@@ -17,25 +18,22 @@ module.exports = (function () {
                 "Authorization": "bearer " + token
             }
         })
-            .then(function (response) {
-                if (response.status === 200) {
-                    return response.json();
-                }
-            })
+            .then(fetchUtils.status)
+            .then(fetchUtils.json)
             .then(function (json) {
                 user.info = json;
             })
             .then(function () {
                 return fetch('https://graph.facebook.com/v2.2/' + user.info.providerId + '/picture?redirect=0&type=small');
             })
-            .then(function (response) {
-                if (response.status === 200) {
-                    return response.json();
-                }
-            })
+            .then(fetchUtils.status)
+            .then(fetchUtils.json)
             .then(function (json) {
                 user.image = json.data;
                 _this.emit('auth::success', user);
+            })
+            .catch(function (err) {
+                _this.emit('auth::error', err);
             });
     }
 
