@@ -7,5 +7,8 @@
     "clientID": "clientID",
     "clientSecret": "clientSecret",
     "callbackURL": "callbackURL"
+  },
+  "session": {
+    "secret": "test_secret"
   }
 }

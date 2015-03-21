@@ -22,4 +22,9 @@ if (process.env.CLIENT_SECRET) {
     nconf.set('facebook:clientSecret', process.env.CLIENT_SECRET);
 }
 
+/* istanbul ignore if  */
+if (process.env.SESSION_SECRET) {
+    nconf.set('session:secret', process.env.SESSION_SECRET);
+}
+
 module.exports = nconf;
