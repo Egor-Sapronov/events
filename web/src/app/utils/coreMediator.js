@@ -1,12 +1,21 @@
 'use strict';
 
-var userContext = require('./dataContext').userContext;
+var userService = require('./users/userService');
+var userContext = require('./users/userContext');
 var profileBar = require('./../components/profileBar.react.jsx');
 
-userContext.on('load::user', function () {
+userService.on('auth::success', function (user) {
+    userContext.setUser(user);
+});
+
+userContext.on('user::update', function () {
+    var user = userContext.getUser();
+
     React.render(
         React.createElement(
             profileBar,
-            {imageSrc: userContext.profileImage.url}),
+            {imageSrc: user.image.url}),
         document.getElementById('profile-container'));
 });
+
+userService.checkAuth(localStorage.getItem('token'));

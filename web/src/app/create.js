@@ -7,6 +7,7 @@ var descriptionDomNode = document.getElementById('description');
 var imageDomNode = document.getElementById('image');
 var dateDomNode = document.getElementById('eventDate');
 var placeDomNode = document.getElementById('place');
+var submitButton = document.getElementById('submit-button');
 var userContext = require('./utils/dataContext').userContext;
 var mountedPreview = React.render(React.createElement(previewCard, {
     image: 'http://materializecss.com/images/office.jpg',
@@ -40,6 +41,10 @@ placeDomNode.oninput = function () {
     mountedPreview.setProps({
         place: placeDomNode.value
     });
+};
+
+submitButton.onClick = function () {
+
 };
 
 $(document).ready(function () {
