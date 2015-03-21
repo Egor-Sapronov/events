@@ -8,11 +8,9 @@ let config = require('../config.es6');
 let db = require('../data/database.es6');
 
 passport.serializeUser(function (user, done) {
-    console.log(user);
     done(null, user.id);
 });
 passport.deserializeUser(function (id, done) {
-    console.log(id);
     db.User.find({
         where: {
             id: id
