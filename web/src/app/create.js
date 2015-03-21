@@ -1,5 +1,6 @@
 'use strict';
 
+require('./main');
 var previewCard = require('./components/previewCard.react.jsx');
 var titleDomNode = document.getElementById('title');
 var descriptionDomNode = document.getElementById('description');

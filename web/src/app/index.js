@@ -1,5 +1,6 @@
 'use strict';
 
+require('./main');
 var userContext = require('./utils/dataContext').userContext;
 
 $(document).ready(function () {
