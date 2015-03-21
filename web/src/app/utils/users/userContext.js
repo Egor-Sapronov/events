@@ -27,13 +27,5 @@ module.exports = (function () {
         return user;
     }
 
-    function on(event, cb) {
-        _context.on(event, cb);
-    }
-
-    return {
-        on: on,
-        setUser: _context.setUser,
-        getUser: _context.getUser
-    };
+    return _context;
 })();
