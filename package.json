@@ -8,7 +8,10 @@
     "npm": "^2.7.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "npm run develop",
+    "local": "NODE_ENV=local node index.js",
+    "develop": "NODE_ENV=develop node index.js",
+    "production": "NODE_ENV=production node index.js",
     "test": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha test/*",
     "postinstall": "bower i && gulp build"
   },
