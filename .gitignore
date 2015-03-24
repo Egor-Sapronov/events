@@ -40,3 +40,7 @@ rundb.sh
 
 web/dist
 bower_components
+
+.env
+
+procfile

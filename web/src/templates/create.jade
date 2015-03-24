@@ -4,9 +4,10 @@ block title
 block header
     include ./partials/header
 block main
+
     .container
         .section.row
-            form.col.l7.s12#create-form
+            form.col.l7.s12#create-form(method='post', action='/api/users/1/events', enctype="multipart/form-data")
                 .row
                     h1.header New Event
                 .row
@@ -25,6 +26,9 @@ block main
                         input#image(type='text')
                         label(for='image') Image url
                 .row
+                    .col.s12
+                        input(type='file')
+                .row
                     .input-field.col.s12
                         i.mdi-device-access-time.prefix
                         input.datepicker#eventDate(type='date')
@@ -35,26 +39,9 @@ block main
                         label(for='place') Place
                 .row
                     .input-field.col.s12
-                        a.right.btn-floating.btn-large.accent-color.waves-effect#submit-button(href='#')
-                            i.mdi-content-add
-            .col.l5.s12
-                .row
-                    h1.header Preview
-                .row
-                    .col.s12#preview-container
-                        .card
-                            .card-image.waves-effect.waves-block.waves-light
-                                img.darken(src='http://materializecss.com/images/office.jpg')
-                                span.card-title Event title
-                            .card-content
-                                .event-reveal-card-header
-                                    a.btn-floating.waves-effect.waves-block.waves-light(href='#')
-                                        img.circle.responsive-img(src='http://materializecss.com/images/yuna.jpg')
-                                    p
-                                        small.secondary-text-color Russia, Novosibirsk - Jan 9, 2014
-                                p Footers are a great way to organize a lot of site navigation and information at the end of a page.  This is where the user will look once hes finished scrolling through the current page or is looking for additional.
-
-
+                        input.right.btn-floating.btn-large.accent-color.waves-effect#submit-button(type='submit')
 
 block scripts
     script(src='/static/assets/scripts/create.js')
+
+

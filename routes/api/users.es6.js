@@ -3,6 +3,7 @@
 let router = require('express').Router();
 let passport = require('../../libs/auth/auth.es6').passport;
 let userService = require('../../libs/userService.es6');
+let multer = require('multer');
 
 router.get('/me', passport.authenticate('bearer', {session: false}), function (req, res) {
     res.send({
@@ -12,6 +13,16 @@ router.get('/me', passport.authenticate('bearer', {session: false}), function (r
         providerId: req.user.providerId,
         gender: req.user.gender
     });
+});
+
+router.post('/:id/events', multer({
+    dest: './uploads/',
+    rename: function (fieldname, filename) {
+        return filename + Date.now();
+    }
+}), function (req, res) {
+    console.log(req);
+    res.send(req.body);
 });
 
 router.get('/:id', function (req, res) {
@@ -30,5 +41,6 @@ router.get('/:id', function (req, res) {
             }
         });
 });
+
 
 module.exports = router;

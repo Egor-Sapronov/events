@@ -4,7 +4,6 @@ let passport = require('passport');
 let BearerStrategy = require('passport-http-bearer').Strategy;
 let strategy = require('./strategy.es6');
 let FacebookStrategy = require('passport-facebook');
-let config = require('../config.es6');
 let db = require('../data/database.es6');
 
 passport.serializeUser(function (user, done) {
@@ -23,8 +22,8 @@ passport.deserializeUser(function (id, done) {
 
 passport.use(new BearerStrategy(strategy.bearerStrategy));
 passport.use(new FacebookStrategy({
-    clientID: config.get('facebook:clientID'),
-    clientSecret: config.get('facebook:clientSecret'),
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
     callbackURL: '/auth/facebook/callback'
 }, strategy.facebookStrategy));
 
