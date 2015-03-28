@@ -1,8 +1,10 @@
-var expect = require('chai').expect;
+'use strict';
+
+let expect = require('chai').expect;
 
 describe('Auth service', function () {
-    var service = require('../../libs/auth/authService.es6');
-    var db = require('../../libs/data/database.es6');
+    let service = require('../../libs/auth/authService.es6');
+    let db = require('../../libs/data/database.es6');
 
     it('Should exist', function () {
         expect(service).to.be.ok;
@@ -31,7 +33,7 @@ describe('Auth service', function () {
 
     describe('#getToken', function () {
         it('Should return token', function (done) {
-            var user;
+            let user;
             db.sequelize
                 .sync({force: true})
                 .then(function () {
