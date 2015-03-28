@@ -16,15 +16,7 @@ let db = {
 
 db.AccessToken.belongsTo(db.User);
 
-/**
- * Owner is user who create the event
- */
-db.Event.belongsTo(db.User, {as: 'Owner'});
+db.User.hasMany(db.Event, {as: 'Events'});
 
-/**
- * Subscribers are user who subscribe to the event, but not create it
- */
-db.User.belongsToMany(db.Event, {through: 'Subscribers'});
-db.Event.belongsToMany(db.User, {through: 'Subscribers'});
 
 module.exports = db;

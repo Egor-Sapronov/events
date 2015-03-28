@@ -4,7 +4,6 @@ module.exports = function (sequelize, DataTypes) {
     return sequelize.define('Event', {
         title: {
             type: DataTypes.STRING,
-            unique: true,
             allowNull: false,
             validate: {
                 notEmpty: true
@@ -12,7 +11,6 @@ module.exports = function (sequelize, DataTypes) {
         },
         description: {
             type: DataTypes.STRING,
-            unique: true,
             allowNull: false,
             validate: {
                 notEmpty: true
@@ -23,13 +21,6 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
         place: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        },
-        image: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
