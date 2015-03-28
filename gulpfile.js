@@ -26,11 +26,6 @@ if (argv.production || argv.prod) {
     production = false;
 }
 
-gulp.task('fonts', function () {
-    return gulp.src(paths.src + 'fonts/**')
-        .pipe(gulp.dest(paths.dist + 'assets/font'));
-});
-
 gulp.task('images', function () {
     return gulp.src(paths.src + 'img/**')
         .pipe(gulp.dest(paths.dist + 'assets/img'));
@@ -118,4 +113,4 @@ gulp.task('watch', function () {
     gulp.watch(paths.src + 'fonts/**', ['fonts']);
 });
 
-gulp.task('build', ['lib', 'scripts', 'images', 'fonts', 'stylesheets', 'templates']);
+gulp.task('build', ['lib', 'scripts', 'images', 'stylesheets', 'templates']);
