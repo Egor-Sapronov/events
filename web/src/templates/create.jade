@@ -4,42 +4,9 @@ block title
 block header
     include ./partials/header
 block main
-
     .container
         .section.row
-            form.col.l7.s12#create-form(method='post', action='/api/users/1/events', enctype="multipart/form-data")
-                .row
-                    h1.header New Event
-                .row
-                    .input-field.col.s12
-                        i.mdi-maps-rate-review.prefix
-                        input#title(type='text')
-                        label(for='title') Title
-                .row
-                    .input-field.col.s12
-                        i.mdi-content-create.prefix
-                        textarea.materialize-textarea#description
-                        label(for='description') Description
-                .row
-                    .input-field.col.s12
-                        i.mdi-image-add-to-photos.prefix
-                        input#image(type='text')
-                        label(for='image') Image url
-                .row
-                    .col.s12
-                        input(type='file')
-                .row
-                    .input-field.col.s12
-                        i.mdi-device-access-time.prefix
-                        input.datepicker#eventDate(type='date')
-                .row
-                    .input-field.col.s12
-                        i.mdi-maps-place.prefix
-                        input#place(type='text')
-                        label(for='place') Place
-                .row
-                    .input-field.col.s12
-                        input.right.btn-floating.btn-large.accent-color.waves-effect#submit-button(type='submit')
+            #create-container
 
 block scripts
     script(src='/static/assets/scripts/create.js')
