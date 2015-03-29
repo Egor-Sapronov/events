@@ -27,7 +27,9 @@ module.exports = (function () {
         fetch('/api/users/me', {
             method: 'GET',
             headers: {
-                "Authorization": "bearer " + token
+                "Authorization": "bearer " + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
             .then(fetchUtils.status)

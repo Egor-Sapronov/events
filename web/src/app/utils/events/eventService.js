@@ -14,7 +14,9 @@ module.exports = (function () {
         fetch('/api/users/' + options.userId + '/events', {
             method: 'POST',
             headers: {
-                "Authorization": "bearer " + options.token
+                "Authorization": "bearer " + options.token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(options.eventData)
         });
