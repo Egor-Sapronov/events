@@ -1,6 +1,6 @@
 'use strict';
 
-var EventCreate = React.createClass({
+var EventForm = React.createClass({
     getInitialState: function () {
         return {
             title: null,
@@ -65,4 +65,4 @@ var EventCreate = React.createClass({
     }
 });
 
-module.exports = EventCreate;
+module.exports = EventForm;

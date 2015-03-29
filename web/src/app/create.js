@@ -2,7 +2,7 @@
 
 require('./utils/coreMediator');
 var userService = require('./utils/users/userService');
-var eventCreate = require('./components/eventCreate.react.jsx');
+var eventForm = require('./components/eventForm.react.jsx');
 var eventService = require('./utils/events/eventService');
 var userContext = require('./utils/users/userContext');
 
@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     React.render(
         React.createElement(
-            eventCreate,
+            eventForm,
             {
                 onSubmit: handleSubmit
             }),

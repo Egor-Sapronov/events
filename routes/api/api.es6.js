@@ -6,6 +6,7 @@ let userService = require('../../libs/userService.es6');
 let eventService = require('../../libs/events/eventService.es6');
 
 router.all('*', function (req, res, next) {
+    // store data from route parameters
     req.context = {};
     next();
 });
