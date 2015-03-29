@@ -4,6 +4,7 @@ let router = require('express').Router();
 let passport = require('../../libs/auth/auth.es6').passport;
 let userService = require('../../libs/userService.es6');
 let eventService = require('../../libs/events/eventService.es6');
+let amazonService = require('../../libs/images/amazonService.es6');
 
 router.all('*', function (req, res, next) {
     // store data from route parameters
@@ -25,15 +26,20 @@ router.param('user', function (req, res, next, id) {
 router.post('/users/:user/events', passport.authenticate('bearer', {session: false}), function (req, res) {
     eventService.createEvent(req.context.user, req.body)
         .then(function (event) {
-            res.status(201).send({
-                title: event.title,
-                description: event.description,
-                date: event.date,
-                place: event.place
-            });
-        })
-        .catch(function (err) {
-            res.status(400).end();
+            return amazonService.getSignedUrl(1)
+                .then(function (image) {
+                    console.log(image);
+                    res.status(201).send({
+                        title: event.title,
+                        description: event.description,
+                        date: event.date,
+                        place: event.place,
+                        image: image
+                    });
+                })
+                .catch(function (err) {
+                    res.status(400).end();
+                });
         });
 });
 
