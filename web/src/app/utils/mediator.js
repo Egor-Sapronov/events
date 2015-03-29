@@ -5,8 +5,9 @@
  *
  */
 
-var userContext = require('./users/userContext');
-var profileBar = require('./../components/profileBar.react.jsx');
+var userContext = require('../users/userContext');
+var userService = require('../users/userService');
+var profileBar = require('../components/profileBar.react.jsx');
 var vent = require('./vent');
 
 module.exports = (function (mediator) {
@@ -18,6 +19,10 @@ module.exports = (function (mediator) {
                 profileBar,
                 {imageSrc: user.image.url}),
             document.getElementById('profile-container'));
+    });
+
+    mediator.on('change::token', function (token) {
+        userService.getUser(token);
     });
 
     return mediator;

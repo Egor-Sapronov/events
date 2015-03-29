@@ -1,14 +1,13 @@
 'use strict';
 
-var vent = require('./utils/coreMediator');
-var userService = require('./utils/users/userService');
+var vent = require('./utils/mediator');
 var eventForm = require('./components/eventForm.react.jsx');
-var eventService = require('./utils/events/eventService');
-var userContext = require('./utils/users/userContext');
+var eventService = require('./events/eventService');
+var userContext = require('./users/userContext');
 
 $(document).ready(function () {
     var token = localStorage.getItem('token');
-    userService.getUser(token);
+    vent.emit('change::token', token);
 
     function handleSubmit(data) {
         eventService.postEvent({

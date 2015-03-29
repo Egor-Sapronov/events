@@ -1,7 +1,7 @@
 'use strict';
 
-var fetchUtils = require('../fetchUtils');
-var vent = require('../vent');
+var fetchUtils = require('../utils/fetchUtils');
+var vent = require('../utils/vent');
 
 /**
  * @module eventService - Encapsulate data retrieval for events

@@ -1,13 +1,16 @@
 'use strict';
 
-var vent = require('./utils/coreMediator');
-var userService = require('./utils/users/userService');
+var vent = require('./utils/mediator');
 
 $(document).ready(function () {
-    if (location.hash.split('#')[1]) {
-        localStorage.setItem('token', location.hash.split('#')[1]);
+    var token = location.hash.split('#')[1];
+    if (token) {
+        localStorage.setItem('token', token);
         location.hash = '';
+    } else {
+        token = localStorage.getItem('token');
     }
-    userService.getUser(localStorage.getItem('token'));
+
+    vent.emit('change::token', token);
 });
 
