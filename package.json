@@ -24,9 +24,16 @@
   "bugs": {
     "url": "https://github.com/Egor-Sapronov/events/issues"
   },
+  "browser": {
+    "eventemitter2": "./bower_components/eventemitter2/lib/eventemitter2.js"
+  },
+  "browserify-shim": {
+    "eventemitter2": "EventEmitter2"
+  },
   "browserify": {
     "transform": [
-      "reactify"
+      "reactify",
+      "browserify-shim"
     ]
   },
   "homepage": "https://github.com/Egor-Sapronov/events",

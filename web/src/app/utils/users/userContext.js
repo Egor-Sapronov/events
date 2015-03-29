@@ -1,14 +1,16 @@
 'use strict';
 
+var EventEmitter = require('eventemitter2');
+
 /**
- * Observe for user model
+ * @module Observe for user model
  *
- * @event update::user when user updates
+ * @return {Object} context
  */
 
 module.exports = (function () {
     var user = {};
-    var _context = Object.create(EventEmitter2.prototype, {
+    var _context = Object.create(EventEmitter.prototype, {
         user: {
             configurable: false,
             get: getUser,

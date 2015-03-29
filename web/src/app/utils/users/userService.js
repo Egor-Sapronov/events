@@ -1,15 +1,16 @@
 'use strict';
 var fetchUtils = require('../fetchUtils');
-
+var EventEmitter = require('eventemitter2');
 /**
- * Encapsulate data retrieval for user
+ * @module userService - Encapsulate data retrieval for user
  *
- * @event auth::success when user info and profile image load successful
- * @event auth::error on request error
+ * @function getUser - fetch user info and facebook profile image
+ *
+ * @return {Object} service
  */
 
 module.exports = (function () {
-    var _service = Object.create(EventEmitter2.prototype);
+    var _service = Object.create(EventEmitter.prototype);
 
     _service.getUser = getUser;
 
