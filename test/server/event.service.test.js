@@ -53,4 +53,36 @@ describe('Event service', function () {
 
         });
     });
+
+    describe('#getCreatedEvents', function () {
+        it('Should return all events created by user', function (done) {
+            let eventData = {
+                title: 'test title',
+                description: 'test description',
+                date: new Date(),
+                place: 'test place'
+            };
+
+            db.sequelize
+                .sync({force: true})
+                .then(function () {
+                    return db.User
+                        .create({
+                            providerId: '1',
+                            profileLink: 'https://link.com'
+                        });
+                })
+                .then(function (user) {
+                    return service.createEvent(user, eventData)
+                        .then(function () {
+                            return service.getCreatedEvents(user);
+                        })
+                        .then(function (events) {
+                            expect(events.length).to.be.equal(1);
+                            done();
+                        });
+                });
+
+        });
+    });
 });

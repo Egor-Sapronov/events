@@ -20,6 +20,19 @@ router.post('/users/:id/events', passport.authenticate('bearer', {session: false
         });
 });
 
+router.get('/users/:id/events', function (req, res) {
+    userService.getUser(req.params.id)
+        .then(function (user) {
+            return eventService.getCreatedEvents(user);
+        })
+        .then(function (events) {
+            res.status(200).send(events);
+        })
+        .catch(function (err) {
+            res.status(400).end();
+        });
+});
+
 router.get('/users/me', passport.authenticate('bearer', {session: false}), function (req, res) {
     res.send({
         displayName: req.user.displayName,

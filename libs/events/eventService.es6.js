@@ -18,8 +18,13 @@ module.exports = (function () {
             });
     }
 
+    function getCreatedEvents(user) {
+        return user.getEvents();
+    }
+
     return {
-        createEvent: createEvent
+        createEvent: createEvent,
+        getCreatedEvents: getCreatedEvents
     };
 })();
 
