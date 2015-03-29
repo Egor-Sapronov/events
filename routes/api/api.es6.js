@@ -3,10 +3,21 @@
 let router = require('express').Router();
 let passport = require('../../libs/auth/auth.es6').passport;
 let userService = require('../../libs/userService.es6');
+let eventService = require('../../libs/events/eventService.es6');
 
 router.post('/users/:id/events', passport.authenticate('bearer', {session: false}), function (req, res) {
-    console.log(req);
-    res.send(req.body);
+    eventService.createEvent(req.user, req.body)
+        .then(function (event) {
+            res.status(201).send({
+                title: event.title,
+                description: event.description,
+                date: event.date,
+                place: event.place
+            });
+        })
+        .catch(function (err) {
+            res.status(400).end();
+        });
 });
 
 router.get('/users/me', passport.authenticate('bearer', {session: false}), function (req, res) {
