@@ -1,6 +1,6 @@
 'use strict';
 
-require('./utils/coreMediator');
+var vent = require('./utils/coreMediator');
 var userService = require('./utils/users/userService');
 var eventForm = require('./components/eventForm.react.jsx');
 var eventService = require('./utils/events/eventService');

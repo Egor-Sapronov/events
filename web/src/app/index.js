@@ -1,6 +1,6 @@
 'use strict';
 
-require('./utils/coreMediator');
+var vent = require('./utils/coreMediator');
 var userService = require('./utils/users/userService');
 
 $(document).ready(function () {
