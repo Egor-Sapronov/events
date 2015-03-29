@@ -5,6 +5,7 @@ let passport = require('../../libs/auth/auth.es6').passport;
 let userService = require('../../libs/userService.es6');
 
 router.post('/users/:id/events', passport.authenticate('bearer', {session: false}), function (req, res) {
+    console.log(req);
     res.send(req.body);
 });
 
