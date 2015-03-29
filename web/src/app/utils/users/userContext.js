@@ -1,16 +1,14 @@
 'use strict';
 
-var EventEmitter = require('eventemitter2');
-
 /**
- * @module Observe for user model
+ * @module Storage for user model
  *
  * @return {Object} context
  */
 
 module.exports = (function () {
     var user = {};
-    var _context = Object.create(EventEmitter.prototype, {
+    var _context = Object.create(null, {
         user: {
             configurable: false,
             get: getUser,
@@ -24,12 +22,8 @@ module.exports = (function () {
      * @param {object} user
      */
     function setUser(entity) {
-        /*jshint validthis:true */
-
         user.info = entity.info;
         user.image = entity.image;
-
-        this.emit('update::user');
     }
 
     /**

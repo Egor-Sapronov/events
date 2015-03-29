@@ -1,7 +1,7 @@
 'use strict';
 
 var fetchUtils = require('../fetchUtils');
-var EventEmitter = require('eventemitter2');
+var vent = require('../vent');
 
 /**
  * @module eventService - Encapsulate data retrieval for events
@@ -11,16 +11,12 @@ var EventEmitter = require('eventemitter2');
  * @return {Object} service
  */
 
-module.exports = (function () {
-    var _service = Object.create(EventEmitter.prototype);
-
-    _service.postEvent = postEvent;
+module.exports = (function (mediator) {
+    var _service = {
+        postEvent: postEvent
+    };
 
     function postEvent(options) {
-        /*jshint validthis:true */
-
-        var _this = this;
-
         fetch('/api/users/' + options.userId + '/events', {
             method: 'POST',
             headers: {
@@ -33,12 +29,12 @@ module.exports = (function () {
             .then(fetchUtils.status)
             .then(fetchUtils.json)
             .then(function (json) {
-                _this.emit('create::event', json);
+                mediator.emit('create::event', json);
             })
             .catch(function (err) {
-                _this.emit('error', err);
+                mediator.emit('error', err);
             });
     }
 
     return _service;
-})();
+})(vent);

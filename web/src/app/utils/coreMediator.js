@@ -5,20 +5,20 @@
  *
  */
 
-var userService = require('./users/userService');
 var userContext = require('./users/userContext');
 var profileBar = require('./../components/profileBar.react.jsx');
+var vent = require('./vent');
 
-userService.on('load::user', function (user) {
-    userContext.user = user;
-});
+module.exports = (function (mediator) {
+    mediator.on('load::user', function (user) {
+        userContext.user = user;
 
-userContext.on('update::user', function () {
-    var user = userContext.user;
+        React.render(
+            React.createElement(
+                profileBar,
+                {imageSrc: user.image.url}),
+            document.getElementById('profile-container'));
+    });
 
-    React.render(
-        React.createElement(
-            profileBar,
-            {imageSrc: user.image.url}),
-        document.getElementById('profile-container'));
-});
+    return mediator;
+})(vent);

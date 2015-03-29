@@ -1,6 +1,7 @@
 'use strict';
 var fetchUtils = require('../fetchUtils');
-var EventEmitter = require('eventemitter2');
+var vent = require('../vent');
+
 /**
  * @module userService - Encapsulate data retrieval for user
  *
@@ -9,10 +10,10 @@ var EventEmitter = require('eventemitter2');
  * @return {Object} service
  */
 
-module.exports = (function () {
-    var _service = Object.create(EventEmitter.prototype);
-
-    _service.getUser = getUser;
+module.exports = (function (mediator) {
+    var _service = {
+        getUser: getUser
+    };
 
     /**
      * fetch user info and facebook profile image
@@ -20,12 +21,9 @@ module.exports = (function () {
      * @param {string} token
      */
     function getUser(token) {
-        /*jshint validthis:true */
-
-        var _this = this;
         var user = {};
 
-        fetch('/api/users/me', {
+        return fetch('/api/users/me', {
             method: 'GET',
             headers: {
                 "Authorization": "bearer " + token,
@@ -47,12 +45,12 @@ module.exports = (function () {
             .then(fetchUtils.json)
             .then(function (json) {
                 user.image = json.data;
-                _this.emit('load::user', user);
+                mediator.emit('load::user', user);
             })
             .catch(function (err) {
-                _this.emit('error', err);
+                mediator.emit('load::user::error', err);
             });
     }
 
     return _service;
-})();
+})(vent);
