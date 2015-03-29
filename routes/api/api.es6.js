@@ -14,6 +14,7 @@ router.param('user', function (req, res, next, id) {
     userService.getUser(id)
         .then(function (user) {
             req.context.user = user;
+            next();
         })
         .catch(function (err) {
             res.status(400).end();
