@@ -6,6 +6,7 @@ let userService = require('../../libs/userService.es6');
 let eventService = require('../../libs/events/eventService.es6');
 let amazonService = require('../../libs/images/amazonService.es6');
 let imageService = require('../../libs/images/imageService.es6');
+let log = require('../../libs/logs')(module);
 
 router.all('*', function (req, res, next) {
     // store data from route parameters
@@ -31,9 +32,8 @@ router.post('/users/:user/events', passport.authenticate('bearer', {session: fal
             return imageService.createImage(event);
         })
         .then(function (event) {
-            return amazonService.getUrl(event.ImageId)
+            return amazonService.getUrl(event.ImageId.toString())
                 .then(function (image) {
-                    console.log(image);
                     res.status(201).send({
                         title: event.title,
                         description: event.description,
@@ -46,7 +46,7 @@ router.post('/users/:user/events', passport.authenticate('bearer', {session: fal
                 });
         })
         .catch(function (err) {
-            console.log(err);
+            log.error(err);
             res.status(400).end();
         });
 });
@@ -57,6 +57,7 @@ router.get('/users/:user/events', function (req, res) {
             res.status(200).send(events);
         })
         .catch(function (err) {
+            log.error(err);
             res.status(400).end();
         });
 });
