@@ -28,7 +28,7 @@ router.post('/users/:user/events', passport.authenticate('bearer', {session: fal
     eventService
         .createEvent(req.context.user, req.body)
         .then(function (event) {
-            imageService.createImage(event);
+            return imageService.createImage(event);
         })
         .then(function (event) {
             return amazonService.getUrl(event.ImageId)
