@@ -3,17 +3,22 @@
 module.exports = (function () {
     let db = require('../data/database.es6');
 
-    function createImage(event, path) {
+    function createImage(event) {
         return db.Image
             .create({
-                path: path
+                path: null
             })
             .then(function (image) {
                 return image.setEvent(event);
             });
     }
 
+    function updatePath(image, path) {
+        return image.update({path: path});
+    }
+
     return {
-        createImage: createImage
+        createImage: createImage,
+        updatePath: updatePath
     };
 })();
