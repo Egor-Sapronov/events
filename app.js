@@ -3,14 +3,12 @@
 let express = require('express');
 let passport = require('./libs/auth/auth.es6').passport;
 let app = express();
-let logger = require('morgan');
 let router = require('./routes/main.es6');
 let session = require('express-session');
 let cookieParser = require('cookie-parser');
 let methodOverride = require('method-override');
 let bodyParser = require('body-parser');
 
-app.use(logger('dev'));
 app.use('/static', express.static('./web/dist'));
 app.set('view engine', 'jade');
 app.set('views', './web/src/templates');
