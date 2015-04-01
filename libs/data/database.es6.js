@@ -11,12 +11,15 @@ let db = {
     Sequelize: Sequelize,
     User: sequelize.import('User', require('../model/user')),
     AccessToken: sequelize.import('AccessToken', require('../model/accessToken')),
-    Event: sequelize.import('Event', require('../model/event'))
+    Event: sequelize.import('Event', require('../model/event')),
+    Image: sequelize.import('Image', require('../model/image'))
 };
 
 db.AccessToken.belongsTo(db.User);
 
 db.User.hasMany(db.Event, {as: 'Events'});
+
+db.Image.hasOne(db.Event);
 
 
 module.exports = db;
