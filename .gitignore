@@ -43,4 +43,6 @@ bower_components
 
 .env
 
+test/server/amazon.service.test.js
+
 procfile

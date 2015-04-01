@@ -6,17 +6,18 @@ module.exports = (function () {
     let AWS_SECRET_KEY = process.env.AWS_SECRET_ACCESS_KEY;
     let S3_BUCKET = process.env.S3_BUCKET_NAME;
 
-    function getSignedUrl(imageId) {
+    function getUrl(imageId) {
         return new Promise(function (resolve, reject) {
             aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
             let s3 = new aws.S3();
+
             let s3_params = {
                 Bucket: S3_BUCKET,
                 Key: imageId,
                 Expires: 60,
                 ACL: 'public-read'
             };
-
+            console.log(s3_params);
             s3.getSignedUrl('putObject', s3_params, function (err, data) {
                 if (err) {
                     reject(err);
@@ -33,6 +34,6 @@ module.exports = (function () {
     }
 
     return {
-        getSignedUrl: getSignedUrl
+        getUrl: getUrl
     };
 })();
