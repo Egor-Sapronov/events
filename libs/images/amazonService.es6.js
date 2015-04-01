@@ -17,7 +17,6 @@ module.exports = (function () {
                 Expires: 60,
                 ACL: 'public-read'
             };
-            console.log(s3_params);
             s3.getSignedUrl('putObject', s3_params, function (err, data) {
                 if (err) {
                     reject(err);
