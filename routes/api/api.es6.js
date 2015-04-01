@@ -6,7 +6,7 @@ let userService = require('../../libs/userService.es6');
 let eventService = require('../../libs/events/eventService.es6');
 let amazonService = require('../../libs/images/amazonService.es6');
 let imageService = require('../../libs/images/imageService.es6');
-let log = require('../../libs/logs/log.es6')(module);
+let log = require('../../libs/logger/logger.es6.js')(module);
 
 router.all('*', function (req, res, next) {
     // store data from route parameters
