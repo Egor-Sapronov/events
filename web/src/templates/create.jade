@@ -6,7 +6,38 @@ block header
 block main
     .container
         .section.row
-            #create-container
+            form#eventForm.col.l7.s12
+                .row
+                    h1.header New Event
+                .row
+                    .input-field.col.s12
+                        i.mdi-maps-rate-review.prefix
+                        input#title(type='text' required)
+                        label(for='title') Title
+                .row
+                    .input-field.col.s12
+                        i.mdi-content-create.prefix
+                        input#description(type='text' required)
+                        label(for='description') Description
+                .row
+                    .input-field.col.s12.l6
+                        i.mdi-content-create.prefix
+                        input#place(type='text' required)
+                        label(for='place') Place
+                    .input-field.col.s12.l6
+                        i.mdi-device-access-time.prefix
+                        input.datepicker#eventDate(type='date' required placeholder='date')
+                .row
+                    .input-field.col.s12.file-field
+                        input.file-path.validate(type='text')
+                        .btn.default-primary-color.waves-effect.waves-light
+                            span File
+                            input#eventImage(type='file')
+                .row
+                    .input-field.col.s12
+                        button.btn.right.accent-color.waves-effect.waves-light(type='submit')
+                            | Create
+                            i.mdi-content-send.right
 
 block scripts
     script(src='/static/assets/scripts/create.js')

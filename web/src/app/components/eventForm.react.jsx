@@ -55,6 +55,15 @@ var EventForm = React.createClass({
                 </div>
             </div>
             <div className="row">
+                <div className="file-field input-field col s12">
+                    <input className="file-path validate" type="text"/>
+                    <div className="btn default-primary-color waves-effect waves-light">
+                        <span>File</span>
+                        <input type="file" />
+                    </div>
+                </div>
+            </div>
+            <div className="row">
                 <div className="input-field col s12">
                     <button className="btn right accent-color  waves-effect waves-light" type="submit">create
                         <i className="mdi-content-send right"></i>

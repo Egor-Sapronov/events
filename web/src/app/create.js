@@ -1,28 +1,33 @@
 'use strict';
 
 var vent = require('./utils/mediator');
-var eventForm = require('./components/eventForm.react.jsx');
 
 $(document).ready(function () {
     var token = localStorage.getItem('token');
     vent.emit('change::token', token);
-
-    function handleSubmit(data) {
-        vent.emit('submit::event', data);
-    }
-
-    React.render(
-        React.createElement(
-            eventForm,
-            {
-                onSubmit: handleSubmit
-            }),
-        document.getElementById('create-container'));
-
-    $('.datepicker').pickadate({
+    var titleInput = document.getElementById('title');
+    var descriptionInput = document.getElementById('description');
+    var placeInput = document.getElementById('place');
+    var fileInput = document.getElementById('eventImage');
+    var eventForm = document.getElementById('eventForm');
+    var dateInput = $('.datepicker').pickadate({
         selectMonths: true,
         selectYears: 15
     });
+
+    eventForm.onsubmit = function (e) {
+        var tempEvent = {
+            title: titleInput.value,
+            description: descriptionInput.value,
+            place: placeInput.value,
+            date: dateInput[0].value
+        };
+
+        e.preventDefault();
+        vent.emit('submit::event', tempEvent);
+    };
+
+
 });
 
 
