@@ -95,7 +95,7 @@ gulp.task('browserify', function () {
         return b.bundle();
     });
 
-    return gulp.src([paths.src + 'app.js'])
+    return gulp.src(paths.src + '/app/*.js')
         .pipe(plumber())
         .pipe(browserified)
         .pipe(gulpif(production, uglify()))
