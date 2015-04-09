@@ -10,6 +10,7 @@ let jshint = require('gulp-jshint');
 let gulpIgnore = require('gulp-ignore');
 let autoprefixer = require('gulp-autoprefixer');
 let transform = require('vinyl-transform');
+let source = require('vinyl-source-stream');
 let browserify = require('browserify');
 let del = require('del');
 let argv = require('yargs').argv;
@@ -94,7 +95,7 @@ gulp.task('browserify', function () {
         return b.bundle();
     });
 
-    return gulp.src([paths.src + 'app/*.js'])
+    return gulp.src([paths.src + 'app.js'])
         .pipe(plumber())
         .pipe(browserified)
         .pipe(gulpif(production, uglify()))
