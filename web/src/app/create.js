@@ -20,7 +20,7 @@ $(document).ready(function () {
         form.append('file', fileInput.files[0]);
 
         fetch(data._metadata.image.signed_request, {
-            method: 'POST',
+            method: 'PUT',
             body: form
         });
     });
