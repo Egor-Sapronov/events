@@ -15,6 +15,16 @@ $(document).ready(function () {
         selectYears: 15
     });
 
+    vent.on('create::event', function (data) {
+        var form = new FormData();
+        form.append('file', fileInput.files[0]);
+
+        fetch(data._metadata.image.signed_request, {
+            method: 'POST',
+            body: form
+        });
+    });
+
     eventForm.onsubmit = function (e) {
         var tempEvent = {
             title: titleInput.value,

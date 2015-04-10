@@ -26,6 +26,10 @@ module.exports = (function (mediator) {
         userService.getUser(token);
     });
 
+    mediator.on('create::event', function () {
+
+    });
+
     mediator.on('submit::event', function (data) {
         var token = localStorage.getItem('token');
         eventService.postEvent({
