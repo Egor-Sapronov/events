@@ -19,7 +19,7 @@ $(document).ready(function () {
         var form = new FormData();
         form.append('file', fileInput.files[0]);
 
-        fetch(data._metadata.image.signed_request, {
+        fetch(decodeURIComponent(data._metadata.image.signed_request), {
             method: 'PUT',
             body: form
         });
