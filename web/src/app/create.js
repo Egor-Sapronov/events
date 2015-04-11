@@ -21,7 +21,7 @@ $(document).ready(function () {
         form.append('file', fileInput.files[0]);
 
 
-        var s3upload = new S3Upload({
+        var s3upload = new s3Upload({
             file_dom_selector: 'eventImage',
             s3_sign_put_url: data._metadata.image.signed_request,
             onProgress: function (percent, message) {
