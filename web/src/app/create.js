@@ -25,7 +25,7 @@ $(document).ready(function () {
             method: 'PUT',
             body: form,
             headers: {
-                'Content-Type': 'text/html; charset=utf-8'
+                'Content-Type': 'image/png'
             }
         });
     });
