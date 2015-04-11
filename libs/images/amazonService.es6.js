@@ -11,7 +11,8 @@ module.exports = (function () {
             let s3_params = {
                 Bucket: S3_BUCKET,
                 Key: imageName,
-                ContentType: 'image/png'
+                ContentType: 'image/png',
+                ACL: 'public-read'
             };
             s3.getSignedUrl('putObject', s3_params, function (err, data) {
                 if (err) {

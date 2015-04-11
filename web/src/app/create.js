@@ -21,11 +21,11 @@ $(document).ready(function () {
         form.append('file', file);
 
         fetch(data._metadata.image.signed_request, {
-            mode: 'cors',
             method: 'PUT',
             body: form,
             headers: {
-                'Content-Type': 'image/png'
+                'Content-Type': 'image/png',
+                ACL: 'public-read'
             }
         });
     });
