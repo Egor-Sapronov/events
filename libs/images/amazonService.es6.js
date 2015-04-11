@@ -12,7 +12,10 @@ module.exports = (function () {
 
     function getUrl(imageId) {
         return new Promise(function (resolve, reject) {
-            aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_ACCESS_KEY});
+            aws.config.update({
+                accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+            });
             let s3 = new aws.S3();
 
             let s3_params = {
