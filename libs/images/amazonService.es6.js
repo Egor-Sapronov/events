@@ -22,6 +22,8 @@ module.exports = (function () {
                     reject(err);
                 }
 
+                console.log(data);
+
                 let return_data = {
                     signed_request: data,
                     url: 'https://' + S3_BUCKET + '.s3.amazonaws.com/' + imageId
