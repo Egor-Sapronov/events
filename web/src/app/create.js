@@ -1,7 +1,6 @@
 'use strict';
 
 var vent = require('./utils/mediator');
-var s3Upload = require('./images/amazonService');
 
 $(document).ready(function () {
     var token = localStorage.getItem('token');
@@ -18,30 +17,19 @@ $(document).ready(function () {
 
     vent.on('create::event', function (data) {
         var form = new FormData();
-        form.append('file', fileInput.files[0]);
+        var file = fileInput.files[0];
+        form.append('file', file);
 
-
-        var s3upload = new s3Upload({
-            file_dom_selector: 'eventImage',
-            s3_sign_put_url: data._metadata.image.signed_request,
-            onProgress: function (percent, message) {
-
-            },
-            onFinishS3Put: function (public_url) {
-
-            },
-            onError: function (status) {
-
+        fetch(decodeURI(data._metadata.image.signed_request +
+        '?s3_object_type=' + file.type +
+        '&s3_object_name=' + this.s3_object_name), {
+            mode: 'cors',
+            method: 'PUT',
+            body: form,
+            headers: {
+                'Content-Type': 'text/html; charset=utf-8'
             }
         });
-
-        //fetch(decodeURI(data._metadata.image.signed_request), {
-        //    method: 'POST',
-        //    body: form,
-        //    headers: {
-        //        'Content-Type': 'text/html; charset=utf-8'
-        //    }
-        //});
     });
 
     eventForm.onsubmit = function (e) {
