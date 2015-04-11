@@ -2,20 +2,10 @@
 
 module.exports = (function () {
     let aws = require('aws-sdk');
-    let AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY_ID;
-    let AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
     let S3_BUCKET = process.env.S3_BUCKET_NAME;
-
-    console.log(AWS_ACCESS_KEY + ' id');
-
-    console.log(AWS_SECRET_ACCESS_KEY + ' key');
 
     function getUrl(imageId) {
         return new Promise(function (resolve, reject) {
-            aws.config.update({
-                accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-            });
             let s3 = new aws.S3();
 
             let s3_params = {
