@@ -34,7 +34,7 @@ router.post('/users/:user/events', passport.authenticate('bearer', {session: fal
         .then(function (event) {
             return amazonService.getUrl(event.ImageId.toString())
                 .then(function (image) {
-                    res.status(201).send({
+                    res.status(201).send(JSON.stringify({
                         title: event.title,
                         description: event.description,
                         date: event.date,
@@ -42,7 +42,7 @@ router.post('/users/:user/events', passport.authenticate('bearer', {session: fal
                         _metadata: {
                             image: image
                         }
-                    });
+                    }));
                 });
         })
         .catch(function (err) {
