@@ -21,17 +21,17 @@ $(document).ready(function () {
         var xhr = new XMLHttpRequest();
         form.append('file', file);
 
-        xhr.open('PUT', data._metadata.image.signed_request);
+        xhr.open('PUT', encodeURIComponent(data._metadata.image.signed_request));
         xhr.send(form);
 
-        fetch(data._metadata.image.signed_request, {
-            mode: 'cors',
-            method: 'PUT',
-            body: form,
-            headers: {
-                'Content-Type': 'text/html; charset=utf-8'
-            }
-        });
+        //fetch(data._metadata.image.signed_request, {
+        //    mode: 'cors',
+        //    method: 'PUT',
+        //    body: form,
+        //    headers: {
+        //        'Content-Type': 'text/html; charset=utf-8'
+        //    }
+        //});
     });
 
     eventForm.onsubmit = function (e) {
