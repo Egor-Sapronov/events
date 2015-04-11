@@ -20,8 +20,7 @@ module.exports = (function () {
 
             let s3_params = {
                 Bucket: S3_BUCKET,
-                Key: imageId,
-                Expires: 60
+                Key: imageId
             };
             s3.getSignedUrl('putObject', s3_params, function (err, data) {
                 if (err) {
