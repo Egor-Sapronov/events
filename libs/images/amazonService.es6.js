@@ -10,7 +10,8 @@ module.exports = (function () {
 
             let s3_params = {
                 Bucket: S3_BUCKET,
-                Key: imageId
+                Key: imageId,
+                Type: 'text/html; charset=utf-8'
             };
             s3.getSignedUrl('putObject', s3_params, function (err, data) {
                 if (err) {

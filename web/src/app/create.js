@@ -23,7 +23,10 @@ $(document).ready(function () {
         fetch(data._metadata.image.signed_request, {
             mode: 'cors',
             method: 'PUT',
-            body: form
+            body: form,
+            headers: {
+                'Content-Type': 'text/html; charset=utf-8'
+            }
         });
     });
 
