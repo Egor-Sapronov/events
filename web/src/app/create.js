@@ -18,7 +18,11 @@ $(document).ready(function () {
     vent.on('create::event', function (data) {
         var form = new FormData();
         var file = fileInput.files[0];
+        var xhr = new XMLHttpRequest();
         form.append('file', file);
+
+        xhr.open('PUT', data._metadata.image.signed_request);
+        xhr.send(form);
 
         fetch(data._metadata.image.signed_request, {
             mode: 'cors',
