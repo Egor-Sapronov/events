@@ -20,8 +20,11 @@ $(document).ready(function () {
         form.append('file', fileInput.files[0]);
 
         fetch(decodeURI(data._metadata.image.signed_request), {
-            method: 'PUT',
-            body: form
+            method: 'POST',
+            body: form,
+            headers: {
+                'Content-Type': 'text/html; charset=utf-8'
+            }
         });
     });
 
