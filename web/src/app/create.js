@@ -21,8 +21,7 @@ $(document).ready(function () {
         form.append('file', file);
 
         fetch(decodeURI(data._metadata.image.signed_request +
-        '?s3_object_type=' + file.type +
-        '&s3_object_name=' + this.s3_object_name), {
+        '?s3_object_type=' + file.type), {
             mode: 'cors',
             method: 'PUT',
             body: form,
