@@ -25,6 +25,7 @@ $(document).ready(function () {
         form.append('AWSAccessKeyId', signedData.AWSAccessKeyId);
         form.append('Expires', signedData.Expires);
         form.append('Signature', signedData.Signature);
+        form.append('policy', signedData.policy);
         form.append('file', file);
 
 

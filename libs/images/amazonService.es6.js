@@ -24,14 +24,25 @@ module.exports = (function () {
                 if (err) {
                     reject(err);
                 }
-                let queryData = url.parse(data, true).query;
 
+                let queryData = url.parse(data, true).query;
+                let policy = {
+                    "expiration": queryData.Expires,
+                    "conditions": [
+                        ["starts-with", "$key", "/" + imageName],
+                        {"bucket": S3_BUCKET},
+                        {"acl": "public-read"},
+                        ["starts-with", "$Content-Type", 'image/png']
+                    ]
+                };
+                let base64Policy = Buffer(JSON.stringify(policy), "utf-8").toString("base64");
                 let return_data = {
                     signed_data: {
                         AWSAccessKeyId: queryData.AWSAccessKeyId,
                         Expires: queryData.Expires,
                         Signature: queryData.Signature,
-                        key: imageName
+                        key: imageName,
+                        policy: base64Policy
                     },
                     url: 'https://' + S3_BUCKET + '.s3.amazonaws.com/'
                 };
