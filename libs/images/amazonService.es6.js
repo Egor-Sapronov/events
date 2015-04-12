@@ -20,7 +20,7 @@ module.exports = (function () {
                 reject('Image is not defined');
             }
 
-            s3.getSignedUrl('postObject', s3_params, function (err, data) {
+            s3.getSignedUrl('putObject', s3_params, function (err, data) {
                 if (err) {
                     reject(err);
                 }
