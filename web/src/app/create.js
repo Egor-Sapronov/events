@@ -18,14 +18,18 @@ $(document).ready(function () {
     vent.on('create::event', function (data) {
         var form = new FormData();
         var file = fileInput.files[0];
+        var signedData = data._metadata.image.signed_data;
         form.append('file', file);
 
-        fetch(data._metadata.image.signed_request, {
+        fetch(data._metadata.image.url, {
             method: 'PUT',
             body: form,
             headers: {
                 'Content-Type': 'image/png',
-                ACL: 'public-read'
+                ACL: 'public-read',
+                AWSAccessKeyId: signedData.AWSAccessKeyId,
+                Expires: signedData.Expires,
+                Signature: signedData.Signature
             }
         });
     });
