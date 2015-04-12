@@ -33,7 +33,7 @@ module.exports = (function () {
                         Signature: queryData.Signature,
                         key: imageName
                     },
-                    url: 'https://' + S3_BUCKET + '.s3.amazonaws.com/' + imageName
+                    url: 'https://' + S3_BUCKET + '.s3.amazonaws.com/'
                 };
                 resolve(return_data);
 
