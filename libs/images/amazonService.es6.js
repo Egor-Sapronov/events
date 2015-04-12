@@ -4,6 +4,7 @@ module.exports = (function () {
     let aws = require('aws-sdk');
     let S3_BUCKET = process.env.S3_BUCKET_NAME;
     let url = require('url');
+    let crypto = require('crypto');
 
     function getUrl(imageId) {
         return new Promise(function (resolve, reject) {
@@ -36,11 +37,13 @@ module.exports = (function () {
                     ]
                 };
                 let base64Policy = Buffer(JSON.stringify(policy), "utf-8").toString("base64");
+                let signature = crypto.createHmac("sha1", process.env.AWS_SECRET_ACCESS_KEY)
+                    .update(new Buffer(base64Policy, "utf-8")).digest("base64");
                 let return_data = {
                     signed_data: {
                         AWSAccessKeyId: queryData.AWSAccessKeyId,
                         Expires: queryData.Expires,
-                        Signature: queryData.Signature,
+                        Signature: signature,
                         key: imageName,
                         policy: base64Policy
                     },
