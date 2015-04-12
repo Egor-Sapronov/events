@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 
         fetch(data._metadata.image.url, {
-            method: 'PUT',
+            method: 'POST',
             body: form
         });
     });
