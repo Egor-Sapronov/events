@@ -5,7 +5,7 @@
  */
 
 let Sequelize = require('sequelize');
-let sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/test', {logging: false});
+let sequelize = new Sequelize(process.env.DATABASE_URL, {logging: false});
 let db = {
     sequelize: sequelize,
     Sequelize: Sequelize,
