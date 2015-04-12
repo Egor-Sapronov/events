@@ -8,7 +8,7 @@ module.exports = (function () {
     function getUrl(imageId) {
         return new Promise(function (resolve, reject) {
             let s3 = new aws.S3();
-            let imageName = imageId + '.png';
+            let imageName = imageId;
             let s3_params = {
                 Bucket: S3_BUCKET,
                 Key: imageName,
