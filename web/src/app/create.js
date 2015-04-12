@@ -19,21 +19,18 @@ $(document).ready(function () {
         var form = new FormData();
         var file = fileInput.files[0];
         var signedData = data._metadata.image.signed_data;
-        form.append('file', file);
         form.append('Content-Type', 'image/png');
         form.append('ACL', 'public-read');
         form.append('key', signedData.imageName);
         form.append('AWSAccessKeyId', signedData.AWSAccessKeyId);
         form.append('Expires', signedData.Expires);
         form.append('Signature', signedData.Signature);
+        form.append('file', file);
 
 
         fetch(data._metadata.image.url, {
             method: 'POST',
-            body: form,
-            headers: {
-                key: signedData.imageName
-            }
+            body: form
         });
     });
 
