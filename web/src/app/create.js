@@ -22,7 +22,7 @@ $(document).ready(function () {
         form.append('file', file);
         form.append('Content-Type', 'image/png');
         form.append('ACL', 'public-read');
-        form.append('Key', signedData.imageName);
+        form.append('key', signedData.imageName);
         form.append('AWSAccessKeyId', signedData.AWSAccessKeyId);
         form.append('Expires', signedData.Expires);
         form.append('Signature', signedData.Signature);
