@@ -20,17 +20,16 @@ $(document).ready(function () {
         var file = fileInput.files[0];
         var signedData = data._metadata.image.signed_data;
         form.append('file', file);
+        form.append('Content-Type', 'image/png');
+        form.append('ACL', 'public-read');
+        form.append('AWSAccessKeyId', signedData.AWSAccessKeyId);
+        form.append('Expires', signedData.Expires);
+        form.append('Signature', signedData.Signature);
+
 
         fetch(data._metadata.image.url, {
             method: 'PUT',
-            body: form,
-            headers: {
-                'Content-Type': 'image/png',
-                ACL: 'public-read',
-                AWSAccessKeyId: signedData.AWSAccessKeyId,
-                Expires: signedData.Expires,
-                Signature: signedData.Signature
-            }
+            body: form
         });
     });
 
