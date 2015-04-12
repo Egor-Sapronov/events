@@ -30,10 +30,10 @@ module.exports = (function () {
                 let policy = {
                     "expiration": '2016-12-01T12:00:00.000Z',
                     "conditions": [
-                        {"key": imageName},
+                        ["starts-with", "$key", '/'],
                         {"bucket": S3_BUCKET},
                         {"acl": "public-read"},
-                        {"Content-Type": 'image/png'}
+                        {"Content-Type": "image/png"}
                     ]
                 };
                 let base64Policy = Buffer(JSON.stringify(policy), "utf-8").toString("base64");
