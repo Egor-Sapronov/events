@@ -28,7 +28,7 @@ module.exports = (function () {
 
                 let queryData = url.parse(data, true).query;
                 let policy = {
-                    "expiration": queryData.Expires,
+                    "expiration": '2016-12-01T12:00:00.000Z',
                     "conditions": [
                         ["starts-with", "$key", "/" + imageName],
                         {"bucket": S3_BUCKET},
@@ -42,7 +42,7 @@ module.exports = (function () {
                 let return_data = {
                     signed_data: {
                         AWSAccessKeyId: queryData.AWSAccessKeyId,
-                        Expires: queryData.Expires,
+                        Expires: '2016-12-01T12:00:00.000Z',
                         Signature: signature,
                         key: imageName,
                         policy: base64Policy
