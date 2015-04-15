@@ -17,8 +17,14 @@ module.exports = (function () {
         return image.update({path: path});
     }
 
+
+    function getImage(id) {
+        return db.Image.find({where: {id: id}});
+    }
+
     return {
         createImage: createImage,
-        updatePath: updatePath
+        updatePath: updatePath,
+        getImage: getImage
     };
 })();

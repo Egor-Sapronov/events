@@ -7,6 +7,7 @@ let userService = require('../../libs/userService.es6');
 let eventService = require('../../libs/events/eventService.es6');
 let amazonService = require('../../libs/images/amazonService.es6');
 let imageService = require('../../libs/images/imageService.es6');
+let fs = require('fs');
 let log = require('../../libs/logger/logger.es6.js')(module);
 
 router.all('*', function (req, res, next) {
@@ -26,12 +27,47 @@ router.param('user', function (req, res, next, id) {
         });
 });
 
+router.param('event', function (req, res, next, id) {
+    eventService.getEvent(id)
+        .then(function (event) {
+            req.context.event = event;
+            next();
+        })
+        .catch(function (err) {
+            res.status(400).end();
+        });
+});
+
+router.param('image', function (req, res, next, id) {
+    imageService.getImage(id)
+        .then(function (image) {
+            req.context.image = image;
+            next();
+        })
+        .catch(function (err) {
+            res.status(400).end();
+        });
+});
+
 router.post('/users/:user/events/:event/images/:image',
     passport.authenticate('bearer', {session: false}),
     multer({dest: './uploads/'}),
     function (req, res) {
-        console.log(req.files);
-        res.send();
+        var file = fs.createReadStream(req.file.path);
+        amazonService.upload(file, req.context.image.id)
+            .then(function (data) {
+                return imageService.updatePath(req.context.image, data.Location);
+            })
+            .then(function (image) {
+                res.status(201).send(JSON.stringify({
+                    id: image.id,
+                    path: image.path
+                }));
+            })
+            .catch(function (err) {
+                log.error(err);
+                res.status(400).end();
+            });
     });
 
 router.post('/users/:user/events',
