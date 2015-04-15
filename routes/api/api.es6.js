@@ -53,7 +53,7 @@ router.post('/users/:user/events/:event/images/:image',
     passport.authenticate('bearer', {session: false}),
     multer({dest: './uploads/'}),
     function (req, res) {
-        var file = fs.createReadStream(req.file.path);
+        var file = fs.createReadStream(req.files.file.path);
         amazonService.upload(file, req.context.image.id)
             .then(function (data) {
                 return imageService.updatePath(req.context.image, data.Location);
