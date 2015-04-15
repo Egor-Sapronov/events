@@ -28,6 +28,26 @@ describe('Image service', function () {
         });
     });
 
+    describe('#getImage', function () {
+        it('Should return image by id', function (done) {
+            db.sequelize
+                .sync({force: true})
+                .then(function () {
+                    return db.Image
+                        .create({
+                            path: 'test'
+                        });
+                })
+                .then(function (image) {
+                    return service.getImage(image.id);
+                })
+                .then(function (image) {
+                    expect(image).to.be.ok;
+                    done();
+                });
+        });
+    });
+
     describe('#updatePath', function () {
         it('Should update path for the image', function (done) {
             db.sequelize

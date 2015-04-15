@@ -54,6 +54,28 @@ describe('Event service', function () {
         });
     });
 
+    describe('#getEvent', function () {
+        it('Should return event by id', function (done) {
+            db.sequelize
+                .sync({force: true})
+                .then(function () {
+                    return db.Event.create({
+                        title: 'test title',
+                        description: 'test description',
+                        date: new Date(),
+                        place: 'test place'
+                    });
+                })
+                .then(function (event) {
+                    return service.getEvent(event.id);
+                })
+                .then(function (event) {
+                    expect(event).to.be.ok;
+                    done();
+                });
+        });
+    });
+
     describe('#getCreatedEvents', function () {
         it('Should return all events created by user', function (done) {
             let eventData = {
