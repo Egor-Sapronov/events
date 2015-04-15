@@ -17,8 +17,8 @@ router.all('*', function (req, res, next) {
 });
 
 router.param('user', apiParams.user);
-router.param('image', apiParams.user);
-router.param('event', apiParams.user);
+router.param('image', apiParams.image);
+router.param('event', apiParams.event);
 
 router.post('/users/:user/events/:event/images/:image',
     passport.authenticate('bearer', {session: false}),
