@@ -23,7 +23,10 @@ $(document).ready(function () {
 
         fetch(data._metadata.image.url, {
             method: 'POST',
-            body: form
+            body: form,
+            headers: {
+                "Authorization": "bearer " + token
+            }
         });
     });
 
