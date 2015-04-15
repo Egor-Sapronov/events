@@ -30,6 +30,7 @@ router.post('/users/:user/events/:event/images/:image',
     passport.authenticate('bearer', {session: false}),
     multer({dest: './uploads/'}),
     function (req, res) {
+        console.log(req.files);
         res.send();
     });
 
@@ -50,7 +51,7 @@ router.post('/users/:user/events',
                     imageId: event.ImageId,
                     _metadata: {
                         image: {
-                            url: '/users/' + req.context.user.id +
+                            url: '/api/users/' + req.context.user.id +
                             '/events/' + event.id +
                             '/images/' + event.ImageId
                         }
