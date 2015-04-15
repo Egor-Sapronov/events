@@ -18,14 +18,6 @@ $(document).ready(function () {
     vent.on('create::event', function (data) {
         var form = new FormData();
         var file = fileInput.files[0];
-        var signedData = data._metadata.image.signed_data;
-        form.append('Content-Type', 'image/png');
-        form.append('ACL', 'public-read');
-        form.append('key', signedData.imageName);
-        form.append('AWSAccessKeyId', signedData.AWSAccessKeyId);
-        form.append('Expires', signedData.Expires);
-        form.append('Signature', signedData.Signature);
-        form.append('policy', signedData.policy);
         form.append('file', file);
 
 

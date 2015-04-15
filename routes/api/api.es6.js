@@ -2,6 +2,7 @@
 
 let router = require('express').Router();
 let passport = require('../../libs/auth/auth.es6').passport;
+let multer = require('multer');
 let userService = require('../../libs/userService.es6');
 let eventService = require('../../libs/events/eventService.es6');
 let amazonService = require('../../libs/images/amazonService.es6');
@@ -25,31 +26,42 @@ router.param('user', function (req, res, next, id) {
         });
 });
 
-router.post('/users/:user/events', passport.authenticate('bearer', {session: false}), function (req, res) {
-    eventService
-        .createEvent(req.context.user, req.body)
-        .then(function (event) {
-            return imageService.createImage(event);
-        })
-        .then(function (event) {
-            return amazonService.getUrl(event.ImageId.toString())
-                .then(function (image) {
-                    res.status(201).send(JSON.stringify({
-                        title: event.title,
-                        description: event.description,
-                        date: event.date,
-                        place: event.place,
-                        _metadata: {
-                            image: image
+router.post('/users/:user/events/:event/images/:image',
+    passport.authenticate('bearer', {session: false}),
+    multer({dest: './uploads/'}),
+    function (req, res) {
+        res.send();
+    });
+
+router.post('/users/:user/events',
+    passport.authenticate('bearer', {session: false}),
+    function (req, res) {
+        eventService
+            .createEvent(req.context.user, req.body)
+            .then(function (event) {
+                return imageService.createImage(event);
+            })
+            .then(function (event) {
+                res.status(201).send(JSON.stringify({
+                    title: event.title,
+                    description: event.description,
+                    date: event.date,
+                    place: event.place,
+                    imageId: event.ImageId,
+                    _metadata: {
+                        image: {
+                            url: '/users/' + req.context.user.id +
+                            '/events/' + event.id +
+                            '/images/' + event.ImageId
                         }
-                    }));
-                });
-        })
-        .catch(function (err) {
-            log.error(err);
-            res.status(400).end();
-        });
-});
+                    }
+                }));
+            })
+            .catch(function (err) {
+                log.error(err);
+                res.status(400).end();
+            });
+    });
 
 router.get('/users/:user/events', function (req, res) {
     eventService.getCreatedEvents(req.context.user)
