@@ -6,11 +6,19 @@ let multer = require('multer');
 let eventService = require('../../libs/events/eventService.es6');
 let amazonService = require('../../libs/images/amazonService.es6');
 let imageService = require('../../libs/images/imageService.es6');
+let apiParams = require('./params.es6');
 let fs = require('fs');
 let log = require('../../libs/logger/logger.es6.js')(module);
-let routeParams = require('./params.es6');
 
-router.use(routeParams);
+router.all('*', function (req, res, next) {
+    // store data from route parameters
+    req.context = {};
+    next();
+});
+
+router.param('user', apiParams.user);
+router.param('image', apiParams.user);
+router.param('event', apiParams.user);
 
 router.post('/users/:user/events/:event/images/:image',
     passport.authenticate('bearer', {session: false}),
