@@ -30,7 +30,7 @@ router.post('/users/:user/events/:event/images/:image',
                 return imageService.updatePath(req.context.image, data.Location);
             })
             .then(function (image) {
-                fs.unlink(file, function () {
+                fs.unlink(req.files.file.path, function () {
                     res.status(201).send(JSON.stringify({
                         id: image.id,
                         path: image.path
