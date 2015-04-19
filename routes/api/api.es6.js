@@ -23,13 +23,7 @@ router.param('event', apiParams.event);
 router.get('/users/:user/feed', function (req, res) {
     eventService.getUserEvents(req.context.user.id)
         .then(function (events) {
-
-            let resultItems = events.map(function (item) {
-                item.user = req.context.user;
-                return item;
-            });
-
-            res.send(resultItems);
+            res.send(events);
         });
 });
 
