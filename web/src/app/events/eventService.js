@@ -13,11 +13,12 @@ var vent = require('../utils/vent');
 
 module.exports = (function (mediator) {
     var _service = {
-        postEvent: postEvent
+        postEvent: postEvent,
+        getFeed: getFeed
     };
 
     function postEvent(options) {
-        fetch('/api/users/' + options.userId + '/events', {
+        return fetch('/api/users/' + options.userId + '/events', {
             method: 'POST',
             headers: {
                 "Authorization": "bearer " + options.token,
@@ -34,6 +35,17 @@ module.exports = (function (mediator) {
             .catch(function (err) {
                 mediator.emit('error', err);
             });
+    }
+
+    function getFeed(id) {
+        return fetch('/api/users/' + id + '/feed', {
+            method: 'GET', headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(fetchUtils.status)
+            .then(fetchUtils.json);
     }
 
     return _service;

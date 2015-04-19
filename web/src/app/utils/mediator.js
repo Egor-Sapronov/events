@@ -48,6 +48,14 @@ module.exports = (function (mediator) {
 
     });
 
+    mediator.on('load::feed', function (events) {
+        //var items = events.map(function (item) {
+        //    return {
+        //        image:item.ImageId+'.png'
+        //    };
+        //});
+    });
+
     mediator.on('submit::event', function (data) {
         var token = localStorage.getItem('token');
         eventService.postEvent({

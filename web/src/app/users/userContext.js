@@ -22,8 +22,7 @@ module.exports = (function () {
      * @param {object} user
      */
     function setUser(entity) {
-        user.info = entity.info;
-        user.image = entity.image;
+        user = entity;
     }
 
     /**
