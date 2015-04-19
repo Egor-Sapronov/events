@@ -3,7 +3,7 @@ var PreviewCard = require('./previewCard.react.jsx');
 
 var Feed = React.createClass({
     render: function () {
-        return <div>
+        return <div className='col s12 l5 m8'>
         {this.props.items.map(function (item, index) {
             return <PreviewCard
                 key={index}

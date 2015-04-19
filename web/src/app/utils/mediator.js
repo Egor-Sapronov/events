@@ -8,6 +8,7 @@
 var userService = require('../users/userService');
 var eventService = require('../events/eventService');
 var profileBar = require('../components/profileBar.react.jsx');
+var feedComponent = require('../components/feed.react.jsx');
 var vent = require('./vent');
 
 module.exports = (function (mediator) {
@@ -59,11 +60,22 @@ module.exports = (function (mediator) {
     });
 
     mediator.on('load::feed', function (events) {
-        //var items = events.map(function (item) {
-        //    return {
-        //        image:item.ImageId+'.png'
-        //    };
-        //});
+        var items = events.map(function (item) {
+            return {
+                image: 'https://events-images-store.s3.amazonaws.com/' + item.ImageId + '.png',
+                title: item.title,
+                userImage: '',
+                place: item.place,
+                date: item.date,
+                description: item.description
+            };
+        });
+
+        React.render(
+            React.createElement(
+                feedComponent,
+                {items: items}),
+            document.getElementById('feed-container'));
     });
 
     mediator.on('submit::event', function (data) {
