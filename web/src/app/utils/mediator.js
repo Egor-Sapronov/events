@@ -18,8 +18,10 @@ module.exports = (function (mediator) {
         React.render(
             React.createElement(
                 profileBar,
-                {imageSrc: '/assets/img/empty_user.png'}),
+                {imageSrc: '/static/assets/img/empty_user.png'}),
             document.getElementById('profile-container'));
+
+        userService.getFacebookProfile(user.info.providerId);
     });
 
     mediator.on('load::profile', function (profile) {
