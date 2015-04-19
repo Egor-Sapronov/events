@@ -5,15 +5,16 @@
  *
  */
 
-var userContext = require('../users/userContext');
 var userService = require('../users/userService');
 var eventService = require('../events/eventService');
 var profileBar = require('../components/profileBar.react.jsx');
 var vent = require('./vent');
 
 module.exports = (function (mediator) {
+    var context = {};
+
     mediator.on('load::user', function (user) {
-        userContext.user = user;
+        context.user = user;
 
         React.render(
             React.createElement(
@@ -24,7 +25,7 @@ module.exports = (function (mediator) {
         userService
             .getFacebookProfile(user.providerId)
             .then(function (profile) {
-                vent.emit('load::profile', profile.data);
+                mediator.emit('load::profile', profile.data);
             });
     });
 
@@ -40,12 +41,19 @@ module.exports = (function (mediator) {
         userService
             .getUser(token)
             .then(function (user) {
-                vent.emit('load::user', user);
+                mediator.emit('load::user', user);
             });
     });
 
     mediator.on('create::event', function () {
 
+    });
+
+    mediator.on('get::feed', function () {
+        eventService.getFeed(context.user.id)
+            .then(function (events) {
+                mediator.emit('load::feed', events);
+            });
     });
 
     mediator.on('load::feed', function (events) {
@@ -59,7 +67,7 @@ module.exports = (function (mediator) {
     mediator.on('submit::event', function (data) {
         var token = localStorage.getItem('token');
         eventService.postEvent({
-            userId: userContext.user.id,
+            userId: context.user.id,
             token: token,
             eventData: data
         });
