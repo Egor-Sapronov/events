@@ -14,6 +14,10 @@ $(document).ready(function () {
 
     vent.emit('change::token', token);
 
-    vent.emit('get::feed', null);
+
+    vent.on('save::user', function () {
+        vent.emit('get::feed', null);
+    });
+
 });
 

@@ -16,6 +16,8 @@ module.exports = (function (mediator) {
     mediator.on('load::user', function (user) {
         context.user = user;
 
+        mediator.emit('save::user', null);
+
         React.render(
             React.createElement(
                 profileBar,
