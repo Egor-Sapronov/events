@@ -66,7 +66,7 @@ module.exports = (function (mediator) {
                 title: item.title,
                 userImage: '',
                 place: item.place,
-                date: item.date,
+                date: moment(item.date).format('MMMM do YYYY'),
                 description: item.description
             };
         });
