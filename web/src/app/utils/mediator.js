@@ -21,7 +21,11 @@ module.exports = (function (mediator) {
                 {imageSrc: '/static/assets/img/empty_user.png'}),
             document.getElementById('profile-container'));
 
-        userService.getFacebookProfile(user.info.providerId);
+        userService
+            .getFacebookProfile(user.providerId)
+            .then(function (profile) {
+                vent.emit('load::profile', profile.data);
+            });
     });
 
     mediator.on('load::profile', function (profile) {
@@ -33,7 +37,11 @@ module.exports = (function (mediator) {
     });
 
     mediator.on('change::token', function (token) {
-        userService.getUser(token);
+        userService
+            .getUser(token)
+            .then(function (user) {
+                vent.emit('load::user', user);
+            });
     });
 
     mediator.on('create::event', function () {
@@ -43,7 +51,7 @@ module.exports = (function (mediator) {
     mediator.on('submit::event', function (data) {
         var token = localStorage.getItem('token');
         eventService.postEvent({
-            userId: userContext.user.info.id,
+            userId: userContext.user.id,
             token: token,
             eventData: data
         });

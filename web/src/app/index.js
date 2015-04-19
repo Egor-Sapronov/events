@@ -12,5 +12,7 @@ $(document).ready(function () {
     }
 
     vent.emit('change::token', token);
+
+
 });
 
