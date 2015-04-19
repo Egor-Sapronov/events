@@ -14,7 +14,11 @@ router.get('/:id', function (req, res) {
     res.send(req.params.id);
 });
 
-router.get('/', function (req, res) {
+router.get('/', ensureAuthenticated, function (req, res) {
+    res.redirect('feed');
+});
+
+router.get('/home', function (req, res) {
     res.render('index');
 });
 
@@ -24,5 +28,5 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated() || (process.env.NODE_ENV === 'local')) {
         return next();
     }
-    res.redirect('/');
+    res.redirect('/home');
 }
