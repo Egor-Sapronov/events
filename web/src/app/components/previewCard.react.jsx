@@ -30,7 +30,7 @@ var PreviewCard = React.createClass({
                     <a href="#">more</a>
                 </div>
                 <div className="card-reveal event-reveal-card">
-                    <span className="card-title grey-text text-darken-4">Event title
+                    <span className="card-title grey-text text-darken-4">{this.props.title}
                         <i className="mdi-navigation-close right"></i>
                     </span>
                     <p>

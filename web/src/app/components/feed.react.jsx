@@ -9,6 +9,7 @@ var Feed = React.createClass({
                 key={index}
                 image={item.image}
                 title={item.title}
+                description={item.description}
                 userImage={item.userImage}
                 place={item.place}
                 date={item.date} />
