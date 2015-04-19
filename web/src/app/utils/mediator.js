@@ -18,7 +18,15 @@ module.exports = (function (mediator) {
         React.render(
             React.createElement(
                 profileBar,
-                {imageSrc: user.image.url}),
+                {imageSrc: '/assets/img/empty_user.png'}),
+            document.getElementById('profile-container'));
+    });
+
+    mediator.on('load::profile', function (profile) {
+        React.render(
+            React.createElement(
+                profileBar,
+                {imageSrc: profile.url}),
             document.getElementById('profile-container'));
     });
 

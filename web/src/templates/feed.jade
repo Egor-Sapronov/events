@@ -1,0 +1,67 @@
+extends ./partials/layout
+block title
+    title Feed
+block header
+    include ./partials/header
+block main
+    .container
+        .row
+            .col.s12.l5.m8
+                .section
+                    .card
+                        .card-image.waves-effect.waves-block.waves-light
+                            img.darken.activator(src='http://materializecss.com/images/office.jpg')
+                            span.activator.card-title Event title
+                        .card-content
+                            .event-reveal-card-header
+                                a.btn-floating.waves-effect.waves-block.waves-light(href='#')
+                                    img.circle.responsive-img(src='http://materializecss.com/images/yuna.jpg')
+                                p
+                                    small.secondary-text-color Russia, Novosibirsk - Jan 9, 2014
+                        .card-action.event-reveal-card-header
+                            div
+                                a.btn-floating.btn.default-primary-color.waves-effect(href='#')
+                                    i.mdi-action-favorite-outline.small
+                                a.btn-floating.btn.default-primary-color.waves-effect(href='#')
+                                    i.mdi-social-share.small
+                            a(href='#') more
+                        .card-reveal.event-reveal-card
+                            span.card-title.grey-text.text-darken-4
+                                | Event title
+                                i.mdi-navigation-close.right
+                            p
+                                small.secondary-text-color Russia, Novosibirsk - Jan 9, 2014
+                            p Footers are a great way to organize a lot of site navigation and information at the end of a page.  This is where the user will look once hes finished scrolling through the current page or is looking for additional.
+                            .card-reveal-footer
+                                a.btn-floating.btn-large.accent-color.waves-effect(href='#')
+                                    i.mdi-action-done
+                .section
+                    .card
+                        .card-image.waves-effect.waves-block.waves-light
+                            img.darken.activator(src='http://materializecss.com/images/sample-1.jpg')
+                            span.activator.card-title Event title
+                        .card-content
+                            .event-reveal-card-header
+                                a.btn-floating.waves-effect.waves-block.waves-light(href='#')
+                                    img.circle.responsive-img(src='http://materializecss.com/images/yuna.jpg')
+                                p
+                                    small.secondary-text-color Russia, Novosibirsk - Jan 9, 2014
+                        .card-action.event-reveal-card-header
+                            div
+                                a.btn-floating.btn.default-primary-color.waves-effect(href='#')
+                                    i.mdi-action-favorite-outline.small
+                                a.btn-floating.btn.default-primary-color.waves-effect(href='#')
+                                    i.mdi-social-share.small
+                            a(href='#') more
+                        .card-reveal.event-reveal-card
+                            span.card-title.grey-text.text-darken-4
+                                | Event title
+                                i.mdi-navigation-close.right
+                            p
+                                small.secondary-text-color Russia, Novosibirsk - Jan 9, 2014
+                            p Footers are a great way to organize a lot of site navigation and information at the end of a page.  This is where the user will look once hes finished scrolling through the current page or is looking for additional.
+                            .card-reveal-footer
+                                a.btn-floating.btn-large.accent-color.waves-effect(href='#')
+                                    i.mdi-action-done
+block scripts
+    script(src='/static/assets/scripts/index.js')
