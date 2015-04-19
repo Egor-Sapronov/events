@@ -10,16 +10,12 @@ router.get('/feed', ensureAuthenticated, function (req, res) {
     res.render('feed');
 });
 
-router.get('/:id', function (req, res) {
-    res.send(req.params.id);
+router.get('/home', function (req, res) {
+    res.render('index');
 });
 
 router.get('/', ensureAuthenticated, function (req, res) {
     res.redirect('feed');
-});
-
-router.get('/home', function (req, res) {
-    res.render('index');
 });
 
 module.exports = router;
