@@ -6,6 +6,10 @@ router.get('/create', ensureAuthenticated, function (req, res) {
     res.render('create');
 });
 
+router.get('/feed', ensureAuthenticated, function (req, res) {
+    res.render('feed');
+});
+
 router.get('/:id', function (req, res) {
     res.send(req.params.id);
 });

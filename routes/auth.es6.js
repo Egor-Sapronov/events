@@ -23,7 +23,7 @@ router.get('/facebook/callback',
     function (req, res) {
         authService.getToken(req.user)
             .then(function (token) {
-                res.redirect('/#' + token.token);
+                res.redirect('/feed#' + token.token);
             });
     });
 
