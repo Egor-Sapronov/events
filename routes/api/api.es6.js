@@ -20,6 +20,13 @@ router.param('user', apiParams.user);
 router.param('image', apiParams.image);
 router.param('event', apiParams.event);
 
+router.get('/users/:user/feed', function (req, res) {
+    eventService.getUserEvents(req.context.user.id)
+        .then(function (events) {
+            res.send(events);
+        });
+});
+
 router.post('/users/:user/events/:event/images/:image',
     passport.authenticate('bearer', {session: false}),
     multer({dest: './uploads/'}),

@@ -22,6 +22,14 @@ module.exports = (function () {
         return user.getEvents();
     }
 
+    function getUserEvents(userId) {
+        return db.User
+            .find({where: {id: userId}})
+            .then(function (user) {
+                return user.getEvents();
+            });
+    }
+
     function getEvent(id) {
         return db.Event.find({where: {id: id}});
     }
@@ -29,6 +37,7 @@ module.exports = (function () {
     return {
         createEvent: createEvent,
         getCreatedEvents: getCreatedEvents,
+        getUserEvents: getUserEvents,
         getEvent: getEvent
     };
 })();
