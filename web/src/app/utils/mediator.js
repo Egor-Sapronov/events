@@ -62,12 +62,12 @@ module.exports = (function (mediator) {
     mediator.on('load::feed', function (events) {
         var items = events.map(function (item) {
             return {
-                image: 'https://events-images-store.s3.amazonaws.com/' + item.ImageId + '.png',
-                title: item.title,
+                image: 'https://events-images-store.s3.amazonaws.com/' + item.event.ImageId + '.png',
+                title: item.event.title,
                 userImage: '',
-                place: item.place,
-                date: moment(item.date).format('MMMM do YYYY'),
-                description: item.description
+                place: item.event.place,
+                date: moment(item.event.date).format('MMMM do YYYY'),
+                description: item.event.description
             };
         });
 
