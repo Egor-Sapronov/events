@@ -12,7 +12,8 @@ var fetchUtils = require('../utils/fetchUtils');
 module.exports = (function () {
     var _service = {
         getUser: getUser,
-        getFacebookProfile: getFacebookProfile
+        getFacebookProfile: getFacebookProfile,
+        getUserInfo: getUserInfo
     };
 
     /**
@@ -25,6 +26,18 @@ module.exports = (function () {
             method: 'GET',
             headers: {
                 "Authorization": "bearer " + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(fetchUtils.status)
+            .then(fetchUtils.json);
+    }
+
+    function getUserInfo(id) {
+        return fetch('/api/users/' + id, {
+            method: 'GET',
+            headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }

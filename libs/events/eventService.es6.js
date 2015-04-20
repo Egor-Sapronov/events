@@ -26,7 +26,7 @@ module.exports = (function () {
         return db.User
             .find({where: {id: userId}})
             .then(function (user) {
-                return user.getEvents({include: [{all: true}]});
+                return user.getEvents();
             });
     }
 
