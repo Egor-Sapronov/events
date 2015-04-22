@@ -21,7 +21,7 @@ router.get('/', ensureAuthenticated, function (req, res) {
 module.exports = router;
 
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated() || (process.env.NODE_ENV === 'local')) {
+    if (req.isAuthenticated()) {
         return next();
     }
     res.redirect('/home');

@@ -8,10 +8,7 @@
     "npm": "^2.7.0"
   },
   "scripts": {
-    "start": "npm run develop",
-    "local": "NODE_ENV=local node index.js",
-    "develop": "NODE_ENV=develop node index.js",
-    "production": "NODE_ENV=production node index.js",
+    "start": "node index.js",
     "test": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha test/*",
     "postinstall": "bower i && gulp build"
   },
@@ -48,6 +45,7 @@
     "del": "^1.1.1",
     "express": "~4.9.0",
     "express-session": "^1.10.4",
+    "fetch": "^0.3.6",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.1.0",
     "gulp-cssmin": "^0.1.6",

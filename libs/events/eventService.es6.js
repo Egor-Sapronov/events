@@ -1,7 +1,7 @@
 'use strict';
 
 let db = require('../data/database.es6');
-
+let fetch = require('fetch');
 
 module.exports = (function () {
     /**
@@ -22,11 +22,12 @@ module.exports = (function () {
         return user.getEvents();
     }
 
-    function getUserEvents(userId) {
+    function getFeed(userId) {
         return db.User
             .find({where: {id: userId}})
             .then(function (user) {
-                return user.getEvents();
+                return user
+                    .getEvents();
             });
     }
 
@@ -37,8 +38,19 @@ module.exports = (function () {
     return {
         createEvent: createEvent,
         getCreatedEvents: getCreatedEvents,
-        getUserEvents: getUserEvents,
+        getFeed: getFeed,
         getEvent: getEvent
     };
 })();
 
+//let events = items.map(function (eventitem) {
+//    return {
+//        event: {
+//            title: eventitem.title,
+//            description: eventitem.description,
+//            place: eventitem.place,
+//            date: eventitem.date,
+//            id: eventitem.id
+//        }
+//    };
+//});

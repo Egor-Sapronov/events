@@ -76,7 +76,7 @@ describe('Event service', function () {
         });
     });
 
-    describe('#getUserEvents', function () {
+    describe('#getFeed', function () {
         it('Should return array of events created by user', function (done) {
             let eventData = {
                 title: 'test title',
@@ -105,7 +105,7 @@ describe('Event service', function () {
                             return service.createEvent(user, eventData);
                         })
                         .then(function () {
-                            return service.getUserEvents(user.id);
+                            return service.getFeed(user.id);
                         })
                         .then(function (result) {
                             expect(result).to.be.ok;

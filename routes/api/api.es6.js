@@ -21,7 +21,7 @@ router.param('image', apiParams.image);
 router.param('event', apiParams.event);
 
 router.get('/users/:user/feed', function (req, res) {
-    eventService.getUserEvents(req.context.user.id)
+    eventService.getFeed(req.context.user.id)
         .then(function (events) {
             var items = events.map(function (event) {
                 return {
