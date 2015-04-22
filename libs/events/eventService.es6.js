@@ -35,22 +35,15 @@ module.exports = (function () {
         return db.Event.find({where: {id: id}});
     }
 
+    function getEvents() {
+        return db.Event.findAll();
+    }
+
     return {
         createEvent: createEvent,
         getCreatedEvents: getCreatedEvents,
         getFeed: getFeed,
+        getEvents: getEvents,
         getEvent: getEvent
     };
 })();
-
-//let events = items.map(function (eventitem) {
-//    return {
-//        event: {
-//            title: eventitem.title,
-//            description: eventitem.description,
-//            place: eventitem.place,
-//            date: eventitem.date,
-//            id: eventitem.id
-//        }
-//    };
-//});

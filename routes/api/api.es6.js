@@ -108,6 +108,19 @@ router.get('/users/me', passport.authenticate('bearer', {session: false}), funct
     });
 });
 
+router.get('/events', function (req, res) {
+    eventService
+        .getEvents()
+        .then(function (events) {
+            res.status(200)
+                .send(JSON.stringify(events));
+        })
+        .catch(function (err) {
+            log.error(err);
+            res.status(400).end();
+        });
+});
+
 router.get('/users/:user', function (req, res) {
     res.send({
         displayName: req.context.user.displayName,
