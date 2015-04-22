@@ -17,7 +17,14 @@ let db = {
 
 db.AccessToken.belongsTo(db.User);
 
-db.User.hasMany(db.Event, {as: 'Events'});
+db.User.belongsToMany(db.Event, {through: 'UserEvents'});
+db.Event.belongsToMany(db.User, {through: 'UserEvents'});
+
+
+db.Event.belongsToMany(db.User, {
+    as: 'Followers',
+    through: 'EventFollow'
+});
 
 db.Image.hasOne(db.Event);
 

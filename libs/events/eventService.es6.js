@@ -15,6 +15,11 @@ module.exports = (function () {
         return db.Event.create(eventData)
             .then(function (event) {
                 return user.addEvent(event);
+            })
+            .then(function (relationShip) {
+                return db.Event.find({
+                    where: {id: relationShip.EventId}
+                });
             });
     }
 
@@ -31,6 +36,18 @@ module.exports = (function () {
             });
     }
 
+    function followEvent(eventId, userId) {
+        return db.User
+            .find({where: {id: userId}})
+            .then(function (user) {
+                return db.Event
+                    .find({where: {id: eventId}})
+                    .then(function (event) {
+                        return event.addFollowers(user);
+                    });
+            });
+    }
+
     function getEvent(id) {
         return db.Event.find({where: {id: id}});
     }
@@ -43,6 +60,7 @@ module.exports = (function () {
         createEvent: createEvent,
         getCreatedEvents: getCreatedEvents,
         getFeed: getFeed,
+        followEvent: followEvent,
         getEvents: getEvents,
         getEvent: getEvent
     };
