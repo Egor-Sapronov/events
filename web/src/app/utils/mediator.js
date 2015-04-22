@@ -55,21 +55,19 @@ module.exports = (function (mediator) {
     mediator.on('get::feed', function () {
         eventService.getFeed(context.user.id)
             .then(function (events) {
-                mediator.emit('load::feed', events);
+                mediator.emit('load::events', events);
             });
     });
 
-    mediator.on('load::feed', function (events) {
-        var items = events.map(function (item) {
-            return {
-                image: 'https://events-images-store.s3.amazonaws.com/' + item.event.ImageId + '.png',
-                title: item.event.title,
-                userImage: '',
-                place: item.event.place,
-                date: moment(item.event.date).format('MMMM do YYYY'),
-                description: item.event.description
-            };
-        });
+    mediator.on('get::events', function () {
+        eventService.getEvents()
+            .then(function (events) {
+                mediator.emit('load::events', events);
+            });
+    });
+
+    mediator.on('load::events', function (events) {
+        var items = events.map(mapEvent);
 
         React.render(
             React.createElement(
@@ -86,6 +84,17 @@ module.exports = (function (mediator) {
             eventData: data
         });
     });
+
+    function mapEvent(event) {
+        return {
+            image: 'https://events-images-store.s3.amazonaws.com/' + event.event.ImageId + '.png',
+            title: event.event.title,
+            userImage: '',
+            place: event.event.place,
+            date: moment(event.event.date).format('MMMM do YYYY'),
+            description: event.event.description
+        };
+    }
 
     return mediator;
 })(vent);

@@ -1,7 +1,6 @@
 'use strict';
 
 var vent = require('./utils/mediator');
-var eventService = require('./events/eventService');
 
 $(document).ready(function () {
     var token = location.hash.split('#')[1];

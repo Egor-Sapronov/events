@@ -112,8 +112,14 @@ router.get('/events', function (req, res) {
     eventService
         .getEvents()
         .then(function (events) {
-            res.status(200)
-                .send(JSON.stringify(events));
+            let items = events.map(function (event) {
+                return {
+                    event: event,
+                    user: {}
+                };
+            });
+
+            res.send(items);
         })
         .catch(function (err) {
             log.error(err);

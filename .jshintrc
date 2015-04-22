@@ -157,7 +157,8 @@
     "React",
     "EventEmitter2",
     "toast",
-    "fetch"
+    "fetch",
+    "moment"
   ]
   // additional predefined global variables
 }

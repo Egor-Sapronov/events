@@ -14,7 +14,15 @@ var vent = require('../utils/vent');
 module.exports = (function (mediator) {
     var _service = {
         postEvent: postEvent,
-        getFeed: getFeed
+        getFeed: getFeed,
+        getEvents: getEvents
+    };
+
+    var optionsGet = {
+        method: 'GET', headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
     };
 
     function postEvent(options) {
@@ -37,13 +45,15 @@ module.exports = (function (mediator) {
             });
     }
 
+
     function getFeed(id) {
-        return fetch('/api/users/' + id + '/feed', {
-            method: 'GET', headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
+        return fetch('/api/users/' + id + '/feed', optionsGet)
+            .then(fetchUtils.status)
+            .then(fetchUtils.json);
+    }
+
+    function getEvents() {
+        return fetch('/api/events', optionsGet)
             .then(fetchUtils.status)
             .then(fetchUtils.json);
     }

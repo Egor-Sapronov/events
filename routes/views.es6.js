@@ -11,7 +11,7 @@ router.get('/feed', ensureAuthenticated, function (req, res) {
 });
 
 router.get('/home', function (req, res) {
-    res.render('index');
+    res.render('home');
 });
 
 router.get('/', ensureAuthenticated, function (req, res) {
