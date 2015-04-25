@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "react": "~0.12.2",
-    "materialize": "~0.95.3",
+    "materialize": "~0.96.1",
     "normalize.css": "~3.0.2",
     "eventemitter2": "~0.4.14",
     "immutable": "~3.6.4",
