@@ -76,7 +76,7 @@ module.exports = (function (mediator) {
         return {
             image: 'https://events-images-store.s3.amazonaws.com/' + event.event.ImageId + '.png',
             title: event.event.title,
-            userImage: '',
+            userImage: 'https://graph.facebook.com/' + event.user.providerId + '/picture?type=small',
             place: event.event.place,
             date: moment(event.event.date).format('MMMM do YYYY'),
             description: event.event.description
