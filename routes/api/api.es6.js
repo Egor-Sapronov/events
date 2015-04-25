@@ -127,19 +127,6 @@ router.get('/users/me', passport.authenticate('bearer', {session: false}), funct
 router.get('/events', function (req, res) {
     eventService
         .getEvents()
-        .then(function (events) {
-            return new Promise.all(events.map(function (event) {
-                return event.getUser()
-                    .then(function (user) {
-                        let item = {
-                            event: event,
-                            user: user
-                        };
-
-                        Promise.resolve(item);
-                    });
-            }));
-        })
         .then(function (result) {
             res.send(result);
         })

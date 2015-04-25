@@ -49,11 +49,26 @@ module.exports = (function () {
     }
 
     function getEvent(id) {
-        return db.Event.find({where: {id: id}});
+        return db.Event
+            .find({where: {id: id}});
+
     }
 
     function getEvents() {
-        return db.Event.findAll();
+        return db.Event.findAll()
+            .then(function (events) {
+                return new Promise.All(events.map(function (event) {
+                    return new Promise(function (resolve, reject) {
+                        db.User.find({where: {id: event.id}})
+                            .then(function (user) {
+                                resolve({
+                                    event: event,
+                                    user: user
+                                });
+                            });
+                    });
+                }));
+            });
     }
 
     return {
