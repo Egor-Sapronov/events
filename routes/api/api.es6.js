@@ -87,6 +87,22 @@ router.post('/users/:user/events',
             });
     });
 
+/**
+ * Follow event
+ */
+router.post('/events/:event/users',
+    passport.authenticate('bearer', {session: false}),
+    function (req, res) {
+        eventService.followEvent(req.context.event.id, req.user.id)
+            .then(function () {
+                res.status(201).end();
+            })
+            .catch(function (err) {
+                log.error(err);
+                res.status(400).end();
+            });
+    });
+
 router.get('/users/:user/events', function (req, res) {
     eventService.getCreatedEvents(req.context.user)
         .then(function (events) {

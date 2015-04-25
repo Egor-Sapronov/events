@@ -22,14 +22,14 @@ module.exports = (function (mediator) {
         React.render(
             React.createElement(
                 profileBar,
-                {imageSrc: '/static/assets/img/empty_user.png'}),
+                {imageSrc: 'https://graph.facebook.com/' + user.providerId + '/picture?type=large'}),
             document.getElementById('profile-container'));
 
-        userService
-            .getFacebookProfile(user.providerId)
-            .then(function (profile) {
-                mediator.emit('load::profile', profile.data);
-            });
+        //userService
+        //    .getFacebookProfile(user.providerId)
+        //    .then(function (profile) {
+        //        mediator.emit('load::profile', profile.data);
+        //    });
     });
 
     mediator.on('load::profile', function (profile) {
