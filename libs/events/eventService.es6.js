@@ -31,11 +31,10 @@ module.exports = (function () {
         return db.User
             .find({where: {id: user.id}})
             .then(function (user) {
-                return user
-                    .getEvents();
+                return user.getEvents();
             })
             .then(function (events) {
-                Promise.resolve(events.map(function (event) {
+                return Promise.resolve(events.map(function (event) {
                     return mapEvent(event, user);
                 }));
             });
