@@ -25,7 +25,12 @@ router.get('/users/:user/feed', function (req, res) {
         .then(function (events) {
             var items = events.map(function (event) {
                 return {
-                    event: event,
+                    id: event.id,
+                    title: event.title,
+                    description: event.description,
+                    date: event.date,
+                    place: event.date,
+                    ImageId: event.ImageId,
                     user: req.context.user
                 };
             });
