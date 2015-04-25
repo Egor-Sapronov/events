@@ -172,11 +172,8 @@ describe('Event service', function () {
                             return service.getEvents();
                         })
                         .then(function (events) {
-                            expect(events.length).to.be.equal(1);
-
                             events.map(function (event) {
-                                expect(event.event).to.be.ok;
-                                expect(event.user).to.be.ok;
+                                expect(event).to.be.ok;
                             });
                             done();
                         });

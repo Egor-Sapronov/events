@@ -55,18 +55,18 @@ module.exports = (function () {
     }
 
     function getEvents() {
-        return db.Event.findAll()
+        return db.Event.findAll({include: [{all: true}]})
             .then(function (events) {
-                return Promise.all(events.map(function (event) {
-                    return new Promise(function (resolve, reject) {
-                        db.User.find({where: {id: event.id}})
-                            .then(function (user) {
-                                resolve({
-                                    event: event,
-                                    user: user
-                                });
-                            });
-                    });
+                return Promise.resolve(events.map(function (event) {
+                    return {
+                        id: event.id,
+                        title: event.title,
+                        description: event.description,
+                        date: event.date,
+                        place: event.date,
+                        ImageId: event.ImageId,
+                        user: event.Users[0]
+                    };
                 }));
             });
     }
