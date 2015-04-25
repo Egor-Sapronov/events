@@ -25,19 +25,6 @@ module.exports = (function (mediator) {
                 {imageSrc: 'https://graph.facebook.com/' + user.providerId + '/picture?type=small'}),
             document.getElementById('profile-container'));
 
-        //userService
-        //    .getFacebookProfile(user.providerId)
-        //    .then(function (profile) {
-        //        mediator.emit('load::profile', profile.data);
-        //    });
-    });
-
-    mediator.on('load::profile', function (profile) {
-        React.render(
-            React.createElement(
-                profileBar,
-                {imageSrc: profile.url}),
-            document.getElementById('profile-container'));
     });
 
     mediator.on('change::token', function (token) {

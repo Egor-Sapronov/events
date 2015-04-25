@@ -12,7 +12,6 @@ var fetchUtils = require('../utils/fetchUtils');
 module.exports = (function () {
     var _service = {
         getUser: getUser,
-        getFacebookProfile: getFacebookProfile,
         getUserInfo: getUserInfo
     };
 
@@ -42,14 +41,6 @@ module.exports = (function () {
                 'Content-Type': 'application/json'
             }
         })
-            .then(fetchUtils.status)
-            .then(fetchUtils.json);
-    }
-
-    function getFacebookProfile(id) {
-        return fetch('https://graph.facebook.com/v2.2/' +
-        id +
-        '/picture?redirect=0&type=small')
             .then(fetchUtils.status)
             .then(fetchUtils.json);
     }
