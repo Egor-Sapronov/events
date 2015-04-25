@@ -27,12 +27,17 @@ module.exports = (function () {
         return user.getEvents();
     }
 
-    function getFeed(userId) {
+    function getFeed(user) {
         return db.User
-            .find({where: {id: userId}})
+            .find({where: {id: user.id}})
             .then(function (user) {
                 return user
                     .getEvents();
+            })
+            .then(function (events) {
+                Promise.resolve(events.map(function (event) {
+                    return mapEvent(event, user);
+                }));
             });
     }
 
@@ -58,17 +63,21 @@ module.exports = (function () {
         return db.Event.findAll({include: [{all: true}]})
             .then(function (events) {
                 return Promise.resolve(events.map(function (event) {
-                    return {
-                        id: event.id,
-                        title: event.title,
-                        description: event.description,
-                        date: event.date,
-                        place: event.date,
-                        ImageId: event.ImageId,
-                        user: event.Users[0]
-                    };
+                    return mapEvent(event, event.Users[0]);
                 }));
             });
+    }
+
+    function mapEvent(event, user) {
+        return {
+            id: event.id,
+            title: event.title,
+            description: event.description,
+            date: event.date,
+            place: event.date,
+            ImageId: event.ImageId,
+            user: user
+        };
     }
 
     return {

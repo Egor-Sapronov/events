@@ -21,21 +21,9 @@ router.param('image', apiParams.image);
 router.param('event', apiParams.event);
 
 router.get('/users/:user/feed', function (req, res) {
-    eventService.getFeed(req.context.user.id)
+    eventService.getFeed(req.context.user)
         .then(function (events) {
-            var items = events.map(function (event) {
-                return {
-                    id: event.id,
-                    title: event.title,
-                    description: event.description,
-                    date: event.date,
-                    place: event.date,
-                    ImageId: event.ImageId,
-                    user: req.context.user
-                };
-            });
-
-            res.send(items);
+            res.send(events);
         });
 });
 
