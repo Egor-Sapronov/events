@@ -22,7 +22,7 @@ module.exports = (function (mediator) {
         React.render(
             React.createElement(
                 profileBar,
-                {imageSrc: 'https://graph.facebook.com/' + user.providerId + '/picture?type=large'}),
+                {imageSrc: 'https://graph.facebook.com/' + user.providerId + '/picture?type=small'}),
             document.getElementById('profile-container'));
 
         //userService
