@@ -148,6 +148,43 @@ describe('Event service', function () {
         });
     });
 
+    describe('#getEvents', function () {
+        it('Should return all events', function (done) {
+            let eventData = {
+                title: 'test title',
+                description: 'test description',
+                date: new Date(),
+                place: 'test place'
+            };
+
+            db.sequelize
+                .sync({force: true})
+                .then(function () {
+                    return db.User
+                        .create({
+                            providerId: '1',
+                            profileLink: 'https://link.com'
+                        });
+                })
+                .then(function (user) {
+                    return service.createEvent(user, eventData)
+                        .then(function () {
+                            return service.getEvents();
+                        })
+                        .then(function (events) {
+                            expect(events.length).to.be.equal(1);
+
+                            events.map(function (event) {
+                                expect(event.event).to.be.ok;
+                                expect(event.user).to.be.ok;
+                            });
+                            done();
+                        });
+                });
+
+        });
+    });
+
     describe('#followEvent', function () {
         it('Should add user to event followers', function (done) {
             let eventData = {
