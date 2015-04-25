@@ -128,14 +128,20 @@ router.get('/events', function (req, res) {
     eventService
         .getEvents()
         .then(function (events) {
-            let items = events.map(function (event) {
-                return {
-                    event: event,
-                    user: {}
-                };
-            });
+            return new Promise.all(events.map(function (event) {
+                return event.getUser()
+                    .then(function (user) {
+                        let item = {
+                            event: event,
+                            user: user
+                        };
 
-            res.send(items);
+                        Promise.resolve(item);
+                    });
+            }));
+        })
+        .then(function (result) {
+            res.send(result);
         })
         .catch(function (err) {
             log.error(err);
