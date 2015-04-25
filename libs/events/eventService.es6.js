@@ -57,7 +57,7 @@ module.exports = (function () {
     function getEvents() {
         return db.Event.findAll()
             .then(function (events) {
-                return new Promise.All(events.map(function (event) {
+                return new Promise.all(events.map(function (event) {
                     return new Promise(function (resolve, reject) {
                         db.User.find({where: {id: event.id}})
                             .then(function (user) {
