@@ -28,7 +28,7 @@ function handleError(res) {
 }
 
 router.get('/users/:user/feed', function (req, res) {
-    eventService.getFeed(req.context.user)
+    eventService.getFeed(req.context.user.id)
         .then(function (events) {
             res.send(events);
         })
@@ -59,7 +59,7 @@ router.post('/users/:user/events',
     passport.authenticate('bearer', {session: false}),
     function (req, res) {
         eventService
-            .createEvent(req.context.user, req.body)
+            .createEvent(req.context.user.id, req.body)
             .then(function (event) {
                 return imageService.createImage(event);
             })
@@ -96,7 +96,7 @@ router.post('/events/:event/users',
     });
 
 router.get('/users/:user/events', function (req, res) {
-    eventService.getCreatedEvents(req.context.user)
+    eventService.getUserEvents(req.context.user.id)
         .then(function (events) {
             res.status(200).send(events);
         })

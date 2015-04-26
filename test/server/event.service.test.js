@@ -29,7 +29,7 @@ describe('Event service', function () {
                         });
                 })
                 .then(function (user) {
-                    return service.createEvent(user, eventData)
+                    return service.createEvent(user.id, eventData)
                         .then(function (event) {
                             expect(event.title).to.be.equal(eventData.title);
                             expect(event.description).to.be.equal(eventData.description);
@@ -94,18 +94,18 @@ describe('Event service', function () {
                         });
                 })
                 .then(function (user) {
-                    return service.createEvent(user, eventData)
+                    return service.createEvent(user.id, eventData)
                         .then(function () {
-                            return service.createEvent(user, eventData);
+                            return service.createEvent(user.id, eventData);
                         })
                         .then(function () {
-                            return service.createEvent(user, eventData);
+                            return service.createEvent(user.id, eventData);
                         })
                         .then(function () {
-                            return service.createEvent(user, eventData);
+                            return service.createEvent(user.id, eventData);
                         })
                         .then(function () {
-                            return service.getFeed(user);
+                            return service.getFeed(user.id);
                         })
                         .then(function (result) {
                             expect(result).to.be.ok;
@@ -135,9 +135,9 @@ describe('Event service', function () {
                         });
                 })
                 .then(function (user) {
-                    return service.createEvent(user, eventData)
+                    return service.createEvent(user.id, eventData)
                         .then(function () {
-                            return service.getCreatedEvents(user);
+                            return service.getUserEvents(user.id);
                         })
                         .then(function (events) {
                             expect(events.length).to.be.equal(1);
@@ -167,7 +167,7 @@ describe('Event service', function () {
                         });
                 })
                 .then(function (user) {
-                    return service.createEvent(user, eventData)
+                    return service.createEvent(user.id, eventData)
                         .then(function () {
                             return service.getEvents();
                         })
@@ -201,7 +201,7 @@ describe('Event service', function () {
                         });
                 })
                 .then(function (user) {
-                    return service.createEvent(user, eventData);
+                    return service.createEvent(user.id, eventData);
                 })
                 .then(function (event) {
                     return db.User

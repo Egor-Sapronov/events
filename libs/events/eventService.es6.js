@@ -2,6 +2,7 @@
 
 let db = require('../data/database.es6');
 let fetch = require('fetch');
+let userService = require('../userService.es6');
 
 module.exports = (function () {
     /**
@@ -11,29 +12,36 @@ module.exports = (function () {
      * @param eventData
      * @returns {Promise}
      */
-    function createEvent(user, eventData) {
+    function createEvent(userId, eventData) {
         return db.Event.create(eventData)
             .then(function (event) {
-                return user.addEvent(event);
-            })
-            .then(function (relationShip) {
-                return db.Event.find({
-                    where: {id: relationShip.EventId}
-                });
+                return userService.getUser(userId)
+                    .then(function (user) {
+                        return user.addEvent(event);
+                    })
+                    .then(function (relationShip) {
+                        return db.Event.find({
+                            where: {id: relationShip.EventId}
+                        });
+                    });
             });
     }
 
-    function getCreatedEvents(user) {
-        return user.getEvents();
-    }
-
-    function getFeed(user) {
-        return user.getEvents()
+    function getUserEvents(userId) {
+        return userService
+            .getUser(userId)
+            .then(function (user) {
+                return user.getEvents({include: [{all: true}]});
+            })
             .then(function (events) {
                 return Promise.resolve(events.map(function (event) {
-                    return mapEvent(event, user);
+                    return mapEvent(event, event.Users[0]);
                 }));
             });
+    }
+
+    function getFeed(userId) {
+        return getUserEvents(userId);
     }
 
     function followEvent(eventId, userId) {
@@ -60,6 +68,7 @@ module.exports = (function () {
                     return mapEvent(event, event.Users[0]);
                 }));
             });
+
     }
 
     function mapEvent(event, user) {
@@ -79,7 +88,7 @@ module.exports = (function () {
 
     return {
         createEvent: createEvent,
-        getCreatedEvents: getCreatedEvents,
+        getUserEvents: getUserEvents,
         getFeed: getFeed,
         followEvent: followEvent,
         getEvents: getEvents,
