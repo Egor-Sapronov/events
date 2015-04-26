@@ -92,8 +92,8 @@ module.exports = (function (mediator) {
                 token: token,
                 eventData: data
             })
-            .then(function () {
-                mediator.emit('create::event', null);
+            .then(function (data) {
+                mediator.emit('create::event', data);
             });
     });
 
