@@ -8,7 +8,7 @@ let amazonService = require('../../libs/images/amazonService.es6');
 let imageService = require('../../libs/images/imageService.es6');
 let apiParams = require('./params.es6');
 let fs = require('fs');
-let log = require('../../libs/logger/logger.es6.js')(module);
+let handleError = require('./helpers.es6').handleError;
 
 router.all('*', function (req, res, next) {
     // store data from route parameters
@@ -19,13 +19,6 @@ router.all('*', function (req, res, next) {
 router.param('user', apiParams.user);
 router.param('image', apiParams.image);
 router.param('event', apiParams.event);
-
-function handleError(res) {
-    return function (err) {
-        log.error(err);
-        res.status(400).send(JSON.stringify(err));
-    };
-}
 
 router.get('/users/:user/feed', function (req, res) {
     eventService.getFeed(req.context.user.id)

@@ -3,6 +3,7 @@ let userService = require('../../libs/userService.es6');
 let eventService = require('../../libs/events/eventService.es6');
 let imageService = require('../../libs/images/imageService.es6');
 let log = require('../../libs/logger/logger.es6.js')(module);
+let handleError = require('./helpers.es6').handleError;
 
 module.exports = (function () {
     function user(req, res, next, id) {
@@ -11,10 +12,7 @@ module.exports = (function () {
                 req.context.user = user;
                 next();
             })
-            .catch(function (err) {
-                log.error(err);
-                res.status(400).end();
-            });
+            .catch(handleError(res));
     }
 
     function event(req, res, next, id) {
@@ -23,10 +21,7 @@ module.exports = (function () {
                 req.context.event = event;
                 next();
             })
-            .catch(function (err) {
-                log.error(err);
-                res.status(400).end();
-            });
+            .catch(handleError(res));
     }
 
     function image(req, res, next, id) {
@@ -35,10 +30,7 @@ module.exports = (function () {
                 req.context.image = image;
                 next();
             })
-            .catch(function (err) {
-                log.error(err);
-                res.status(400).end();
-            });
+            .catch(handleError(res));
     }
 
     return {
