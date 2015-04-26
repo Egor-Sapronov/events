@@ -41,7 +41,7 @@ var PreviewCard = React.createClass({
                     </p>
                     <p>{this.props.description}</p>
                     <div className="card-reveal-footer">
-                        <a href="#" onclick={this.handleFollowClick} className="btn-floating btn-large accent-color waves-effect">
+                        <a href="#" onClick={this.handleFollowClick} className="btn-floating btn-large accent-color waves-effect">
                             <i className="mdi-action-done"></i>
                         </a>
                     </div>
