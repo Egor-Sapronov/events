@@ -73,7 +73,7 @@ module.exports = (function () {
             title: event.title,
             description: event.description,
             date: event.date,
-            place: event.date,
+            place: event.place,
             ImageId: event.ImageId,
             user: user
         };
