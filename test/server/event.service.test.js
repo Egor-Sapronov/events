@@ -105,7 +105,7 @@ describe('Event service', function () {
                             return service.createEvent(user, eventData);
                         })
                         .then(function () {
-                            return service.getFeed(user.id);
+                            return service.getFeed(user);
                         })
                         .then(function (result) {
                             expect(result).to.be.ok;

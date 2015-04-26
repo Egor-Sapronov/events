@@ -28,11 +28,7 @@ module.exports = (function () {
     }
 
     function getFeed(user) {
-        return db.User
-            .find({where: {id: user.id}})
-            .then(function (user) {
-                return user.getEvents();
-            })
+        return user.getEvents()
             .then(function (events) {
                 return Promise.resolve(events.map(function (event) {
                     return mapEvent(event, user);
@@ -55,7 +51,6 @@ module.exports = (function () {
     function getEvent(id) {
         return db.Event
             .find({where: {id: id}});
-
     }
 
     function getEvents() {
