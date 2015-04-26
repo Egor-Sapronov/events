@@ -20,11 +20,19 @@ router.param('user', apiParams.user);
 router.param('image', apiParams.image);
 router.param('event', apiParams.event);
 
+function handleError(res) {
+    return function (err) {
+        log.error(err);
+        res.status(400).send(JSON.stringify(err));
+    };
+}
+
 router.get('/users/:user/feed', function (req, res) {
     eventService.getFeed(req.context.user)
         .then(function (events) {
             res.send(events);
-        });
+        })
+        .catch(handleError(res));
 });
 
 router.post('/users/:user/events/:event/images/:image',
@@ -44,10 +52,7 @@ router.post('/users/:user/events/:event/images/:image',
                     }));
                 });
             })
-            .catch(function (err) {
-                log.error(err);
-                res.status(400).end();
-            });
+            .catch(handleError(res));
     });
 
 router.post('/users/:user/events',
@@ -74,10 +79,7 @@ router.post('/users/:user/events',
                     }
                 }));
             })
-            .catch(function (err) {
-                log.error(err);
-                res.status(400).end();
-            });
+            .catch(handleError(res));
     });
 
 /**
@@ -90,10 +92,7 @@ router.post('/events/:event/users',
             .then(function () {
                 res.status(201).end();
             })
-            .catch(function (err) {
-                log.error(err);
-                res.status(400).end();
-            });
+            .catch(handleError(res));
     });
 
 router.get('/users/:user/events', function (req, res) {
@@ -101,10 +100,7 @@ router.get('/users/:user/events', function (req, res) {
         .then(function (events) {
             res.status(200).send(events);
         })
-        .catch(function (err) {
-            log.error(err);
-            res.status(400).end();
-        });
+        .catch(handleError(res));
 });
 
 router.get('/users/me', passport.authenticate('bearer', {session: false}), function (req, res) {
@@ -123,10 +119,7 @@ router.get('/events', function (req, res) {
         .then(function (result) {
             res.send(result);
         })
-        .catch(function (err) {
-            log.error(err);
-            res.status(400).end();
-        });
+        .catch(handleError(res));
 });
 
 router.get('/users/:user', function (req, res) {
