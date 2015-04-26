@@ -1,6 +1,9 @@
 'use strict';
 
 var PreviewCard = React.createClass({
+    handleFollowClick: function () {
+        this.props.onFollowClick(this.props.followUrl);
+    },
     render: function () {
         return <div className="section">
             <div className="card">
@@ -38,7 +41,7 @@ var PreviewCard = React.createClass({
                     </p>
                     <p>{this.props.description}</p>
                     <div className="card-reveal-footer">
-                        <a href="#" className="btn-floating btn-large accent-color waves-effect">
+                        <a href="#" onclick={this.handleFollowClick} className="btn-floating btn-large accent-color waves-effect">
                             <i className="mdi-action-done"></i>
                         </a>
                     </div>

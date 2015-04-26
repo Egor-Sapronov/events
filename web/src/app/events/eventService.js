@@ -1,7 +1,6 @@
 'use strict';
 
 var fetchUtils = require('../utils/fetchUtils');
-var vent = require('../utils/vent');
 
 /**
  * @module eventService - Encapsulate data retrieval for events
@@ -11,11 +10,12 @@ var vent = require('../utils/vent');
  * @return {Object} service
  */
 
-module.exports = (function (mediator) {
+module.exports = (function () {
     var _service = {
         postEvent: postEvent,
         getFeed: getFeed,
-        getEvents: getEvents
+        getEvents: getEvents,
+        followEvent: followEvent
     };
 
     var optionsGet = {
@@ -36,13 +36,7 @@ module.exports = (function (mediator) {
             body: JSON.stringify(options.eventData)
         })
             .then(fetchUtils.status)
-            .then(fetchUtils.json)
-            .then(function (json) {
-                mediator.emit('create::event', json);
-            })
-            .catch(function (err) {
-                mediator.emit('error', err);
-            });
+            .then(fetchUtils.json);
     }
 
 
@@ -58,5 +52,18 @@ module.exports = (function (mediator) {
             .then(fetchUtils.json);
     }
 
+    function followEvent(options) {
+        return fetch(options.url, {
+            method: 'POST',
+            headers: {
+                "Authorization": "bearer " + options.token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(fetchUtils.status)
+            .then(fetchUtils.json);
+    }
+
     return _service;
-})(vent);
+})();

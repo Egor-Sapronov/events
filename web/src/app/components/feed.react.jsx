@@ -3,6 +3,7 @@ var PreviewCard = require('./previewCard.react.jsx');
 
 var Feed = React.createClass({
     render: function () {
+        var _this = this;
         return <div>
         {this.props.items.map(function (item, index) {
             return <PreviewCard
@@ -12,7 +13,9 @@ var Feed = React.createClass({
                 description={item.description}
                 userImage={item.userImage}
                 place={item.place}
-                date={item.date} />
+                date={item.date}
+                followUrl={item.followUrl}
+                onFollowClick={_this.props.onFollowClick} />
         })}
         </div>;
     }

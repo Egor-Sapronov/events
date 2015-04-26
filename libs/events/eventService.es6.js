@@ -70,7 +70,10 @@ module.exports = (function () {
             date: event.date,
             place: event.place,
             ImageId: event.ImageId,
-            user: user
+            user: user,
+            _metadata: {
+                followUrl: 'http://events-dev.herokuapp.com/api/events/' + event.id + '/users'
+            }
         };
     }
 

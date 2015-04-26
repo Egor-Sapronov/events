@@ -39,6 +39,10 @@ module.exports = (function (mediator) {
 
     });
 
+    mediator.on('follow::event', function () {
+
+    });
+
     mediator.on('get::feed', function () {
         eventService.getFeed(context.user.id)
             .then(function (events) {
@@ -59,17 +63,38 @@ module.exports = (function (mediator) {
         React.render(
             React.createElement(
                 feedComponent,
-                {items: items}),
+                {
+                    items: items,
+                    onFollowClick: function (link) {
+                        mediator.emit('follow::click', link);
+                    }
+                }),
             document.getElementById('feed-container'));
+    });
+
+    mediator.on('follow::click', function (url) {
+        var options = {
+            url: url,
+            token: localStorage.getItem('token')
+        };
+
+        eventService.followEvent(options)
+            .then(function () {
+                mediator.emit('follow::event', null);
+            });
     });
 
     mediator.on('submit::event', function (data) {
         var token = localStorage.getItem('token');
-        eventService.postEvent({
-            userId: context.user.id,
-            token: token,
-            eventData: data
-        });
+        eventService
+            .postEvent({
+                userId: context.user.id,
+                token: token,
+                eventData: data
+            })
+            .then(function () {
+                mediator.emit('create::event', null);
+            });
     });
 
     function mapEvent(event) {
@@ -79,7 +104,8 @@ module.exports = (function (mediator) {
             userImage: 'https://graph.facebook.com/' + event.user.providerId + '/picture?type=small',
             place: event.place,
             date: moment(event.date).format('MMMM do YYYY'),
-            description: event.description
+            description: event.description,
+            followUrl: event._metadata.followUrl
         };
     }
 
