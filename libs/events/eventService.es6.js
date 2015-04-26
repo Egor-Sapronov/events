@@ -1,7 +1,6 @@
 'use strict';
 
 let db = require('../data/database.es6');
-let fetch = require('fetch');
 let userService = require('../userService.es6');
 
 module.exports = (function () {

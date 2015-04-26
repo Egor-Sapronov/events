@@ -10,7 +10,6 @@ let jshint = require('gulp-jshint');
 let gulpIgnore = require('gulp-ignore');
 let autoprefixer = require('gulp-autoprefixer');
 let transform = require('vinyl-transform');
-let source = require('vinyl-source-stream');
 let browserify = require('browserify');
 let del = require('del');
 let argv = require('yargs').argv;
