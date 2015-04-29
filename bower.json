@@ -23,6 +23,9 @@
     "immutable": "~3.6.4",
     "fetch": "~0.7.0",
     "es6-promise": "~2.0.1",
-    "moment": "~2.10.2"
+    "moment": "~2.10.2",
+    "flexboxgrid": "~6.1.1",
+    "bootstrap": "~3.3.4",
+    "font-awesome": "~4.3.0"
   }
 }
