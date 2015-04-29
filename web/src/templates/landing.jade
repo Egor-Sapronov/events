@@ -19,31 +19,33 @@ head
       script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
 body
     // Navigation
-    a#menu-toggle.btn.btn-dark.btn-lg.toggle(href='#')
-        i.fa.fa-bars
+    //a#menu-toggle.btn.btn-dark.btn-lg.toggle(href='#')
+    //    i.fa.fa-bars
 
-    nav#sidebar-wrapper
-        ul.sidebar-nav
-            a#menu-close.btn.btn-light.btn-lg.pull-right.toggle(href='#')
-                i.fa.fa-times
+    nav.navbar.navbar-custom.navbar-fixed-top(role='navigation')
+        .container
+            .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-main-collapse')
+                    i.fa.fa-bars
 
-            li.sidebar-brand
-                a(href='#top', onclick='$("#menu-close").click();') Start Bootstrap
+                a.navbar-brand.page-scroll(href='#page-top')
+                    span.light L&M
+            // Collect the nav links, forms, and other content for toggling
+            .collapse.navbar-collapse.navbar-right.navbar-main-collapse
+                ul.nav.navbar-nav
+                    // Hidden li included to remove active class from about link when scrolled up past about section
+                    li.hidden.active
+                        a(href='#page-top')
 
-            li
-                a(href='#top', onclick='$("#menu-close").click();') Home
+                    li
+                        a.page-scroll(href='#about') About
 
-            li
-                a(href='#about', onclick='$("#menu-close").click();') About
+                    li
+                        a.page-scroll(href='#download') Download
 
-            li
-                a(href='#services', onclick='$("#menu-close").click();') Services
+                    li
+                        a.page-scroll(href='#contact') Contact
 
-            li
-                a(href='#portfolio', onclick='$("#menu-close").click();') Portfolio
-
-            li
-                a(href='#contact', onclick='$("#menu-close").click();') Contact
     // Header
     header#top.header
         .text-vertical-center
@@ -58,12 +60,9 @@ body
         .container
             .row
                 .col-lg-12.text-center
-                    h2 Stylish Portfolio is the perfect theme for your next project!
+                    h2 Lorem ipsum dolor sit amet
 
-                    p.lead
-                        | This theme features some wonderful photography courtesy of
-                        a(target='_blank', href='http://join.deathtothestockphoto.com/') Death to the Stock Photo
-                        | .
+                    p.lead Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.
 
     // Services
     // The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/
@@ -79,7 +78,7 @@ body
                                 span.fa-stack.fa-4x
                                     i.fa.fa-circle.fa-stack-2x
 
-                                    i.fa.fa-cloud.fa-stack-1x.text-primary
+                                    i.fa.fa-diamond.fa-stack-1x.text-primary
 
                                 h4
                                     strong Service Name
@@ -93,7 +92,7 @@ body
                                 span.fa-stack.fa-4x
                                     i.fa.fa-circle.fa-stack-2x
 
-                                    i.fa.fa-compass.fa-stack-1x.text-primary
+                                    i.fa.fa-paper-plane.fa-stack-1x.text-primary
 
                                 h4
                                     strong Service Name
@@ -107,7 +106,7 @@ body
                                 span.fa-stack.fa-4x
                                     i.fa.fa-circle.fa-stack-2x
 
-                                    i.fa.fa-flask.fa-stack-1x.text-primary
+                                    i.fa.fa-newspaper-o.fa-stack-1x.text-primary
 
                                 h4
                                     strong Service Name
@@ -121,7 +120,7 @@ body
                                 span.fa-stack.fa-4x
                                     i.fa.fa-circle.fa-stack-2x
 
-                                    i.fa.fa-shield.fa-stack-1x.text-primary
+                                    i.fa.fa-heart.fa-stack-1x.text-primary
 
                                 h4
                                     strong Service Name
@@ -129,10 +128,6 @@ body
                                 p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 
                                 a.btn.btn-light(href='#') Learn More
-    // Callout
-    aside.callout
-        .text-vertical-center
-            h1 Vertically Centered Text
     // Portfolio
     section#portfolio.portfolio
         .container
@@ -172,45 +167,48 @@ body
                     a.btn.btn-lg.btn-light(href='#') Click Me!
 
                     a.btn.btn-lg.btn-dark(href='#') Look at Me!
-    // Footer
-    footer
+
+    section#contact
         .container
             .row
-                .col-lg-10.col-lg-offset-1.text-center
-                    h4
-                        strong Start Bootstrap
+                .col-lg-12.text-center
+                    h2.section-heading Let's Get In Touch!
+                    h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
 
-                    p
-                        | 3481 Melrose Place
-                        br
-                        | Beverly Hills, CA 90210
+            .row
+                .col-lg-12
+                    form#contactForm(name='sentMessage', novalidate='')
+                        .row
+                            .col-md-6
+                                .form-group
+                                    input#name.form-control(aria-invalid='false', placeholder='Your Name *', required='', data-validation-required-message='Please enter your name.', type='text')
 
-                    ul.list-unstyled
-                        li
-                            i.fa.fa-phone.fa-fw (123) 456-7890
+                                    p.help-block.text-danger
 
-                        li
-                            i.fa.fa-envelope-o.fa-fw
-                            a(href='mailto:name@example.com') name@example.com
+                                .form-group
+                                    input#email.form-control(placeholder='Your Email *', required='', data-validation-required-message='Please enter your email address.', type='email')
 
-                    br
+                                    p.help-block.text-danger
 
-                    ul.list-inline
-                        li
-                            a(href='#')
-                                i.fa.fa-facebook.fa-fw.fa-3x
+                                .form-group
+                                    input#phone.form-control(placeholder='Your Phone *', required='', data-validation-required-message='Please enter your phone number.', type='tel')
 
-                        li
-                            a(href='#')
-                                i.fa.fa-twitter.fa-fw.fa-3x
+                                    p.help-block.text-danger
 
-                        li
-                            a(href='#')
-                                i.fa.fa-dribbble.fa-fw.fa-3x
+                            .col-md-6
+                                .form-group
+                                    textarea#message.form-control(placeholder='Your Message *', required='', data-validation-required-message='Please enter a message.')
 
-                    hr.small
+                                    p.help-block.text-danger
 
-                    p.text-muted Copyright &copy; Your Website 2014
+                            .clearfix
+
+                            .col-lg-12.text-center
+                                #success
+
+                                button.btn.btn-xl(type='submit') Send Message
+
+
     // jQuery
     script(src='/static/lib/jquery/dist/jquery.js')
     // Bootstrap Core JavaScript
@@ -227,6 +225,16 @@ body
             e.preventDefault();
             $("#sidebar-wrapper").toggleClass("active");
         });
+
+        // jQuery to collapse the navbar on scroll
+        $(window).scroll(function () {
+            if ($(".navbar").offset().top > 50) {
+                $(".navbar-fixed-top").addClass("top-nav-collapse");
+            } else {
+                $(".navbar-fixed-top").removeClass("top-nav-collapse");
+            }
+        });
+
         // Scrolls to the selected menu item on the page
         $(function () {
             $('a[href*=#]:not([href=#])').click(function () {
