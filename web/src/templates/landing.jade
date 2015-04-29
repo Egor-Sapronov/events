@@ -5,7 +5,7 @@ head
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='description', content='')
     meta(name='author', content='')
-    title Events - Find your event
+    title Leasure - Think globally act locally
     link(href='/static/lib/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
     link(href='/static/lib/bootstrap-social/bootstrap-social.css', rel='stylesheet')
     link(href='/static/assets/stylesheets/landing.css', rel='stylesheet')
@@ -47,10 +47,10 @@ body
     // Header
     header#top.header
         .text-vertical-center
-            h1 Leisure
+            h1 Leasure
             h3 Think globally act locally
             br
-            a.btn.btn-social.btn-facebook.btn-lg
+            a.btn.btn-social.btn-facebook.btn-lg(href='/auth/facebook')
                 i.fa.fa-facebook
                 | Sign in with Facebook
     // About
@@ -144,22 +144,22 @@ body
                         .col-md-6
                             .portfolio-item
                                 a(href='#')
-                                    img.img-portfolio.img-responsive(src='img/portfolio-1.jpg')
+                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-1.jpg')
 
                         .col-md-6
                             .portfolio-item
                                 a(href='#')
-                                    img.img-portfolio.img-responsive(src='img/portfolio-2.jpg')
+                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-2.jpg')
 
                         .col-md-6
                             .portfolio-item
                                 a(href='#')
-                                    img.img-portfolio.img-responsive(src='img/portfolio-3.jpg')
+                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-3.jpg')
 
                         .col-md-6
                             .portfolio-item
                                 a(href='#')
-                                    img.img-portfolio.img-responsive(src='img/portfolio-4.jpg')
+                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-4.jpg')
                     a.btn.btn-dark(href='#') View More Items
 
     // Call to Action
