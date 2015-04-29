@@ -11,6 +11,14 @@ router.get('/feed', ensureAuthenticated, function (req, res) {
 });
 
 router.get('/home', function (req, res) {
+    res.render('landing');
+});
+
+router.get('/landing', function (req, res) {
+    res.render('landing');
+});
+
+router.get('/homeold', function (req, res) {
     res.render('home');
 });
 

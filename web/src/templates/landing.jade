@@ -1,0 +1,252 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Leasure - Think globally act locally
+    link(href='/static/lib/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/static/lib/bootstrap-social/bootstrap-social.css', rel='stylesheet')
+    link(href='/static/assets/stylesheets/landing.css', rel='stylesheet')
+    link(href='/static/lib/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic', rel='stylesheet', type='text/css')
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      |
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+body
+    // Navigation
+    //a#menu-toggle.btn.btn-dark.btn-lg.toggle(href='#')
+    //    i.fa.fa-bars
+
+    nav.navbar.navbar-custom.navbar-fixed-top(role='navigation')
+        .container
+            .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-main-collapse')
+                    i.fa.fa-bars
+
+                a.navbar-brand.page-scroll(href='#top')
+                    span.light Leasure
+            // Collect the nav links, forms, and other content for toggling
+            .collapse.navbar-collapse.navbar-right.navbar-main-collapse
+                ul.nav.navbar-nav
+                    // Hidden li included to remove active class from about link when scrolled up past about section
+                    li.hidden.active
+                        a(href='#top')
+                    li
+                        a.page-scroll(href='#about') About
+
+                    li
+                        a.page-scroll(href='#services') Services
+
+                    li
+                        a.page-scroll(href='#contact') Contact
+
+    // Header
+    header#top.header
+        .text-vertical-center
+            h1 Leasure
+            h3 Think globally act locally
+            br
+            a.btn.btn-social.btn-facebook.btn-lg(href='/auth/facebook')
+                i.fa.fa-facebook
+                | Sign in with Facebook
+    // About
+    section#about.about
+        .container
+            .row
+                .col-lg-12.text-center
+                    h2 Lorem ipsum dolor sit amet
+
+                    p.lead Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.
+
+    // Services
+    // The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/
+    section#services.services.bg-primary
+        .container
+            .row.text-center
+                .col-lg-10.col-lg-offset-1
+                    h2 Our Services
+                    hr.small
+                    .row
+                        .col-md-3.col-sm-6
+                            .service-item
+                                span.fa-stack.fa-4x
+                                    i.fa.fa-circle.fa-stack-2x
+
+                                    i.fa.fa-diamond.fa-stack-1x.text-primary
+
+                                h4
+                                    strong Service Name
+
+                                p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+                                a.btn.btn-light(href='#') Learn More
+
+                        .col-md-3.col-sm-6
+                            .service-item
+                                span.fa-stack.fa-4x
+                                    i.fa.fa-circle.fa-stack-2x
+
+                                    i.fa.fa-paper-plane.fa-stack-1x.text-primary
+
+                                h4
+                                    strong Service Name
+
+                                p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+                                a.btn.btn-light(href='#') Learn More
+
+                        .col-md-3.col-sm-6
+                            .service-item
+                                span.fa-stack.fa-4x
+                                    i.fa.fa-circle.fa-stack-2x
+
+                                    i.fa.fa-newspaper-o.fa-stack-1x.text-primary
+
+                                h4
+                                    strong Service Name
+
+                                p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+                                a.btn.btn-light(href='#') Learn More
+
+                        .col-md-3.col-sm-6
+                            .service-item
+                                span.fa-stack.fa-4x
+                                    i.fa.fa-circle.fa-stack-2x
+
+                                    i.fa.fa-heart.fa-stack-1x.text-primary
+
+                                h4
+                                    strong Service Name
+
+                                p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+                                a.btn.btn-light(href='#') Learn More
+    // Portfolio
+    section#portfolio.portfolio
+        .container
+            .row
+                .col-lg-10.col-lg-offset-1.text-center
+                    h2 Our Work
+                    hr.small
+                    .row
+                        .col-md-6
+                            .portfolio-item
+                                a(href='#')
+                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-1.jpg')
+
+                        .col-md-6
+                            .portfolio-item
+                                a(href='#')
+                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-2.jpg')
+
+                        .col-md-6
+                            .portfolio-item
+                                a(href='#')
+                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-3.jpg')
+
+                        .col-md-6
+                            .portfolio-item
+                                a(href='#')
+                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-4.jpg')
+                    a.btn.btn-dark(href='#') View More Items
+
+    // Call to Action
+    aside.call-to-action.bg-primary
+        .container
+            .row
+                .col-lg-12.text-center
+                    h3 The buttons below are impossible to resist.
+
+                    a.btn.btn-lg.btn-light(href='#') Click Me!
+
+                    a.btn.btn-lg.btn-dark(href='#') Look at Me!
+
+    section#contact
+        .container
+            .row
+                .col-lg-12.text-center
+                    h2.section-heading Let's Get In Touch!
+                    h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+
+            .row
+                .col-lg-12
+                    form#contactForm(name='sentMessage', novalidate='')
+                        .row
+                            .col-md-6
+                                .form-group
+                                    input#name.form-control(aria-invalid='false', placeholder='Your Name *', required='', data-validation-required-message='Please enter your name.', type='text')
+
+                                    p.help-block.text-danger
+
+                                .form-group
+                                    input#email.form-control(placeholder='Your Email *', required='', data-validation-required-message='Please enter your email address.', type='email')
+
+                                    p.help-block.text-danger
+
+                                .form-group
+                                    input#phone.form-control(placeholder='Your Phone *', required='', data-validation-required-message='Please enter your phone number.', type='tel')
+
+                                    p.help-block.text-danger
+
+                            .col-md-6
+                                .form-group
+                                    textarea#message.form-control(placeholder='Your Message *', required='', data-validation-required-message='Please enter a message.')
+
+                                    p.help-block.text-danger
+
+                            .clearfix
+
+                            .col-lg-12.text-center
+                                #success
+
+                                button.btn.btn-xl(type='submit') Send Message
+
+
+    // jQuery
+    script(src='/static/lib/jquery/dist/jquery.js')
+    // Bootstrap Core JavaScript
+    script(src='/static/lib/bootstrap/dist/js/bootstrap.min.js')
+    // Custom Theme JavaScript
+    script.
+        // Closes the sidebar menu
+        $("#menu-close").click(function (e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Opens the sidebar menu
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+
+        // jQuery to collapse the navbar on scroll
+        $(window).scroll(function () {
+            if ($(".navbar").offset().top > 50) {
+                $(".navbar-fixed-top").addClass("top-nav-collapse");
+            } else {
+                $(".navbar-fixed-top").removeClass("top-nav-collapse");
+            }
+        });
+
+        // Scrolls to the selected menu item on the page
+        $(function () {
+            $('a[href*=#]:not([href=#])').click(function () {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+                                  
