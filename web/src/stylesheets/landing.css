@@ -15,9 +15,9 @@ body {
 
 .navbar-custom {
     margin-bottom: 0;
-    border-bottom: 1px solid rgba(255,255,255,.3);
+    border-bottom: 1px solid rgba(255, 255, 255, .3);
     text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #000;
 }
 
@@ -52,7 +52,7 @@ body {
 
 .navbar-custom .nav li a:hover {
     outline: 0;
-    color: rgba(255,255,255,.8);
+    color: rgba(255, 255, 255, .8);
     background-color: transparent;
 }
 
@@ -67,28 +67,28 @@ body {
 }
 
 .navbar-custom .nav li.active a {
-    background-color: rgba(255,255,255,.3);
+    background-color: rgba(255, 255, 255, .3);
 }
 
 .navbar-custom .nav li.active a:hover {
     color: #fff;
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
     .navbar-custom {
         padding: 20px 0;
         border-bottom: 0;
         letter-spacing: 1px;
         background: 0 0;
-        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
-        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
-        transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+        transition: background .5s ease-in-out, padding .5s ease-in-out;
     }
 
     .navbar-custom.top-nav-collapse {
         padding: 0;
-        border-bottom: 0px solid rgba(255,255,255,.3);
-        background: #2D4373;
+        border-bottom: 0px solid rgba(255, 255, 255, .3);
+        background: #3B5998;
     }
 }
 
@@ -312,7 +312,7 @@ hr.small {
 
 *::-moz-selection {
     text-shadow: none;
-    background: #FED136 none repeat scroll 0% 0%;
+    background: rgba(255, 255, 255, 0.2) none repeat scroll 0% 0%;
 }
 
 section#contact {
