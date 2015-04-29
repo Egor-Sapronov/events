@@ -2,7 +2,6 @@
 let userService = require('../../libs/userService.es6');
 let eventService = require('../../libs/events/eventService.es6');
 let imageService = require('../../libs/images/imageService.es6');
-let log = require('../../libs/logger/logger.es6.js')(module);
 let handleError = require('./helpers.es6').handleError;
 
 module.exports = (function () {
