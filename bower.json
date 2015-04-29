@@ -26,6 +26,7 @@
     "moment": "~2.10.2",
     "flexboxgrid": "~6.1.1",
     "bootstrap": "~3.3.4",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "bootstrap-social": "~4.9.0"
   }
 }
