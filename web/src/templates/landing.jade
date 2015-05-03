@@ -30,30 +30,29 @@ body
                         a(href='#top')
                     li
                         a.page-scroll(href='#about') About
-
                     li
-                        a.page-scroll(href='#services') Services
-
+                        a.page-scroll(href='#explore') Explore
+                    li
+                        a.page-scroll(href='#create') Create
                     li
                         a.page-scroll(href='#contact') Contact
 
     // Header
     header#top.header
         .text-vertical-center
-            h1 Leasure
-            h3 Think globally act locally
+            h1 Re-Discover your city
+            h3 Restaurants and bars, films and theatre, art, gigs, clubs, shops and more...
             br
             a.btn.btn-social.btn-facebook.btn-lg(href='/auth/facebook')
                 i.fa.fa-facebook
                 | Sign in with Facebook
-    // About
-    section#about.about
-        .container
-            .row
-                .col-lg-12.text-center
-                    h2 Lorem ipsum dolor sit amet
 
-                    p.lead Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.
+    section#explore
+        .container
+            .row.text-center
+                .col-lg-10.col-lg-offset-1
+                    h2 Explore
+                    hr.small
 
     section#services.services.bg-primary
         .container
@@ -117,113 +116,86 @@ body
                                 p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 
                                 a.btn.btn-light(href='#') Learn More
-    // Portfolio
-    section#portfolio.portfolio
+
+    // About
+    section#create.about
         .container
             .row
-                .col-lg-10.col-lg-offset-1.text-center
-                    h2 Our Work
+                .col-lg-12.text-center
+                    h2 Create your own event
                     hr.small
+                    p.lead Bring people together, or turn your passion into a business.
+                    p.lead Eventbrite gives you everything you need to host your best event yet.
+                .col-lg-12.text-center
+                    button.btn.btn-xl(type='button') Get started
+
+section#contact
+    .container
+        .row
+            .col-lg-12.text-center
+                h2.section-heading Let's Get In Touch!
+                h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+
+        .row
+            .col-lg-12
+                form#contactForm(name='sentMessage', novalidate='')
                     .row
                         .col-md-6
-                            .portfolio-item
-                                a(href='#')
-                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-1.jpg')
+                            .form-group
+                                input#name.form-control(aria-invalid='false', placeholder='Your Name *', required='', data-validation-required-message='Please enter your name.', type='text')
+
+                                p.help-block.text-danger
+
+                            .form-group
+                                input#email.form-control(placeholder='Your Email *', required='', data-validation-required-message='Please enter your email address.', type='email')
+
+                                p.help-block.text-danger
+
+                            .form-group
+                                input#phone.form-control(placeholder='Your Phone *', required='', data-validation-required-message='Please enter your phone number.', type='tel')
+
+                                p.help-block.text-danger
 
                         .col-md-6
-                            .portfolio-item
-                                a(href='#')
-                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-2.jpg')
+                            .form-group
+                                textarea#message.form-control(placeholder='Your Message *', required='', data-validation-required-message='Please enter a message.')
 
-                        .col-md-6
-                            .portfolio-item
-                                a(href='#')
-                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-3.jpg')
+                                p.help-block.text-danger
 
-                        .col-md-6
-                            .portfolio-item
-                                a(href='#')
-                                    img.img-portfolio.img-responsive(src='/static/assets/img/portfolio-4.jpg')
-                    a.btn.btn-dark(href='#') View More Items
+                        .clearfix
 
-    // Call to Action
-    aside.call-to-action.bg-primary
-        .container
-            .row
-                .col-lg-12.text-center
-                    h3 The buttons below are impossible to resist.
+                        .col-lg-12.text-center
+                            #success
 
-                    a.btn.btn-lg.btn-light(href='#') Click Me!
-
-                    a.btn.btn-lg.btn-dark(href='#') Look at Me!
-
-    section#contact
-        .container
-            .row
-                .col-lg-12.text-center
-                    h2.section-heading Let's Get In Touch!
-                    h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
-
-            .row
-                .col-lg-12
-                    form#contactForm(name='sentMessage', novalidate='')
-                        .row
-                            .col-md-6
-                                .form-group
-                                    input#name.form-control(aria-invalid='false', placeholder='Your Name *', required='', data-validation-required-message='Please enter your name.', type='text')
-
-                                    p.help-block.text-danger
-
-                                .form-group
-                                    input#email.form-control(placeholder='Your Email *', required='', data-validation-required-message='Please enter your email address.', type='email')
-
-                                    p.help-block.text-danger
-
-                                .form-group
-                                    input#phone.form-control(placeholder='Your Phone *', required='', data-validation-required-message='Please enter your phone number.', type='tel')
-
-                                    p.help-block.text-danger
-
-                            .col-md-6
-                                .form-group
-                                    textarea#message.form-control(placeholder='Your Message *', required='', data-validation-required-message='Please enter a message.')
-
-                                    p.help-block.text-danger
-
-                            .clearfix
-
-                            .col-lg-12.text-center
-                                #success
-
-                                button.btn.btn-xl(type='submit') Send Message
+                            button.btn.btn-xl(type='submit') Send Message
 
 
-    script(src='/static/lib/jquery/dist/jquery.min.js')
-    script(src='/static/lib/bootstrap/dist/js/bootstrap.min.js')
+script(src='/static/lib/jquery/dist/jquery.min.js')
+script(src='/static/lib/bootstrap/dist/js/bootstrap.min.js')
 
-    script.
-        // jQuery to collapse the navbar on scroll
-        $(window).scroll(function () {
-            if ($(".navbar").offset().top > 50) {
-                $(".navbar-fixed-top").addClass("top-nav-collapse");
-            } else {
-                $(".navbar-fixed-top").removeClass("top-nav-collapse");
+script.
+    // jQuery to collapse the navbar on scroll
+    $(window).scroll(function () {
+        if ($(".navbar").offset().top > 50) {
+            $(".navbar-fixed-top").addClass("top-nav-collapse");
+        } else {
+            $(".navbar-fixed-top").removeClass("top-nav-collapse");
+        }
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function () {
+        $('a[href*=#]:not([href=#])').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
             }
         });
-
-        // Scrolls to the selected menu item on the page
-        $(function () {
-            $('a[href*=#]:not([href=#])').click(function () {
-                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-                    var target = $(this.hash);
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                    if (target.length) {
-                        $('html,body').animate({
-                            scrollTop: target.offset().top
-                        }, 1000);
-                        return false;
-                    }
-                }
-            });
-        });
+    });
                                   
