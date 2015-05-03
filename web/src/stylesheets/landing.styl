@@ -7,6 +7,9 @@ small-screen = 600px !default
 medium-screen = 992px !default
 large-screen = 1200px !default
 
+html
+  font-size 14px
+
 h1, h2, h3, h4
   font-weight 100
   color #5A5A5A
@@ -36,13 +39,24 @@ section
   width 100%
   height 100%
 
-section#top
-  font-size 3.56rem
-  line-height 3.916rem
+section#top, section#create
   max-height 80%
   background-color #272D4E
   background-image url(../img/exagon-pattern.png)
   padding-top 90px
+
+section#create
+  padding-bottom 90px
+  position relative
+  margin-top -5%
+  z-index 0
+
+section#create .icon-block h2
+  color #FBC02D
+
+.container.explore
+  position relative
+  z-index 1
 
 .actions-wrapper
   padding-bottom 90px
@@ -68,17 +82,7 @@ section#explore
   margin-top -5%
   padding 20px
   margin-bottom 60px
-
-section#explore .input-field input[type="search"]
-  width calc(100% - 6rem)
-  padding-left 1rem
-
-section#explore .input-field .prefix.active
-  color #FBC02D
-
-section#explore .input-field input[type=search]:focus, section#explore .input-field input[type=search]:valid
-  border-bottom 1px solid #8BC34A
-  box-shadow 0 1px 0 0 #8BC34A
+  color #5A5A5A
 
 section#explore .trending .section
   padding 2rem
